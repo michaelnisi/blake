@@ -2,5 +2,4 @@
  * bake.js
  */
 
-var bakery = require('./lib/bake');
-bakery.bake(__dirname + '/../input', __dirname + '/../output');
+require('./lib/bake.js').main(process.argv.splice(2));
