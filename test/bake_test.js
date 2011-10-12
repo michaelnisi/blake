@@ -20,7 +20,7 @@ vows.describe('bake').addBatch({
         }
     },
     'when launched with two arguments': {
-        topic: bake.main(['path/to/input', 'path/to/output']),
+        topic: bake.main(['../input', '../output']),
         'we succeed':function(topic) {
             assert.equal(topic, 0);
         }

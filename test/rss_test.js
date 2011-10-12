@@ -10,7 +10,7 @@ vows.describe('rss').addBatch({
     'when we bake': {
         topic: function() {
             console.time('RSS baked');
-            rss.bake('../input/templates/rss.jade', '../input/articles', '../output', this.callback)
+            rss.bake('../input/templates/rss.jade', '../input/data', '../output', this.callback)
         },
         'we succeed':function(err, data) {
             assert.isNull(err);
