@@ -1,14 +1,14 @@
-/**
- * articles_test.js
- */
-
 var vows = require('vows'),
     assert = require('assert'),
-    transformer = require('../lib/utils.js');
+    rss = require('../lib/articles.js');
 
-vows.describe('utils').addBatch({
+vows.describe('articles').addBatch({
+    'A ...': {
+        topic: function() {
 
+        },
+        'should ...':function() {
 
+        }
+    }
 }).export(module);
-
-

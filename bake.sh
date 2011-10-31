@@ -1,5 +1,7 @@
  #! /bin/sh
 
+ # Deprecated
+
 input=$1
 output=$2
 resources=$input'/resources'
