@@ -4,29 +4,8 @@ var vows = require('vows'),
 
 vows.describe('Source').addBatch({
     'A source': {
-        'from empty input': {
-            topic: data.getSource(''),
-
-            'is null': function (topic) {
-                assert.equal(topic, null);
-            }
-        },
-        'from null input': {
-            topic: data.getSource(null),
-
-            'is null': function (topic) {
-                assert.equal(topic, null);
-            }
-        },
-        'from undefined input': {
-            topic: data.getSource(),
-
-            'is null': function (topic) {
-                assert.equal(topic, null);
-            }
-        },
         'from input without end marker token': {
-            topic: data.getSource('{"title":"Title"}'),
+            topic: data.getSource('{"title":"Title"}', 'filename', {}),
 
             'does not throw': function() {
                 assert.doesNotThrow(function() {
@@ -38,17 +17,24 @@ vows.describe('Source').addBatch({
                 assert.strictEqual(topic.header.title, "Title");
                 assert.equal(topic.body, undefined);
             }
-        },
-        'from input of just an end marker token': {
-            topic: data.getSource('$end'),
+        }
+    }
+}).export(module);
 
-            'does not throw': function() {
-                assert.doesNotThrow(function() {
-                    data.getSource('$end');
-                });
-            },
-            'is null': function (topic) {
-                assert.equal(topic, null);
+vows.describe('Articles').addBatch({
+    'A string': {
+        'starting with an international standard date (YYYY-MM-DD)': {
+            topic: data.isArticleName('2011-11-11_hello.markdown'),
+
+            'is an article name': function (topic) {
+                assert.ok(topic);
+            }
+        },
+        'starting with without an international standard date (YYYY-MM-DD)': {
+            topic: data.isArticleName('hello.markdown'),
+
+            'is not an article name': function (topic) {
+                assert.ok(!topic);
             }
         }
     }
