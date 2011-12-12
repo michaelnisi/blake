@@ -1,6 +1,6 @@
 var vows = require('vows'),
     assert = require('assert'),
-    articles = require('../lib/articles.js');
+    articles = require('../lib/article.js');
 
 function getSource() {
     var paths, src;
