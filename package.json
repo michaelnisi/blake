@@ -13,6 +13,6 @@
   "main": "./lib/bake.js",
   "dependencies": {
     "step": ">=0.0.4",
-    "jade": ">=1.0.90"
+    "jade": ">=0.17.0"
   }
 }

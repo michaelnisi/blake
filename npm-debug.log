@@ -1,0 +1,73 @@
+info it worked if it ends with ok
+verbose cli [ 'node',
+verbose cli   '/usr/local/bin/npm',
+verbose cli   'install',
+verbose cli   'jade@1.0.90' ]
+info using npm@1.0.90
+info using node@v0.4.12
+verbose /usr/local/bin/node node symlink
+verbose config file /Users/michael/.npmrc
+verbose config file /usr/local/etc/npmrc
+silly testEngine { name: 'bake',
+silly testEngine   description: 'Baked blog.',
+silly testEngine   tags: [ 'node', 'baked', 'blog' ],
+silly testEngine   version: '0.0.1',
+silly testEngine   author: { name: 'Michael Nisi', email: 'mn@michaelnisi.com' },
+silly testEngine   repository: 
+silly testEngine    { type: 'git',
+silly testEngine      url: 'git://github.com/michaelnisi/bake.git' },
+silly testEngine   bugs: { name: 'http://github.com/michaelnisi/bake/issues' },
+silly testEngine   engines: [ 'node >= 0.4.0', node: ' >= 0.4.0' ],
+silly testEngine   main: './lib/bake.js',
+silly testEngine   dependencies: { step: '>=0.0.4', jade: '==1.0.90' },
+silly testEngine   _id: 'bake@0.0.1',
+silly testEngine   devDependencies: {},
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.90',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /Users/michael/workspace/webstorm/website/bake/package.json
+verbose loadDefaults bake@0.0.1
+verbose from cache /Users/michael/workspace/webstorm/website/bake/package.json
+verbose into /Users/michael/workspace/webstorm/website/bake [ 'jade@1.0.90' ]
+verbose cache add jade@1.0.90
+verbose cache add [ 'jade@1.0.90', null ]
+silly cache add: name, spec, args [ undefined, 'jade@1.0.90', [ 'jade@1.0.90', null ] ]
+verbose parsed url { pathname: 'jade@1.0.90', href: 'jade@1.0.90' }
+silly cache add: name, spec, args [ 'jade', '1.0.90', [ 'jade', '1.0.90' ] ]
+verbose parsed url { pathname: '1.0.90', href: '1.0.90' }
+info addNamed [ 'jade', '1.0.90' ]
+verbose addNamed [ '1.0.90', '1.0.90' ]
+verbose GET jade/1.0.90
+verbose raw, before any munging jade/1.0.90
+verbose url resolving [ 'https://registry.npmjs.org/', './jade/1.0.90' ]
+verbose url resolved https://registry.npmjs.org/jade/1.0.90
+silly get cb [ 404,
+silly get cb   { vary: 'Accept',
+silly get cb     server: 'CouchDB/1.1.0 (Erlang OTP/R14B04)',
+silly get cb     etag: '"DSFKVFLWGIE4IJF0N2W8FNFL3"',
+silly get cb     date: 'Fri, 09 Dec 2011 21:06:31 GMT',
+silly get cb     'content-type': 'application/json',
+silly get cb     'content-length': '37' } ]
+ERR! Error: version not found: 1.0.90 : jade/1.0.90
+ERR!     at Request.callback (/usr/local/lib/node_modules/npm/lib/utils/npm-registry-client/request.js:181:12)
+ERR!     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/main.js:337:18)
+ERR!     at Request.emit (events.js:64:17)
+ERR!     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/main.js:305:16)
+ERR!     at IncomingMessage.emit (events.js:81:20)
+ERR!     at HTTPParser.onMessageComplete (http.js:133:23)
+ERR!     at CleartextStream.ondata (http.js:1231:22)
+ERR!     at CleartextStream._push (tls.js:303:27)
+ERR!     at SecurePair.cycle (tls.js:577:20)
+ERR!     at EncryptedStream.write (tls.js:96:13)
+ERR! Report this *entire* log at:
+ERR!     <http://github.com/isaacs/npm/issues>
+ERR! or email it to:
+ERR!     <npm-@googlegroups.com>
+ERR! 
+ERR! System Darwin 11.2.0
+ERR! command "node" "/usr/local/bin/npm" "install" "jade@1.0.90"
+ERR! cwd /Users/michael/workspace/webstorm/website/bake
+ERR! node -v v0.4.12
+ERR! npm -v 1.0.90
+verbose exit [ 1, true ]
