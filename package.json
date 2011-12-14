@@ -1,16 +1,16 @@
 {
-  "name": "bake",
+  "name": "blake",
   "description": "Baked blog.",
   "tags": ["node","baked","blog"],
   "version": "0.0.1",
   "author": "Michael Nisi <mn@michaelnisi.com>",
   "repository": {
     "type": "git",
-    "url": "http://github.com/michaelnisi/bake.git"
+    "url": "http://github.com/michaelnisi/blake.git"
   },
-  "bugs": "http://github.com/michaelnisi/bake/issues",
+  "bugs": "http://github.com/michaelnisi/blake/issues",
   "engines": ["node >= 0.4.0"],
-  "main": "./lib/bake.js",
+  "main": "./bake.js",
   "dependencies": {
     "step": ">=0.0.4",
     "jade": ">=0.17.0"
