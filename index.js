@@ -20,10 +20,4 @@
  * THE SOFTWARE.
  */
 
-function formatDate(date) {
-	return date.toDateString();
-}
-
-module.exports = {
-    formatDate:formatDate
-}
+require('./lib/blake.js').main(process.argv.splice(2));

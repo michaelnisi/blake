@@ -20,10 +20,29 @@
  * THE SOFTWARE.
  */
 
-function formatDate(date) {
-	return date.toDateString();
-}
+var vows = require('vows'),
+    assert = require('assert'),
+    strings = require('../lib/strings.js');
 
-module.exports = {
-    formatDate:formatDate
-}
+vows.describe('Date').addBatch({
+    'A date string': {
+        'from a valid Date': {
+            topic: strings.formatDate(new Date('2011-12-15')),
+            'is formatted in a human readable form in American English': function (topic) {
+                assert.strictEqual(topic, 'Thu Dec 15 2011');
+            }
+        },
+        'from an uninitialized Date': {
+            topic: strings.formatDate(new Date(null)),
+            'is formatted in a human readable form in American English': function (topic) {
+                assert.strictEqual(topic, 'Thu Jan 01 1970');
+            }
+        },
+        'from an invalid Date': {
+            topic: strings.formatDate(new Date(undefined)),
+            'is Invalid Date': function (topic) {
+                assert.strictEqual(topic, 'Invalid Date');
+            }
+        }
+    }
+}).export(module);

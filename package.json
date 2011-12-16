@@ -1,18 +1,20 @@
 {
+  "author": "Michael Nisi <me@michaelnisi.com> (michaelnisi.com)",
   "name": "blake",
-  "description": "Baked blog.",
-  "tags": ["node","baked","blog"],
-  "version": "0.0.1",
-  "author": "Michael Nisi <mn@michaelnisi.com>",
+  "description": "Blake bakes static sites",
+  "version": "0.0.0",
+  "homepage": "https://github.com/michaelnisi/blake",
   "repository": {
     "type": "git",
-    "url": "http://github.com/michaelnisi/blake.git"
+    "url": "https://michaelnisi@github.com/michaelnisi/michaelnisi.git"
   },
-  "bugs": "http://github.com/michaelnisi/blake/issues",
-  "engines": ["node >= 0.4.0"],
-  "main": "./bake.js",
-  "dependencies": {
-    "step": ">=0.0.4",
-    "jade": ">=0.17.0"
-  }
+  "main": "index.js",
+  "scripts": {
+    "test": "vows test/* -spec"
+  },
+  "engines": {
+    "node": "~0.6.5"
+  },
+  "dependencies": {},
+  "devDependencies": {}
 }
