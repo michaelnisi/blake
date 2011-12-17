@@ -1,4 +1,4 @@
-## Bake
+# Bake
 
 Blake bakes static sites.
 
