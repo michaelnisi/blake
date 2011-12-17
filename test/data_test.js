@@ -46,3 +46,26 @@ vows.describe('Date').addBatch({
         }
     }
 }).export(module);
+
+vows.describe('Filename').addBatch({
+    'A filename': {
+        'that begins with a date': {
+            topic: data.isArticleName('2011-11-11_filename.md'),
+            'is an article filename':function(topic) {
+                assert.strictEqual(topic, true);
+            }
+        },
+        'that begins not with a date': {
+            topic: data.isArticleName('filename.md'),
+            'is not an article filename':function(topic) {
+                assert.strictEqual(topic, false);
+            }
+        }
+    }
+}).export(module);
+
+vows.describe('Source').addBatch({
+    'Write tests': function(topic) {
+        assert(false);
+    }
+}).export(module);
