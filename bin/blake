@@ -1,0 +1,3 @@
+#!/usr/bin/env node
+
+require('blake').main(process.argv.splice(2));

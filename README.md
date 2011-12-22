@@ -1,6 +1,6 @@
 # Bake
 
-Blake is a [Node.js](http://nodejs.org/) command line module, that transforms [markdown](http://daringfireball.net/projects/markdown/) data and [jade](http://jade-lang.com/) templates into html artifacts.
+Blake is a [Node.js](http://nodejs.org/) command line module, that combines [markdown](http://daringfireball.net/projects/markdown/), [jade](http://jade-lang.com/) templates and static resources to produce structured file artifacts.
 
 # TODO
 

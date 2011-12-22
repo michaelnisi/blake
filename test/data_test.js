@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-var vows = require('vows'), assert = require('assert'), data = require('../lib/data.js');
+var vows = require('vows'), assert = require('assert'), data = require('../lib/input.js');
 
 vows.describe('Date').addBatch({
     'A date string': {
@@ -63,7 +63,7 @@ vows.describe('Filename').addBatch({
 }).export(module);
 
 vows.describe('Source').addBatch({
-    'Get source from input': {
+    'Attempting to get source from input': {
         'without header': {
             'throws an error':function() {
                 assert.throws(function() {
