@@ -20,24 +20,28 @@
  * THE SOFTWARE.
  */
 
-var vows = require('vows'), assert = require('assert'), data = require('../lib/input.js');
+var vows = require('vows');
+var assert = require('assert');
+var input = require('../lib/input.js');
+var config = require('../lib/config.js');
+var paths = input.getPaths(config);
 
 vows.describe('Date').addBatch({
     'A date string': {
         'from a valid Date': {
-            topic: data.formatDate(new Date('2011-12-15')),
+            topic: input.formatDate(new Date('2011-12-15')),
             'is formatted in a human readable form in American English': function (topic) {
                 assert.strictEqual(topic, 'Thu Dec 15 2011');
             }
         },
         'from an uninitialized Date': {
-            topic: data.formatDate(new Date(null)),
+            topic: input.formatDate(new Date(null)),
             'is formatted in a human readable form in American English': function (topic) {
                 assert.strictEqual(topic, 'Thu Jan 01 1970');
             }
         },
         'from an invalid Date': {
-            topic: data.formatDate(new Date(undefined)),
+            topic: input.formatDate(new Date(undefined)),
             'is Invalid Date': function (topic) {
                 assert.strictEqual(topic, 'Invalid Date');
             }
@@ -49,9 +53,23 @@ vows.describe('Date').addBatch({
 vows.describe('Source').addBatch({
     'Attempting to get source from input': {
         'without header': {
-            'throws an error':function() {
+            'throws an error': function() {
                 assert.throws(function() {
-                    data.getSource('');
+                    input.getSource('');
+                });
+            }
+        },
+        'with header, but without template': {
+            'throws an error': function() {
+                assert.throws(function() {
+                    input.getSource('{ }\n$end\n', 'test', paths);
+                });
+            }
+        },
+        'with header and template': {
+            'does not throw an error': function() {
+                assert.doesNotThrow(function() {
+                    input.getSource('{ "template":"name.jade" }\n$end\n', 'test', paths);
                 });
             }
         }
