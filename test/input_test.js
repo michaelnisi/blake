@@ -69,16 +69,28 @@ vows.describe('Source').addBatch({
 		'with header and template': {
 			'does not throw an error': function() {
 				assert.doesNotThrow(function() {
-					input.getSource('{ "template":"name.jade" }\n$end\n', 'test', paths);
+					input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths);
 				});
 			}
 		}
 	},
 	'Source from input header': {
 		'without date': {
-			topic: input.getSource('{ "template":"name.jade" }\n$end\n', 'test', paths),
+			topic: input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths),
 			'has the current date': function(topic) {
 				assert.strictEqual(topic.dateString, input.formatDate(new Date()));
+			}
+		},
+		'without name': {
+			topic: input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths),
+			'has filename from name': function(topic) {
+				assert.strictEqual(topic.name, 'file.html');
+			}
+		},
+		'with template name': {
+			topic: input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths),
+			'has complete path to template file': function(topic) {
+				assert.strictEqual(topic.templatePath, '/templates/name.jade');
 			}
 		}
 	}
