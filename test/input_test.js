@@ -18,7 +18,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */
+*/
 
 var vows = require('vows');
 var assert = require('assert');
@@ -27,51 +27,59 @@ var config = require('../lib/config.js');
 var paths = input.getPaths(config);
 
 vows.describe('Date').addBatch({
-    'A date string': {
-        'from a valid Date': {
-            topic: input.formatDate(new Date('2011-12-15')),
-            'is formatted in a human readable form in American English': function (topic) {
-                assert.strictEqual(topic, 'Thu Dec 15 2011');
-            }
-        },
-        'from an uninitialized Date': {
-            topic: input.formatDate(new Date(null)),
-            'is formatted in a human readable form in American English': function (topic) {
-                assert.strictEqual(topic, 'Thu Jan 01 1970');
-            }
-        },
-        'from an invalid Date': {
-            topic: input.formatDate(new Date(undefined)),
-            'is Invalid Date': function (topic) {
-                assert.strictEqual(topic, 'Invalid Date');
-            }
-        }
-    }
+	'A date string': {
+		'from a valid Date': {
+			topic: input.formatDate(new Date('2011-12-15')),
+			'is formatted in a human readable form in American English': function (topic) {
+				assert.strictEqual(topic, 'Thu Dec 15 2011');
+			}
+		},
+		'from an uninitialized Date': {
+			topic: input.formatDate(new Date(null)),
+			'is formatted in a human readable form in American English': function (topic) {
+				assert.strictEqual(topic, 'Thu Jan 01 1970');
+			}
+		},
+		'from an invalid Date': {
+			topic: input.formatDate(new Date(undefined)),
+			'is Invalid Date': function (topic) {
+				assert.strictEqual(topic, 'Invalid Date');
+			}
+		}
+	}
 }).export(module);
 
 
 vows.describe('Source').addBatch({
-    'Attempting to get source from input': {
-        'without header': {
-            'throws an error': function() {
-                assert.throws(function() {
-                    input.getSource('');
-                });
-            }
-        },
-        'with header, but without template': {
-            'throws an error': function() {
-                assert.throws(function() {
-                    input.getSource('{ }\n$end\n', 'test', paths);
-                });
-            }
-        },
-        'with header and template': {
-            'does not throw an error': function() {
-                assert.doesNotThrow(function() {
-                    input.getSource('{ "template":"name.jade" }\n$end\n', 'test', paths);
-                });
-            }
-        }
-    }
+	'Attempting to get source from input': {
+		'without header': {
+			'throws an error': function() {
+				assert.throws(function() {
+					input.getSource('');
+				});
+			}
+		},
+		'with header, but without template': {
+			'throws an error': function() {
+				assert.throws(function() {
+					input.getSource('{ }\n$end\n', 'test', paths);
+				});
+			}
+		},
+		'with header and template': {
+			'does not throw an error': function() {
+				assert.doesNotThrow(function() {
+					input.getSource('{ "template":"name.jade" }\n$end\n', 'test', paths);
+				});
+			}
+		}
+	},
+	'Source from input header': {
+		'without date': {
+			topic: input.getSource('{ "template":"name.jade" }\n$end\n', 'test', paths),
+			'has the current date': function(topic) {
+				assert.strictEqual(topic.dateString, input.formatDate(new Date()));
+			}
+		}
+	}
 }).export(module);
