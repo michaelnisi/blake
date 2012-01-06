@@ -30,19 +30,19 @@ vows.describe('Date').addBatch({
 	'A date string': {
 		'from a valid Date': {
 			topic: input.formatDate(new Date('2011-12-15')),
-			'is formatted in a human readable form in American English': function (topic) {
+			'should be formatted in a human readable form in American English': function (topic) {
 				assert.strictEqual(topic, 'Thu Dec 15 2011');
 			}
 		},
 		'from an uninitialized Date': {
 			topic: input.formatDate(new Date(null)),
-			'is formatted in a human readable form in American English': function (topic) {
+			'should be formatted in a human readable form in American English': function (topic) {
 				assert.strictEqual(topic, 'Thu Jan 01 1970');
 			}
 		},
 		'from an invalid Date': {
 			topic: input.formatDate(new Date(undefined)),
-			'is Invalid Date': function (topic) {
+			'should be "Invalid Date"': function (topic) {
 				assert.strictEqual(topic, 'Invalid Date');
 			}
 		}
@@ -53,45 +53,54 @@ vows.describe('Date').addBatch({
 vows.describe('Source').addBatch({
 	'Attempting to get source from input': {
 		'without header': {
-			'throws an error': function() {
+			'should throw an error': function() {
 				assert.throws(function() {
 					input.getSource('');
 				});
 			}
 		},
 		'with header, but without template': {
-			'throws an error': function() {
+			'should throw an error': function() {
 				assert.throws(function() {
 					input.getSource('{ }\n$end\n', 'test', paths);
 				});
 			}
 		},
 		'with header and template': {
-			'does not throw an error': function() {
+			'should not throw an error': function() {
 				assert.doesNotThrow(function() {
 					input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths);
 				});
 			}
 		}
 	},
-	'Source from input header': {
+	'Source from input with header': {
 		'without date': {
 			topic: input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths),
-			'has the current date': function(topic) {
+			'should have the current date': function(topic) {
 				assert.strictEqual(topic.dateString, input.formatDate(new Date()));
 			}
 		},
 		'without name': {
 			topic: input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths),
-			'has filename from name': function(topic) {
+			'should have the filename from name': function(topic) {
 				assert.strictEqual(topic.name, 'file.html');
 			}
 		},
 		'with template name': {
 			topic: input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths),
-			'has complete path to template file': function(topic) {
+			'should have the complete path to template file': function(topic) {
 				assert.strictEqual(topic.templatePath, '/templates/name.jade');
 			}
-		}
+		},
+        'with path': {
+            topic: input.getSource('{ "template":"name.jade", "path":"/path/to" }\n$end\n', 'path/to/file.md', paths),
+			'should have the correct link': function(topic) {
+				assert.strictEqual(topic.link, '/path/to/file');
+			},
+            'should have the correct path': function(topic) {
+				assert.strictEqual(topic.path, '/path/to');
+			}
+        }
 	}
 }).export(module);
