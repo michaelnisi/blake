@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 by Michael Nisi
+ * Copyright (C) 2012 by Michael Nisi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -18,7 +18,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
-*/
+ */
 
 var vows = require('vows');
 var assert = require('assert');
@@ -83,16 +83,25 @@ vows.describe('Source').addBatch({
 		},
 		'without name': {
 			topic: input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths),
-			'should have the filename from name': function(topic) {
+			'should have filename from input file name': function(topic) {
 				assert.strictEqual(topic.name, 'file.html');
 			}
 		},
 		'with template name': {
 			topic: input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths),
-			'should have the complete path to template file': function(topic) {
+			'should have complete path to template file': function(topic) {
 				assert.strictEqual(topic.templatePath, '/templates/name.jade');
 			}
 		},
+        'without path': {
+            topic: input.getSource('{ "template":"name.jade" }\n$end\n', '/data/posts/path/to/file.md', paths),
+            'should have path from input filename': function(topic) {
+				assert.strictEqual(topic.path, '/path/to');
+			},
+            'should have the correct link': function(topic) {
+				assert.strictEqual(topic.link, '/path/to/file');
+			}
+        },
         'with path': {
             topic: input.getSource('{ "template":"name.jade", "path":"/path/to" }\n$end\n', 'path/to/file.md', paths),
 			'should have the correct link': function(topic) {

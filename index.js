@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 by Michael Nisi
+ * Copyright (C) 2012 by Michael Nisi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,4 +20,30 @@
  * THE SOFTWARE.
  */
 
-require('./lib/blake.js').main(process.argv.splice(2));
+var blake = require('./lib/blake.js');
+
+function main(arg) {
+    if (!function() {
+        return arg && arg.length == 2 && arg;
+    }()) {
+        console.error('Usage: blake path/to/input path/to/output');
+        return -1;
+    }
+
+    var ok = 'OK » baked';
+
+    console.time(ok);
+
+    blake.bake(arg[0], arg[1], function(err) {
+        if (err) {
+            throw err;
+        }
+
+        console.timeEnd(ok);
+		process.exit();
+    });
+
+    return 0;
+}
+
+main(process.argv.splice(2))
