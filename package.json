@@ -8,7 +8,7 @@
       "type" : "git",
       "url" : "https://michaelnisi@github.com/michaelnisi/blake.git"
     },
-    "main" : "index.js",
+    "main" : "blake.js",
     "bin" : { "blake":"./bin/blake.js" },
     "scripts": {
       "test" : "vows test/* -spec"
