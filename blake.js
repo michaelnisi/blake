@@ -6,14 +6,18 @@
 
 // Require external dependencies.
 var step = require('step');
+var path = require('path');
 var input = require('./lib/input.js');
 var io = require('./lib/io.js');
-var path = require('path');
 
 var config;
 
 // Sequence steps to generate on file.
 var bakeFile = function(name, paths, callback) {
+  if (!config) {
+    config = require(paths.config);
+  }
+
   var src;
 
   step(
@@ -46,7 +50,7 @@ var bakeFile = function(name, paths, callback) {
       src.template = template;
 
       id = src.header.template;
-      bake = require(paths.config).bakeFunctions[id];
+      bake = config.bakeFunctions[id];
 
       if (!bake) {
         throw new Error(id + '.bake(src, callback) not found.');
@@ -139,4 +143,3 @@ module.exports = {
   getSource:input.getSource,
   readDir:io.readDir
 };
-
