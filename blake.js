@@ -8,7 +8,9 @@
 var step = require('step');
 var input = require('./lib/input.js');
 var io = require('./lib/io.js');
-var config = require('./lib/config.js');
+var path = require('path');
+
+var config;
 
 // Sequence steps to generate on file.
 var bakeFile = function(name, paths, callback) {
@@ -44,7 +46,7 @@ var bakeFile = function(name, paths, callback) {
       src.template = template;
 
       id = src.header.template;
-      bake = config.bakeFunctions[id];
+      bake = require(paths.config).bakeFunctions[id];
 
       if (!bake) {
         throw new Error(id + '.bake(src, callback) not found.');
@@ -92,6 +94,10 @@ var bakeFiles = function(names, paths, callback) {
 
 // Generate all output from input.
 var bake = function(inputPathName, outputPathName, callback) {
+  config = require(inputPathName + '/views/config.js');
+
+  console.log(config);
+  
   var paths = input.getPaths(config, inputPathName, outputPathName);
 
   io.clearCache();
@@ -128,6 +134,9 @@ var bake = function(inputPathName, outputPathName, callback) {
 module.exports = {
   bake:bake,
   bakeFiles:bakeFiles,
-  getPaths:input.getPaths
+  getPaths:input.getPaths,
+  readFile:io.readFile,
+  getSource:input.getSource,
+  readDir:io.readDir
 };
 

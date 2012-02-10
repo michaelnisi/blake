@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // Receive and validate command line arguments. If the usage is not 
-// correct exit with a usage prompt otherwise call bake with the provided
+// correct, exit with a usage prompt, otherwise call bake with the provided
 // paths to the input and output directories. Exit the process when done.
 // Please consider that the output directory is deleted if it already 
 // exists, it is created if it doesn't exist.
