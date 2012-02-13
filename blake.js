@@ -100,8 +100,6 @@ var bakeFiles = function(names, paths, callback) {
 var bake = function(inputPathName, outputPathName, callback) {
   config = require(inputPathName + '/views/config.js');
 
-  console.log(config);
-  
   var paths = input.getPaths(config, inputPathName, outputPathName);
 
   io.clearCache();
@@ -136,10 +134,11 @@ var bake = function(inputPathName, outputPathName, callback) {
 
 // Export API.
 module.exports = {
-  bake:bake,
-  bakeFiles:bakeFiles,
-  getPaths:input.getPaths,
-  readFile:io.readFile,
-  getSource:input.getSource,
-  readDir:io.readDir
+  bake: bake,
+  bakeFiles: bakeFiles,
+  getPaths: input.getPaths,
+  readFile: io.readFile,
+  readFiles: io.readFiles,
+  getSource: input.getSource,
+  readDir: io.readDir
 };

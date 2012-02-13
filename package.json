@@ -2,7 +2,7 @@
   "author" : "Michael Nisi <michael.nisi@gmail.com> (michaelnisi.com)",
     "name" : "blake",
     "description" : "Blake bakes static sites",
-    "version" : "0.0.1",
+    "version" : "0.2.0",
     "homepage" : "https://github.com/michaelnisi/blake",
     "repository" : {
       "type" : "git",
