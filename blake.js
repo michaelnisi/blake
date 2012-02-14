@@ -1,8 +1,5 @@
-// Blake is a static site generator for [Node](http://nodejs.org/). It combines
-// [Markdown](http://daringfireball.net/projects/markdown/) markup, 
-// [jade](http://jade-lang.com/) templates and static resources to produce 
-// structured file artifacts. Blake can be used from the command line or as a
-// library.
+// Blake helps to generate static sites.
+// TODO: We probably should get rid off the dependency to step.
 
 // Require external dependencies.
 var step = require('step');
@@ -10,10 +7,12 @@ var path = require('path');
 var input = require('./lib/input.js');
 var io = require('./lib/io.js');
 
+// The configuration, a user defined Node module.
 var config;
 
 // Sequence steps to generate on file.
 var bakeFile = function(name, paths, callback) {
+  // Require and set configuration.
   if (!config) {
     config = require(paths.config);
   }
@@ -80,20 +79,22 @@ var bakeFile = function(name, paths, callback) {
   );
 };
 
-// Sequence steps to generate multiple files.
+// Iterate over names and call the bake file method for each name. 
+// Apply callback when all files are baked.
 var bakeFiles = function(names, paths, callback) {
-  step(
-    function() {
-      var group = this.group();
-      names.forEach(function(name) {
-        bakeFile(name, paths, group());
-      });
-    },
-    // Apply callback.
-    function(err) {
-      callback(err);
-    }
-  );	
+  var l, i, done;
+  
+  l = i = names.length;
+
+  done = function(err) {
+    if (--l === 0) {
+      return callback(err); 
+    } 
+  };
+
+  while (i--) {
+    bakeFile(names[i], paths, done);
+  } 
 };
 
 // Generate all output from input.
