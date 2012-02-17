@@ -1,5 +1,4 @@
 // Blake helps to generate static sites.
-// TODO: We probably should get rid off the dependency to step.
 
 // Require external dependencies.
 var step = require('step');
@@ -97,9 +96,11 @@ var bakeFiles = function(names, paths, callback) {
   } 
 };
 
-// Generate all output from input.
+// Require configuration module, we are expecting to find it under 
+// pathToInput/views/config.js. Get the paths object for the configuration,
+// input and output path. Clear (initialize) IO cache.
 var bake = function(inputPathName, outputPathName, callback) {
-  config = require(inputPathName + '/views/config.js');
+  config = require(path.resolve(inputPathName, 'views', 'config.js'));
 
   var paths = input.getPaths(config, inputPathName, outputPathName);
 
@@ -126,8 +127,9 @@ var bake = function(inputPathName, outputPathName, callback) {
 
       bakeFiles(names, paths, this);
     },
-    // Apply callback.
+    // Clear io cache and apply callback.
     function(err) {
+      io.clearCache();
       callback(err);
     }
   );
@@ -138,8 +140,8 @@ module.exports = {
   bake: bake,
   bakeFiles: bakeFiles,
   getPaths: input.getPaths,
+  getSource: input.getSource,
   readFile: io.readFile,
   readFiles: io.readFiles,
-  getSource: input.getSource,
   readDir: io.readDir
 };

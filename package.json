@@ -1,8 +1,8 @@
 {
-  "author" : "Michael Nisi <michael.nisi@gmail.com> (michaelnisi.com)",
+  "author" : "Michael Nisi <mail@michaelnisi.com> (michaelnisi.com)",
     "name" : "blake",
-    "description" : "Blake bakes static sites",
-    "version" : "0.2.0",
+    "description" : "Blake helps to generate static sites.",
+    "version" : "0.2.1",
     "homepage" : "https://github.com/michaelnisi/blake",
     "repository" : {
       "type" : "git",
@@ -13,13 +13,7 @@
     "scripts": {
       "test" : "vows test/* -spec"
     },
-    "engines" : {
-      "node" : "~0.6.5"
-    },
     "dependencies" : {
-      "step": "0.0.5",
-      "jade": "0.19.0",
-      "markdown": "0.3.1"
-    },
-    "devDependencies" : {}
+      "step": "0.0.5"
+    }
 }
