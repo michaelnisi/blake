@@ -5,11 +5,12 @@
 // paths to the input and output directories. Exit the process when done.
 // Please consider that the output directory is deleted if it already 
 // exists and created if it doesn't exist.
+// TODO: Validate arguments.
 (function() {
   var arg, isUsageIncorrect, ok;
 
   arg = process.argv.splice(2);
-  isUsageIncorrect = !(arg && arg.length === 2);
+  isUsageIncorrect = !(arg && arg.length >= 2);
 
   if (isUsageIncorrect) {
     return console.error('Usage: blake path/to/input path/to/output');
@@ -19,7 +20,7 @@
 
   console.time(ok);
 
-  require('../blake.js').bake(arg[0], arg[1], function(err) {
+  require('../blake.js').bake(arg, function(err) {
     if (err) {
       throw err;
     }

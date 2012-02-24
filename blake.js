@@ -99,12 +99,23 @@ var bakeFiles = function(names, paths, callback) {
 // Require configuration module, we are expecting to find it under 
 // pathToInput/views/config.js. Get the paths object for the configuration,
 // input and output path. Clear (initialize) IO cache.
-var bake = function(inputPathName, outputPathName, callback) {
+var bake = function(args, callback) {
+  var inputPathName, outputPathName, names;
+  
+  inputPathName = args[0];
+  outputPathName = args[1];
+  names = args.slice(2);
+
   config = require(path.resolve(inputPathName, 'views', 'config.js'));
 
   var paths = input.getPaths(config, inputPathName, outputPathName);
 
   io.clearCache();
+
+  if (names.length) {
+    bakeFiles(names, paths, callback);
+    return;
+  }
 
   step(
     // Copy static resources from input to output path.
