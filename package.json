@@ -1,9 +1,9 @@
 {
-  "author" : "Michael Nisi <mail@michaelnisi.com> (michaelnisi.com)",
+  "author" : "Michael Nisi <michael.nisi@gmail.com> (michaelnisi.com)",
     "name" : "blake",
-    "description" : "Blake helps to generate static sites.",
-    "version" : "0.2.1",
-    "homepage" : "https://github.com/michaelnisi/blake",
+    "description" : "Blake is a view agnostic, blog aware static site generator.",
+    "version" : "0.2.2",
+    "homepage" : "http://michaelnisi.github.com/blake/",
     "repository" : {
       "type" : "git",
       "url" : "https://michaelnisi@github.com/michaelnisi/blake.git"

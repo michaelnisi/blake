@@ -1,0 +1,32 @@
+body {
+  background-color: #ECE5CE;
+  background-image: url('img/bg.png');
+  color: #774F38;
+  font-size: 1.2em;
+  font-family: "ff-meta-serif-web-pro",serif; 
+  text-shadow: 0px 1px #fff; 
+}
+
+h1 {
+  color: #E08E79;
+  font-size: 4em;
+  font-family: "bello-pro",sans-serif;
+  display: inline-block;
+  text-shadow: 0px -1px #774F38; 
+}
+
+a, a:visited, a:hover { 
+  color: #774F38; 
+  text-decoration: none;
+}
+
+#container {
+  text-align: center;
+}
+
+#structure {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}

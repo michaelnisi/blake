@@ -1,3 +1,3 @@
 # Blake
 
-Blake is a blog aware, markup and template language agnostic static site generator.
+[Blake](http://michaelnisi.github.com/blake/) is a view agnostic, blog aware static site generator.

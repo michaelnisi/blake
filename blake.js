@@ -1,4 +1,5 @@
-// Blake helps to generate static sites.
+// [Blake](http://michaelnisi.github.com/blake/) is a view agnostic, blog aware
+// static site generator.
 
 // Require external dependencies.
 var step = require('step');
@@ -96,9 +97,12 @@ var bakeFiles = function(names, paths, callback) {
   } 
 };
 
-// Require configuration module, we are expecting to find it under 
-// pathToInput/views/config.js. Get the paths object for the configuration,
-// input and output path. Clear (initialize) IO cache.
+// Receive arguments and require configuration module, we are expecting to find
+// it under pathToInput/views/config.js. Get the paths object for the 
+// configuration, input and output path. Clear (initialize) IO cache.
+// If specific filenames have been passed as arguments, only generate these and
+// return. For example: ['input', 'output', 'input/about.md'] will only generate
+// the about page.
 var bake = function(args, callback) {
   var inputPathName, outputPathName, names;
   
@@ -113,8 +117,7 @@ var bake = function(args, callback) {
   io.clearCache();
 
   if (names.length) {
-    bakeFiles(names, paths, callback);
-    return;
+    return bakeFiles(names, paths, callback);
   }
 
   step(

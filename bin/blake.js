@@ -5,7 +5,6 @@
 // paths to the input and output directories. Exit the process when done.
 // Please consider that the output directory is deleted if it already 
 // exists and created if it doesn't exist.
-// TODO: Validate arguments.
 (function() {
   var arg, isUsageIncorrect, ok;
 
