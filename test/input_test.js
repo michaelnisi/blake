@@ -58,32 +58,32 @@ vows.describe('Source').addBatch({
 		'with header and template': {
 			'should not throw an error': function() {
 				assert.doesNotThrow(function() {
-					input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths);
+					input.getSource('{ "template":"name.jade" }\n\n', 'path/to/file.md', paths);
 				});
 			}
 		}
 	},
 	'Source from input with header': {
 		'without date': {
-			topic: input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths),
+			topic: input.getSource('{ "template":"name.jade" }\n\n', 'path/to/file.md', paths),
 			'should have the current date': function(topic) {
 				assert.strictEqual(topic.dateString, input.formatDate(new Date()));
 			}
 		},
 		'without name': {
-			topic: input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths),
+			topic: input.getSource('{ "template":"name.jade" }\n\n', 'path/to/file.md', paths),
 			'should have filename from input file name': function(topic) {
 				assert.strictEqual(topic.name, 'file.html');
 			}
 		},
 		'with template name': {
-			topic: input.getSource('{ "template":"name.jade" }\n$end\n', 'path/to/file.md', paths),
+			topic: input.getSource('{ "template":"name.jade" }\n\n', 'path/to/file.md', paths),
 			'should have complete path to template file': function(topic) {
 				assert.strictEqual(topic.templatePath, '/templates/name.jade');
 			}
 		},
         'without path': {
-            topic: input.getSource('{ "template":"name.jade" }\n$end\n', '/data/posts/path/to/file.md', paths),
+            topic: input.getSource('{ "template":"name.jade" }\n\n', '/data/posts/path/to/file.md', paths),
             'should have path from input filename': function(topic) {
 				assert.strictEqual(topic.path, '/path/to');
 			},
@@ -92,7 +92,7 @@ vows.describe('Source').addBatch({
 			}
         },
         'with path': {
-            topic: input.getSource('{ "template":"name.jade", "path":"/path/to" }\n$end\n', 'path/to/file.md', paths),
+            topic: input.getSource('{ "template":"name.jade", "path":"/path/to" }\n\n', 'path/to/file.md', paths),
 			'should have the correct link': function(topic) {
 				assert.strictEqual(topic.link, '/path/to/file');
 			},
