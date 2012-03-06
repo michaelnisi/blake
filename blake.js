@@ -101,7 +101,7 @@ var bakeFiles = function(names, paths, callback) {
 // it under pathToInput/views/config.js. Get the paths object for the 
 // configuration, input and output path. Clear (initialize) IO cache.
 // If specific filenames have been passed as arguments, only generate these and
-// return. For example: ['input', 'output', 'input/about.md'] will only generate
+// return. For example: ['input', 'output', 'input/about.md'] will just generate
 // the about page.
 var bake = function(args, callback) {
   var inputPathName, outputPathName, names;

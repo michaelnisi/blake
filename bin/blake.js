@@ -12,7 +12,7 @@
   isUsageIncorrect = !(arg && arg.length >= 2);
 
   if (isUsageIncorrect) {
-    return console.error('Usage: blake path/to/input path/to/output');
+    return console.error('Usage: blake path/to/input path/to/output [path/to/input/file …]');
   }
 
   ok = 'OK » baked';
