@@ -53,7 +53,7 @@ vows.describe('Source').addBatch({
     'with header, but without template': {
       'should throw an error': function() {
         assert.throws(function() {
-          input.getSource('{ }\n$end\n', 'test', paths);
+          input.getSource('{ }\n\n', 'test', paths);
         });
       }
     },
@@ -73,7 +73,7 @@ vows.describe('Source').addBatch({
       }
     },
     'without name': {
-      topic: input.getSource('{ "template":"name.jade" }' + ,END 'path/to/file.md', paths),
+      topic: input.getSource('{ "template":"name.jade" }' + END, 'path/to/file.md', paths),
       'should have filename from input file name': function(topic) {
         assert.strictEqual(topic.name, 'file.html');
       }
