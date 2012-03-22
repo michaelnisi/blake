@@ -1,19 +1,24 @@
 {
-  "author" : "Michael Nisi <michael.nisi@gmail.com> (michaelnisi.com)",
-    "name" : "blake",
-    "description" : "Blake is a view agnostic, blog aware static site generator.",
-    "version" : "0.2.3",
-    "homepage" : "http://michaelnisi.github.com/blake/",
-    "repository" : {
-      "type" : "git",
-      "url" : "https://michaelnisi@github.com/michaelnisi/blake.git"
-    },
-    "main" : "./blake.js",
-    "bin" : { "blake":"./bin/blake.js" },
-    "scripts": {
-      "test" : "vows test/* -spec"
-    },
-    "dependencies" : {
-      "step": "0.0.5"
-    }
+  "author": "Michael Nisi <michael.nisi@gmail.com>",
+  "name": "blake",
+  "description": "Blake is a view agnostic, blog aware static site generator.",
+  "version": "0.2.3",
+  "maintainers": "michaelnisi <michael.nisi@gmail.com>",
+  "homepage": "http://michaelnisi.github.com/blake/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/michaelnisi/blake.git"
+  },
+  "main": "./blake.js",
+  "bin": { "blake":"./bin/blake.js" },
+  "scripts": {
+    "test": "vows test/* -spec"
+  },
+  "engines": { "node": ">=0.6" },
+  "dependencies" : {
+    "step": "0.0.5",
+    "mkdirp": "0.3.0",
+    "fstream": "0.1.14"
+  },
+  "license": "MIT"
 }

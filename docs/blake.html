@@ -75,7 +75,7 @@ Apply callback when all files are baked.</p>             </td>             <td c
 it under pathToInput/views/config.js. Get the paths object for the 
 configuration, input and output path. Clear (initialize) IO cache.
 If specific filenames have been passed as arguments, only generate these and
-return. For example: ['input', 'output', 'input/about.md'] will only generate
+return. For example: ['input', 'output', 'input/about.md'] will just generate
 the about page.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="kd">var</span> <span class="nx">bake</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">inputPathName</span><span class="p">,</span> <span class="nx">outputPathName</span><span class="p">,</span> <span class="nx">names</span><span class="p">;</span>
   
