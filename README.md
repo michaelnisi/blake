@@ -60,18 +60,18 @@ The following examples are written in CoffeeScript, which is not optimal for thi
 The configuration module expresses all assumptions Blake makes. The module exports two objects. In the *paths* object you see the four paths required in your input directory to generate a site with Blake. The data path contains the input data for your site and from templates Blake loads your templates. All files in resources are considered static files and are just copied over to your output directory as they are. The posts path is used by Blake to distinguish blog posts from other content. *bakeFunctions* is a map of bake functions by template identifiers. Blake assumes, templates and view modules are symmetric, and uses this map to route templates to views.
 
 ### Input
-Each input file is expected to begin with a JSON string. This string is interpreted as header, it describes transformation parameters; it can contain additional user defined data—a raw version the resulting header object is passed to the bake methods of the views.
+Each input file is expected to begin with a JSON string. This string is interpreted as header, it's expected to provide transformation parameters; besides it can contain additional user defined data—a raw version the resulting header object is passed to the bake methods of the views. The header is required. In some cases, a RSS feed for example, the input file may consist of just the header, not followed by any content, which is valid.
 
-The end of the header is marked by an empty line (\n\n). Everything that follows is interpreted as content is passed to the views untouched by blake. 
+The end of the header is marked by an empty line (\n\n). Everything that follows is interpreted as content and is passed to the views untouched by blake. Blake doesn't implement any text conversion.
 
 ### The Header
+This is the skimpiest header string in JSON.
+ 
 	{
-	  "title": "Blake",
-	  "description": "Agnostic site bakery",
 	  "template": "article.jade",
-	  "date": "2012-02-27",
-	  "path": "2012/02"
 	}
+
+The *template* field is the singular required field in the header. It's used to load a template and route it to the bake function, user defined in *bakeFunctions* of the configuration (see above).
 
 ### Views
 …
