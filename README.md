@@ -57,13 +57,21 @@ The following examples are written in CoffeeScript, which is not optimal for thi
       'about.jade': require('./about.js').bake,
       'archive.jade': require('./archive.js').bake
 
-The configuration module expresses all assumptions Blake makes. The module exports two objects. In the *paths* object you see the four paths required in your input directory to generate a site with Blake. The data path contains the input data for your site and from templates Blake loads your templates. All files in resources are considered static files and are just copied over to your output directory as they are. The posts path is used by Blake to distinguish blog posts from other content. *bakeFunctions* is a map of bake functions by template identifiers. Blake assumes templates and view modules are symmetric and uses this map to route templates to views.
+The configuration module expresses all assumptions Blake makes. The module exports two objects. In the *paths* object you see the four paths required in your input directory to generate a site with Blake. The data path contains the input data for your site and from templates Blake loads your templates. All files in resources are considered static files and are just copied over to your output directory as they are. The posts path is used by Blake to distinguish blog posts from other content. *bakeFunctions* is a map of bake functions by template identifiers. Blake assumes, templates and view modules are symmetric, and uses this map to route templates to views.
 
 ### Input
-…
+Each input file is expected to begin with a JSON string. This string is interpreted as header, it describes transformation parameters; it can contain additional user defined data—a raw version the resulting header object is passed to the bake methods of the views.
+
+The end of the header is marked by an empty line (\n\n). Everything that follows is interpreted as content is passed to the views untouched by blake. 
 
 ### The Header
-…
+	{
+	  "title": "Blake",
+	  "description": "Agnostic site bakery",
+	  "template": "article.jade",
+	  "date": "2012-02-27",
+	  "path": "2012/02"
+	}
 
 ### Views
 …
