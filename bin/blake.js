@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
+// This is the CLI-wrapper of Blake.
+
 // Receive and validate command-line arguments. If usage is incorrect, exit
 // with a usage prompt; otherwise call bake with the provided paths to the 
-// input and output directories. Exit the process when done. Please consider 
-// that the output directory is deleted if it already exists and created if 
-// it doesn't exist.
+// input and output directories. Exit the process when done. 
 (function() {
   var arg, isUsageIncorrect, ok;
 

@@ -31,7 +31,7 @@ Blake expects each file in input/data to begin with, or to be, a JSON String, wh
 
 From the header and the content of the input file Blake constructs a source object, with which the bake function of the according view module is applied. This is done for all input files in parallel. The static resources are copied to the output directory. And that's it—site generated. Because you are implementing the bake functions of the views yourself, you are free to chose whatever markup and templating you like. Blake takes care of the routing.
 
-### Process
+### Configuration
 When Blake starts it requires a configuration module, which it expects to find at:
 
     input/view/config.js
@@ -57,11 +57,16 @@ The following examples are written in CoffeeScript, which is not optimal for thi
       'about.jade': require('./about.js').bake,
       'archive.jade': require('./archive.js').bake
 
-This config module illustrates the few assumptions Blake actually does make.
+The configuration module expresses all assumptions Blake makes. The module exports two objects. In the *paths* object you see the four paths required in your input directory to generate a site with Blake. The data path contains the input data for your site and from templates Blake loads your templates. All files in resources are considered static files and are just copied over to your output directory as they are. The posts path is used by Blake to distinguish blog posts from other content. *bakeFunctions* is a map of bake functions by template identifiers. Blake assumes templates and view modules are symmetric and uses this map to route templates to views.
 
-In the paths object you see the four paths required in your input directory to generate a site with Blake. The data path contains the input data for your site and from templates Blake loads your templates. All files in resources are considered static files and are just copied over to your output directory as they are. The posts path is used by Blake to distinguish blog posts from other content.
+### Input
+…
 
-To be continued ...
+### The Header
+…
+
+### Views
+…
 
 ### Deployment
 Of course you can always build your site locally and upload it to your webserver manually, but I recommend to run Blake on your server and use [post-receive hooks](http://help.github.com/post-receive-hooks/) to automatically generate your site on your server everytime you're pushing to your input data repository.
