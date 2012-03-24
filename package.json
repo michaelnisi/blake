@@ -9,7 +9,7 @@
     "type": "git",
     "url": "git://github.com/michaelnisi/blake.git"
   },
-  "main": "./blake.js",
+  "main": "./lib/blake.js",
   "bin": { "blake":"./bin/blake.js" },
   "scripts": {
     "test": "vows test/* -spec"

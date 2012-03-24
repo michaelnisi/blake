@@ -19,7 +19,7 @@
 
   console.time(ok);
 
-  require('../blake.js').bake(arg, function(err) {
+  require('../lib/blake.js').bake(arg, function(err) {
     if (err) {
       throw err;
     }
