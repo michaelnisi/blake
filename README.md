@@ -73,7 +73,7 @@ Each input file is expected to begin with a JSON string. This string is interpre
 	  "date": "2012-03-21"
 	}
 
-    The content of the example article. I personally write in [markdown](http://daringfireball.net/projects/markdown/) and use [jade](http://jade-lang.com/) templates.
+    The content of the example article.
 
 The end of the header is marked by an empty line. Everything that follows is interpreted as content, and is passed to the views, untouched by blake. Blake doesn't implement any text conversion.
 
