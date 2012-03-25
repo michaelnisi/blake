@@ -1,7 +1,7 @@
 # Blake
 *Agnostic site bakery*
 
-[Blake](http://michaelnisi.github.com/blake/) is a small [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. It makes very little assumptions and stays out of the way. Blake delegates the actual transformation, from input data to output artifact, to views written by you. It can be used from command-line or as library.
+[Blake](http://michaelnisi.github.com/blake/) is a small [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. It makes very little assumptions and stays out of the way. To offer unrestricted choice of input formats and template languages Blake delegates the actual transformation, from input data to output artifact, to views written by you. It can be used from command-line or as library.
 
 ### Pronounciation
     /ˈbleɪk/ blayk
@@ -31,7 +31,7 @@ Or you may just want to compile your home and archive pages.
     blake input output input/home.md input/archive.md
 
 ### Overview
-Blake expects each file in `input/data` to begin with, or to be, a JSON String, which I call header. This header defines the parameters of the transformation from input to output. 
+Blake expects each file in input/data to begin with, or to be, a JSON String, which I call header. This header defines the parameters of the transformation from input to output. 
 
 From the header and the content of the input file Blake constructs a source object, with which the bake function of the according view module is applied. This is done for all input files in parallel. The static resources are copied to the output directory. And that's it—site generated. Because you are implementing the bake functions of the views yourself, you are free to chose whatever markup and templating you like. Blake takes care of the routing.
 
@@ -42,7 +42,7 @@ When Blake starts it requires a configuration module, which it expects to find a
 
 The configuration defines the conventions for accessing input data and exports a map of bake functions with a template name as identifier. Each of your views has to implement a bake function.
 
-The following examples are written in CoffeeScript, which is not optimal for this document, I should provide examples in plain JavaScript. I hope you don't mind. OK, here is the config.coffee file of my site.
+The following examples are written in CoffeeScript, which is not optimal for this README, I should provide examples in plain JavaScript. I hope you don't mind. OK, here is the config.coffee file of my site.
 
     # This module covers configuration.
 
@@ -73,7 +73,7 @@ Each input file is expected to begin with a JSON string. This string is interpre
 	  "date": "2012-03-21"
 	}
 
-    The content of the example article.
+    The content of the example article. I personally write in `markdown` and use jade templates.
 
 The end of the header is marked by an empty line. Everything that follows is interpreted as content, and is passed to the views, untouched by blake. Blake doesn't implement any text conversion.
 
@@ -88,9 +88,60 @@ This is the skimpiest header.
 
 The `template` field is the sole required field in the header. It's used to load the template and route it to the bake function, user defined in `bakeFunctions` of the configuration (see above).
 
-### Views
-…
+The optional header fields, interprated by Blake, are `title`, `description`, `date`, `path` and `name`.
 
+	{
+	  "title": "Example",
+	  "description": "An example article",
+	  "template": "article.jade",
+	  "date": "2012-03-21",
+      "path": "2012/03",
+      "name": "example"
+	}
+
+The `date` field represents the publish date, if not provided it's set to now.
+
+The `path` field is the output path, which, if not provided, is substituted by mirroring the path of the input file.
+
+The `name` field is used as filename of the output file, if not set Blake applies the filename of the input file.
+
+The header is extendable with arbritrary fields, which can be interpreted by the views. The source object, passed to the views, provides a reference to the header object.
+
+If you decide to mirror input file path and name in your output, you can omit path and name. In that case a typical header of a blog post might look like the following.
+
+	{
+	  "title": "Example",
+	  "description": "An example article",
+	  "template": "article.jade",
+	  "date": "2012-03-21",
+	}
+
+Just a header without content is valid input too. This is useful for aggregated input data like RSS feeds. Consider the following rss.json.
+
+	{
+	  "title": "Mr Fancy Pants",
+	  "description": "Undescribably fancy pants",
+	  "link": "http://your.site/",
+	  "template": "rss.jade",
+	  "name": "rss.xml"
+	}
+
+### Views
+The view modules are required to export a `bake` function with the following signature.
+
+	bake(src, callback)
+
+In this function you implement the transformation from input to output and pass the result to the callback.
+
+To get a better idea on how to implement views you might want to have a look at the views of my personal website, which are written in [CoffeeScript](http://coffeescript.org/) and use [Markdown](http://daringfireball.net/projects/markdown/) and [Jade](http://jade-lang.com/). For example an [article](http://michaelnisi.github.com/michaelnisi/article.html).
+
+To see Blake in action you could generate my site.
+
+	npm install -g blake
+	npm install blake jade markdown
+	git clone git@github.com:michaelnisi/michaelnisi.git 
+	blake michaelnisi output
+	
 ### Deployment
 Of course you can always build your site locally and upload it to your webserver manually, but I recommend to run Blake on your server and use [post-receive hooks](http://help.github.com/post-receive-hooks/) to automatically generate your site on your server everytime you're pushing to your input data repository.
 
@@ -102,3 +153,4 @@ See [Documentation](http://michaelnisi.github.com/blake/blake.html)
 
 ### License
 See [LICENSE](https://raw.github.com/michaelnisi/blake/master/LICENSE).
+
