@@ -133,7 +133,7 @@ The view modules are required to export a `bake` function with the following sig
 
 In this function you implement the transformation from input to output and pass the result to the callback.
 
-The `src` object for a exemplary blog post exposes the following.
+The `src` object for a exemplary blog post exposes the following. For brevity the contents of `body` and `template` appear shortened here.
 
 	header: { title: 'Closure',
 		      description: 'A function together with a referencing environment',
