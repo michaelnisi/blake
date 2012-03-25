@@ -133,6 +133,30 @@ The view modules are required to export a `bake` function with the following sig
 
 In this function you implement the transformation from input to output and pass the result to the callback.
 
+The `src` object for a exemplary blog post exposes the following.
+
+	header: { title: 'Closure',
+		      description: 'A function together with a referencing environment',
+		      template: 'article.jade',
+		      date: Tue, 18 Oct 2011 00:00:00 GMT,
+		      name: 'closures.html',
+		      path: '/2011/10' },
+	body: '…',
+	paths: { outputPathName: '../website',
+		     pathToResources: 'resources',
+		     pathToData: 'data',
+		     templatesPathName: 'templates',
+		     posts: 'data/posts',
+		     config: 'views/config.js' },
+	filename: 'data/posts/2011/10/closures.md',
+	date: Tue, 18 Oct 2011 00:00:00 GMT,
+	templatePath: 'templates/article.jade',
+	path: '../website/2011/10',
+	name: 'closures.html',
+	link: '/2011/10/closures',
+	dateString: 'Tue Oct 18 2011',
+	template: '…'
+
 To get a better idea on how to implement views you might want to have a look at the [views](http://michaelnisi.github.com/michaelnisi/article.html) of my [site](https://github.com/michaelnisi/michaelnisi), which are written in [CoffeeScript](http://coffeescript.org/) and use [Markdown](http://daringfireball.net/projects/markdown/) and [Jade](http://jade-lang.com/).
 
 To see Blake in action you could generate my site.
