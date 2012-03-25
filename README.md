@@ -133,7 +133,7 @@ The view modules are required to export a `bake` function with the following sig
 
 In this function you implement the transformation from input to output and pass the result to the callback.
 
-To get a better idea on how to implement views you might want to have a look at the views of my personal website, which are written in [CoffeeScript](http://coffeescript.org/) and use [Markdown](http://daringfireball.net/projects/markdown/) and [Jade](http://jade-lang.com/). For example an [article](http://michaelnisi.github.com/michaelnisi/article.html).
+To get a better idea on how to implement views you might want to have a look at the [views](http://michaelnisi.github.com/michaelnisi/article.html) of my [site](https://github.com/michaelnisi/michaelnisi), which are written in [CoffeeScript](http://coffeescript.org/) and use [Markdown](http://daringfireball.net/projects/markdown/) and [Jade](http://jade-lang.com/).
 
 To see Blake in action you could generate my site.
 
