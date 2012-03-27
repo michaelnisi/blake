@@ -1,34 +1,34 @@
 # Blake
 *Agnostic site bakery*
 
-[Blake](http://michaelnisi.github.com/blake/) is a small [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. It makes very little assumptions and stays out of the way. To offer unrestricted choice of input formats and template languages Blake delegates the actual transformation, from input data to output artifact, to views written by you. It can be used from command-line or as library.
+[Blake](http://michaelnisi.github.com/blake/) is a small [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. To offer unrestricted choice of input formats and template languages, Blake solely takes care of IO and routing; it delegates the actual transformation from input data to output artifacts to view modules written by us. It can be used from command-line or as library.
 
 ### Pronounciation
     /ˈbleɪk/ blayk
 
 ### Installation
-    npm install -g blake
+    $ npm install -g blake
 
-If you're not planning to use Blake from the command-line it is recommended to install without global flag.
+If you're not planning to use command-line blake install without global flag. You'll probably need both.
 
-    npm install blake
+    $ npm install blake
 
 ### Usage
-    blake path/to/input path/to/output path/to/input/file …
+    $ blake path/to/input path/to/output path/to/input/file …
 
-The first parameter is the path to your input directory.
+The first parameter is the path to our input directory.
 
-The second parameter is the path to your output directory. Currently the output directory is not deleted, so its contents piles up. If you want to have a clean output you have to delete it manually before you generate your site.
+The second parameter is the path to our output directory. Currently the output directory is not deleted, so its contents piles up. To receive clean output we have to delete the output directory before we generate our site. 
 
     blake input output
 
 The optional third to n parameters are filenames, which can be used to generate specific files. While writing, you often times just want to quickly preview the page you're currently working on, thus you don't necessarily want to render your whole site. Let's say you're tweaking your about page and want to see it rendered in the browser.
 
-    blake input output input/about.md
+    $ blake input output input/about.md
 
 Or you may just want to compile your home and archive pages.
 
-    blake input output input/home.md input/archive.md
+    $ blake input output input/home.md input/archive.md
 
 ### Overview
 Blake expects each file in input/data to begin with, or to be, a JSON String, which I call header. This header defines the parameters of the transformation from input to output. 
@@ -36,13 +36,11 @@ Blake expects each file in input/data to begin with, or to be, a JSON String, wh
 From the header and the content of the input file Blake constructs a source object, with which the bake function of the according view module is applied. This is done for all input files in parallel. The static resources are copied to the output directory. And that's it—site generated. Because you are implementing the bake functions of the views yourself, you are free to chose whatever markup and templating you like. Blake takes care of the routing.
 
 ### Configuration
-When Blake starts it requires a configuration module, which it expects to find at:
-
-    input/view/config.js
+When Blake starts it requires a configuration module, which it expects to find in 'input/view/config.js'.
 
 The configuration defines the conventions for accessing input data and exports a map of bake functions with a template name as identifier. Each of your views has to implement a bake function.
 
-The following examples are written in CoffeeScript, which is not optimal for this README, I should provide examples in plain JavaScript. I hope you don't mind. OK, here is the config.coffee file of my site.
+The following examples are written in CoffeeScript, which is not optimal for this README, I should provide examples in plain JavaScript. I hope you don't mind. OK, here is the 'config.coffee' file of my site.
 
     # This module covers configuration.
 
