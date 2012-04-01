@@ -6,16 +6,14 @@
 // with a usage prompt; otherwise call bake with the provided paths to the 
 // input and output directories. Exit the process when done. 
 (function() {
-  var arg, isUsageIncorrect, ok;
-
-  arg = process.argv.splice(2);
-  isUsageIncorrect = !(arg && arg.length >= 2);
+  var arg = process.argv.splice(2);
+  var isUsageIncorrect = !(arg && arg.length >= 2);
 
   if (isUsageIncorrect) {
     return console.error('Usage: blake path/to/input path/to/output [path/to/input/file …]');
   }
 
-  ok = 'OK » baked';
+  var ok = '\u001b[32mOK\u001b[39m';
 
   console.time(ok);
 

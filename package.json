@@ -2,7 +2,7 @@
   "author": "Michael Nisi <michael.nisi@gmail.com>",
   "name": "blake",
   "description": "Blake is a view agnostic, blog aware static site generator.",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "maintainers": "michaelnisi <michael.nisi@gmail.com>",
   "homepage": "http://michaelnisi.github.com/blake/",
   "repository": {
@@ -16,7 +16,6 @@
   },
   "engines": { "node": ">=0.6" },
   "dependencies" : {
-    "step": "0.0.5",
     "mkdirp": "0.3.0",
     "fstream": "0.1.14"
   },
