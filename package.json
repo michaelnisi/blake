@@ -15,9 +15,12 @@
     "test": "vows test/* --spec"
   },
   "engines": { "node": ">=0.6" },
-  "dependencies" : {
+  "dependencies": {
     "mkdirp": "0.3.0",
     "fstream": "0.1.14"
+  },
+  "devDependencies": {
+    "vows": "0.6.1"
   },
   "license": "MIT"
 }
