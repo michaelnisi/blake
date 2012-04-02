@@ -2,7 +2,6 @@
 
 // This is the CLI-wrapper of Blake.
 
-
 // Receive and validate command-line arguments. If usage is incorrect, exit
 // with a usage prompt; otherwise call bake with the provided paths to the 
 // input and output directories. Exit the process when done. 
@@ -26,7 +25,7 @@
 
   require('../lib/blake.js').bake(arg, function(err) {
     if (err) {
-      console.error(red('Err: %s'), err.message); 
+      console.error(red('ERROR: %s'), err.message); 
       console.timeEnd(ko); 
     } else {
       console.timeEnd(ok);
