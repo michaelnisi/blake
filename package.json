@@ -12,7 +12,7 @@
   "main": "./lib/blake.js",
   "bin": { "blake":"./bin/blake.js" },
   "scripts": {
-    "test": "vows test/* -spec"
+    "test": "vows test/* --spec"
   },
   "engines": { "node": ">=0.6" },
   "dependencies" : {
