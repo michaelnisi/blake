@@ -1,7 +1,8 @@
 {
   "author": "Michael Nisi <michael.nisi@gmail.com>",
   "name": "blake",
-  "description": "Blake is a view agnostic, blog aware static site generator.",
+  "description": "Blog aware and view agnostic infrastructure to generate static websites.",
+  "keywords": "static, web, site, blog, generator, infrastructure",
   "version": "0.2.4",
   "maintainers": "michaelnisi <michael.nisi@gmail.com>",
   "homepage": "http://michaelnisi.github.com/blake/",
