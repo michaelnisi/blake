@@ -1,15 +1,16 @@
 # Blake
 *Agnostic site bakery*
 
-[![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
-
 [Blake](http://michaelnisi.github.com/blake/) is a [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. To offer unrestricted choice of input formats and template languages, Blake solely takes care of IO and routing; it delegates the actual transformation from input data to output artifacts to view modules, written by us. It can be used from command-line or as library.
 
 ### Pronounciation
     /ˈbleɪk/ blayk
 
+### Build Status
+[![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
+
 ### Installation
-Install via [Node Paket Manager](http://npmjs.org/).
+Install via [npm](http://npmjs.org/).
 
     npm install -g blake
 
