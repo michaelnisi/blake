@@ -3,21 +3,19 @@
 
 [Blake](http://michaelnisi.github.com/blake/) is a [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. To offer unrestricted choice of input formats and template languages, Blake solely takes care of IO and routing; it delegates the actual transformation from input data to output artifacts to view modules, written by us. It can be used from command-line or as library.
 
+[![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
+
 ### Pronounciation
     /ˈbleɪk/ blayk
-
-### Build Status
-[![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
 ### Installation
 Install via [npm](http://npmjs.org/).
 
     npm install -g blake
 
-If you're not planning to use command-line blake, install without global flag. You'll probably need both.
+If you're not planning to use command-line blake, install without global flag.
 
     npm install blake
-
 
 To install from source do the following:
 
@@ -34,7 +32,7 @@ The first parameter is the path to our input directory. The second parameter is 
 
 Note that the output directory is not deleted, so its contents piles up. To receive clean output we have to delete the output directory before we generate our site. 
 
-The optional third to n parameters are filenames, which can be used to generate specific files. While writing, we often times just want to quickly preview the page we're currently working on, thus we don't necessarily want to render our whole site. Let's say we're tweaking our about page and want to see it rendered in the browser.
+The optional third to n parameters are filenames, which can be used to generate specific files. While writing, we often times just want to quickly preview the page we're currently working on, thus we don't necessarily want to render our whole site. Let's say we're tweaking our about page.
 
     blake input output input/about.md
 
@@ -64,7 +62,7 @@ Generate a specific page.
     });
 
 
-Generate specific pages.
+Generate multiple specific pages.
 
     var blake = require('blake');
     var input = 'path/to/input';
