@@ -78,30 +78,32 @@ Generate multiple specific pages.
 At the top of each input file in `input/data` Blake expects a JSON header. From the header and the content of the input file Blake constructs a source object, with which it applies the `bake` function of the according view module. This is done for all input files in parallel. The static resources in `input/resources` are copied to the output directory as they are.
 
 ### Configuration
-When Blake starts to generate the site, it requires a configuration module, which it expects to find in `input/view/config.js`.
+When Blake starts to generate a site, it requires a configuration module, which it expects to find in `input/view/config.js`. The configuration defines the conventions for accessing input data and exports a map of bake functions with template names as identifiers.
 
-The configuration defines the conventions for accessing input data and exports a map of bake functions with a template name as identifier. Each of our views has to implement a bake function.
+    // This module covers configuration.
 
-The following examples are written in CoffeeScript, which is not optimal for this README, I should provide examples in plain JavaScript. I hope you don't mind. OK, here is the 'config.coffee' file of my site.
+    // Export path conventions for input data.
+    exports.paths = {
+      data: 'data', // required
+      templates: 'templates', // required
+      resources: 'resources', // optional
+      posts: 'data/posts' // optional
+    };
 
-    # This module covers configuration.
-
-    # Path conventions to use for input data.
-    exports.paths =
-      data: 'data',
-      templates: 'templates',
-      resources: 'resources',
-      posts: 'data/posts'
-
-    # Export map with bake functions by template names.
-    exports.bakeFunctions =
+    // Export map with bake functions by template names.
+    exports.bakeFunctions = {
       'rss.jade': require('./rss.js').bake,
       'article.jade': require('./article.js').bake,
       'home.jade': require('./home.js').bake,
       'about.jade': require('./about.js').bake,
       'archive.jade': require('./archive.js').bake
+    };
 
-The configuration module exports two objects. In the `paths` object we see the four paths required in our input directory to generate a site with Blake. The data path contains the input data for our site and from templates Blake loads our templates. All files in resources are considered static files and are just copied over to our output directory. The posts path is used by Blake to distinguish blog posts from other content. The `bakeFunctions` object is a map of bake functions by template identifiers. Blake assumes that templates and view modules are symmetric; and uses this map to route templates to views.
+The configuration module is required to export a `paths` and a `bakeFunctions` object.
+
+The `paths` object defines input paths, where the two required directories are `data` and `templates`. From `data` Blake loads general input data and from `templates` Blake loads templates. The two optional directories are `resources` and `posts`. The content of `resources` is copied to output as it is. The `posts` directory hosts our blog posts.
+
+The `bakeFunctions` object is a map of functions.
 
 ### Input
 Each input file has to begin with a JSON string. This string is interpreted as header, it's expected to provide transformation parameters; besides it can contain additional user defined data—a raw version of the header is passed to the `bake` methods of the views. The header is required. In some cases, a RSS feed for example, the input file may consist of only the header, not followed by any content, which is valid.
@@ -208,6 +210,9 @@ To see Blake in action you could generate my site.
     
 ### Deployment
 Of course you can always build your site locally and upload it to your webserver manually, but I recommend to run Blake on your server and use [post-receive hooks](http://help.github.com/post-receive-hooks/) to automatically generate your site on your server everytime you're pushing to your input data repository.
+
+### Website
+See [Website](http://michaelnisi.github.com/blake/)
 
 ### Documentation
 See [Documentation](http://michaelnisi.github.com/blake/blake.html)
