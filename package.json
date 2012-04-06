@@ -12,16 +12,17 @@
   },
   "main": "./lib/blake.js",
   "bin": { "blake":"./bin/blake.js" },
+  "man": "./man/blake.1",
   "scripts": {
     "test": "vows test/* --spec"
   },
   "engines": { "node": ">=0.6" },
   "dependencies": {
-    "mkdirp": "0.3.0",
-    "fstream": "0.1.14"
+    "mkdirp": ">=0.3.0",
+    "fstream": ">=0.1.14"
   },
   "devDependencies": {
-    "vows": "0.6.1"
+    "vows": ">=0.6.1"
   },
   "license": "MIT"
 }
