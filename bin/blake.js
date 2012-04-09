@@ -2,6 +2,10 @@
 
 // This is the CLI-wrapper of Blake.
 
+// Require dependencies.
+var color = require('../lib/color.js');
+var bake = require('../lib/blake.js').bake;
+
 // Receive and validate command-line arguments. If usage is incorrect, exit
 // with a usage prompt; otherwise call bake with the provided paths to the 
 // input and output directories. Exit the process when done. 
@@ -13,7 +17,6 @@
     return console.error('Usage: blake path/to/input path/to/output [path/to/input/file …]');
   }
 
-  var color = require('../lib/color.js');
   var red = color.red;
   var green = color.green;
   
@@ -23,7 +26,7 @@
   console.time(ok);
   console.time(ko);
 
-  require('../lib/blake.js').bake(arg, function (err) {
+  arg.push(function (err) {
     if (err) {
       console.error(red('ERROR: %s'), err.message); 
       console.timeEnd(ko); 
@@ -33,4 +36,6 @@
 
     process.exit();
   });
+
+  bake.apply(null, arg);
 })();
