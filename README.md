@@ -1,7 +1,7 @@
 # Blake
 *Agnostic site bakery*
 
-[Blake](http://michaelnisi.github.com/blake/) is a [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. To offer unrestricted choice of input formats and template languages, Blake solely takes care of IO and routing; it delegates the actual transformation from input data to output artifacts to view modules, written by us. It can be used from command-line or as library.
+[Blake](http://michaelnisi.github.com/blake/) is a [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. To offer unrestricted choice of input formats and template languages, Blake solely takes care of IO and routing; it delegates the actual transformation from input data to output artifacts to view modules, written by us. It can be used from command-line or as library. Site generation with Blake is asynchronous, which doesn't only make the process more effective, by generating artifacts in parallel, but it also enables us to do asynchronous tasks in the views, like pulling in data from other sources over the wire or from disk.
 
 [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
@@ -55,9 +55,9 @@ Generate a specific page.
     var blake = require('blake');
     var input = 'path/to/input';
     var output = 'path/to/output';
-    var files = [path.resolve(input, 'about.md')];
+    var file = path.resolve(input, 'about.md');
 
-    blake.bake(input, output, files, function(error) {
+    blake.bake(input, output, file, function(error) {
       // About page generated
     });
 
@@ -67,10 +67,10 @@ Generate multiple specific pages.
     var blake = require('blake');
     var input = 'path/to/input';
     var output = 'path/to/output';
-    var files = [path.resolve(input, 'home.md'), 
-                 path.resolve(input, 'archive.md'];
+    var fileA = path.resolve(input, 'home.md');
+    var fileB = path.resolve(input, 'archive.md');
 
-    blake.bake(input, output, files, function(err) {
+    blake.bake(input, output, fileA, fileB, function(err) {
       // Home and archive page generated
     });
 
