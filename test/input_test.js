@@ -1,5 +1,5 @@
 // Tests for the input module, which is mainly about interpreting the headers
-// (everything before '$end') of the input files.
+// (everything before END) of the input files.
 
 var vows = require('vows');
 var assert = require('assert');
@@ -53,14 +53,14 @@ vows.describe('Source').addBatch({
     'with header, but without template': {
       'should throw an error': function() {
         assert.throws(function() {
-          input.getSource('{ }\n\n', 'test', paths);
+          input.getSource('{ }'.concat(END), 'test', paths);
         });
       }
     },
     'with header and template': {
       'should not throw an error': function() {
         assert.doesNotThrow(function() {
-          input.getSource('{ "template":"name.jade" }' + END, 'path/to/file.md', paths);
+          input.getSource('{ "template":"name.jade" }'.concat(END), 'path/to/file.md', paths);
         });
       }
     }
