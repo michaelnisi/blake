@@ -2,15 +2,11 @@
   "name" : "blake",
   "description" : "blog aware view agnostic static site generator",
   "version" : "0.2.5",
+  "homepage" : "http://michaelnisi.github.com/blake/",
   "repository" : {
     "type" : "git",
     "url" : "git://github.com/michaelnisi/blake.git"
   },
-  "main" : "./lib/blake.js",
-  "bin" : {
-    "blake" : "./bin/blake.js"
-  },
-  "man" : "./man/blake.1",
   "keywords" : [
     "blog",
     "static",
@@ -18,6 +14,11 @@
     "generator",
     "infrastructure"
   ],
+  "main" : "./lib/blake.js",
+  "bin" : {
+    "blake" : "./bin/blake.js"
+  },
+  "man" : "./man/blake.1",
   "directories" : {
     "lib" : ".",
     "example" : "example",
