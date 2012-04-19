@@ -1,47 +1,47 @@
 {
-  "name" : "blake",
-  "description" : "blog aware view agnostic static site generator",
-  "version" : "0.2.5",
-  "homepage" : "http://michaelnisi.github.com/blake/",
-  "repository" : {
-    "type" : "git",
-    "url" : "git://github.com/michaelnisi/blake.git"
+  "name": "blake",
+  "description": "blog aware view agnostic static site generator",
+  "version": "0.2.5",
+  "homepage": "http://michaelnisi.github.com/blake/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/michaelnisi/blake.git"
   },
-  "keywords" : [
+  "keywords": [
     "blog",
     "static",
     "site",
     "generator",
     "infrastructure"
   ],
-  "main" : "./lib/blake.js",
-  "bin" : {
-    "blake" : "./bin/blake.js"
+  "main": "./lib/blake.js",
+  "bin": {
+    "blake": "./bin/blake.js"
   },
-  "man" : "./man/blake.1",
-  "directories" : {
-    "lib" : "./lib",
-    "example" : "example",
-    "test" : "test",
-    "man" : "./man"
+  "man": "./man/blake.1",
+  "directories": {
+    "lib": "./lib",
+    "example": "example",
+    "test": "test",
+    "man": "./man"
   },
-  "scripts" : {
-    "test" : "tap test/*.js"
+  "scripts": {
+    "test": "tap test/*.js"
   },
-  "dependencies" : {
-    "mkdirp" : "~0.3.0",
-    "fstream" : "~0.1.14"
+  "dependencies": {
+    "mkdirp": "~0.3.0",
+    "fstream": "~0.1.14"
   },
-  "devDependencies" : {
-    "tap" : "0.1.x"
+  "devDependencies": {
+    "tap": "0.1.x"
   },
-  "engines" : {
-    "node" : ">=0.4.0"
+  "engines": {
+    "node": ">=0.4.0"
   },
-  "license" : "MIT",
-  "author" : {
-    "name" : "Michael Nisi",
-    "email" : "michael.nisi@gmail.com",
-    "url" : "http://michaelnisi.com"
+  "license": "MIT",
+  "author": {
+    "name": "Michael Nisi",
+    "email": "michael.nisi@gmail.com",
+    "url": "http://michaelnisi.com"
   }
 }
