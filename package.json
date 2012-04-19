@@ -20,9 +20,10 @@
   },
   "man" : "./man/blake.1",
   "directories" : {
-    "lib" : ".",
+    "lib" : "./lib",
     "example" : "example",
-    "test" : "test"
+    "test" : "test",
+    "man" : "./man"
   },
   "scripts" : {
     "test" : "tap test/*.js"
