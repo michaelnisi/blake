@@ -6,9 +6,9 @@
 var color = require('../lib/color.js');
 var bake = require('../lib/blake.js').bake;
 
-// Receive and validate command-line arguments. If usage is incorrect, exit
-// with a usage prompt; otherwise call bake with the provided paths to the 
-// input and output directories. Exit the process when done. 
+// Receive and validate command-line arguments. If usage is incorrect,
+// exit with a usage prompt; otherwise call bake with the provided paths 
+// to the input and output directories. Exit the process when done.
 (function () {
   var arg = process.argv.splice(2);
   var isUsageIncorrect = !(arg && arg.length >= 2);
