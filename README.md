@@ -1,7 +1,7 @@
 # Blake
 *Agnostic site bakery*
 
-[Blake](http://michaelnisi.github.com/blake/) is a [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. To offer unrestricted choice of input formats and template languages, Blake solely takes care of IO and routing; it delegates the actual transformation from input data to output artifacts to view modules, written by us. It can be used from command-line or as library. Site generation with Blake is asynchronous, which doesn't only make the process more effective, by generating artifacts in parallel, but it also enables us to do asynchronous tasks in the views, like pulling in data from other sources over the wire or from disk.
+[Blake](http://michaelnisi.github.com/blake/) is a [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. To offer unrestricted choice of input formats and template languages, Blake solely takes care of IO and template routing; it delegates the actual transformation from input data to output artifacts to user-written view modules. It can be used from command-line or as library. Site generation with Blake is asynchronous, which makes the process more effective by generating artifacts in parallel; it also enables us to do asynchronous tasks in the views, like pulling in data from other sources over the wire or from disk.
 
 [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
@@ -9,15 +9,15 @@
     /ˈbleɪk/ blayk
 
 ### Installation
-Install via [npm](http://npmjs.org/).
+Install via [npm](http://npmjs.org/):
 
     npm install -g blake
 
-If you're not planning to use command-line blake, install without global flag.
+If you're not planning to use command-line blake, install without global flag:
 
     npm install blake
 
-To install from source do the following:
+To install from source:
 
     git clone git://github.com/michaelnisi/blake.git 
     cd blake
@@ -30,7 +30,7 @@ The first parameter is the path to our input directory. The second parameter is 
 
     blake input output
 
-Note that the output directory is not deleted, so its contents piles up. To receive clean output we have to delete the output directory before we generate our site. 
+Note that the output directory is not deleted, so its contents piles up. For clean output we have to delete the output directory before we generate our site. 
 
 The optional third to n parameters are filenames, which can be used to generate specific files. While writing, we often times just want to quickly preview the page we're currently working on, thus we don't necessarily want to render our whole site. Let's say we're tweaking our about page.
 
@@ -199,20 +199,26 @@ The `src` object for a exemplary blog post exposes the following. For brevity th
     dateString: 'Tue Oct 18 2011',
     template: '…'
 
-To get a better idea on how to implement views you might want to have a look at the [views](http://michaelnisi.github.com/michaelnisi/article.html) of my [site](https://github.com/michaelnisi/michaelnisi), which are written in [CoffeeScript](http://coffeescript.org/) and use [Markdown](http://daringfireball.net/projects/markdown/) and [Jade](http://jade-lang.com/).
+To see a simple example:
+   
+    git clone git://github.com/michaelnisi/blake.git 
+    cd blake/example
+    node generate.js
 
-To see Blake in action you could generate my site.
+To evaluate a more elaborate example you could generate my personal [site](http://michaelnisi.com), which requires [Jade](http://jade-lang.com/) and [Markdown](http://daringfireball.net/projects/markdown/):
 
     npm install -g blake
     npm install blake jade markdown
     git clone git@github.com:michaelnisi/michaelnisi.git 
-    blake michaelnisi output
-    
+    blake michaelnisi /tmp/michaelnisi-site
+
+You might want to read the [documentation](http://michaelnisi.github.com/michaelnisi/article.html) of the views for this site, which are written in [CoffeeScript](http://coffeescript.org/); not to put you off, just to give it a shot, as I found the use case fitting.
+
 ### Deployment
-Of course you can always build your site locally and upload it to your webserver manually, but I recommend to run Blake on your server and use [post-receive hooks](http://help.github.com/post-receive-hooks/) to automatically generate your site on your server everytime you're pushing to your input data repository.
+Of course you can build your site locally and upload it to your webserver manually, but I recommend to run Blake on your server, and use [post-receive hooks](http://help.github.com/post-receive-hooks/) to automatically generate your site on your server everytime you push to your input data repository.
 
 ### Website
-See [Website](http://michaelnisi.github.com/blake/)
+A rudimentary [website](http://michaelnisi.github.com/blake/).
 
 ### Documentation
 See [Documentation](http://michaelnisi.github.com/blake/blake.html)
