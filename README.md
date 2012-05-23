@@ -1,7 +1,7 @@
 # Blake
 *Agnostic site bakery*
 
-[Blake](http://michaelnisi.github.com/blake/) is a [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. To offer unrestricted choice of input formats and template languages, Blake simply recks IO and template routing; it delegates the actual transformation from input data to output artifacts to user-written view modules. It can be used from command-line or as library. Site generation with Blake is asynchronous, which makes the process effective by generating artifacts in parallel, and enables us to perform asynchronous tasks in views, like pulling in data from other sources over the wire or from disk.
+[Blake](http://michaelnisi.github.com/blake/) is a [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. To offer unrestricted choice of input formats and template languages, Blake simply recks IO and template routing; it delegates the actual transformation from input data to output artifacts to user-written view modules. It can be used from command-line or as library. Site generation with Blake is asynchronous, which makes the process effective by generating artifacts in parallel, and enables us to perform asynchronous tasks in view modules, like pulling data from external sources over the wire or from disk.
 
 [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
