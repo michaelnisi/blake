@@ -24,12 +24,9 @@ To install from source:
     npm link
 
 ### Command-line Usage
-
-General:
+The first parameter is the path to our input directory. The second parameter is the path to our output directory:
 
     blake path/to/input path/to/output path/to/input/file …
-
-The first parameter is the path to our input directory. The second parameter is the path to our output directory. 
 
 Generate whole site:
 
@@ -46,7 +43,6 @@ Or we may just want to compile our home and archive pages:
     blake input output input/home.md input/archive.md
 
 ### Usage as library
-
 Generate complete site:
 
     var blake = require('blake');
@@ -54,7 +50,6 @@ Generate complete site:
     blake.bake('input', 'output', function(error) {
       // Site generated
     });
-
 
 Generate a specific page:
 
@@ -66,7 +61,6 @@ Generate a specific page:
     blake.bake(input, output, file, function(error) {
       // About page generated
     });
-
 
 Generate multiple specific pages:
 
