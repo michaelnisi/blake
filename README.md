@@ -1,7 +1,7 @@
-# Blake - Agnostic site bakery
+# Blake
 
+### Agnostic site bakery
 [Blake](http://michaelnisi.github.com/blake/) is a [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. To offer unrestricted choice of input formats and template languages, Blake simply recks IO and template routing; it delegates the actual transformation from input data to output artifacts to user-written view modules. It can be used from command-line or as library. Site generation with Blake is asynchronous, which makes the process effective by generating artifacts in parallel, and enables us to perform asynchronous tasks in view modules, like pulling data from external sources over the wire or from disk.
-
 
 ### Pronounciation
     /ˈbleɪk/ blayk
@@ -119,7 +119,7 @@ This is a skinny header.
 
 The `template` field is the only required field in the header. It's used to load the template and route it to the `bake` function, we define in `bakeFunctions` of the configuration (see above).
 
-The optional header fields, interprated by Blake, are `title`, `description`, `date`, `path` and `name`.
+The optional header fields, interpreted by Blake, are `title`, `description`, `date`, `path` and `name`.
 
     {
       "title": "Example",
