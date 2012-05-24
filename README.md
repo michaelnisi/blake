@@ -130,11 +130,12 @@ The optional header fields, interpreted by Blake, are `title`, `description`, `d
       "name": "example"
     }
 
-The `date` field represents the publish date, if not provided it's set to now.
-
-The `path` field is the output path, which, if not provided, is substituted by mirroring the path of the input file.
-
-The `name` field is used as filename of the output file, if not set Blake applies the filename of the input file.
+* `title`is the title of the page
+* `description`is the description of the page or rather the post
+* `template`is the filename of template to use
+* `date` is the publish date, if not provided it's set to `NOW`.
+* `path` is the output path, which, if not provided, is substituted by mirroring the path of the input file.
+* `name` is used as filename of the output file, if not set Blake applies the filename of the input file.
 
 The header is extendable with arbritrary fields, which can be interpreted by the views. The source object, passed to the views, provides a reference to the header object.
 
