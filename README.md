@@ -220,10 +220,10 @@ If you're not planning to use command-line blake, install without global flag:
     git clone git://github.com/michaelnisi/blake.git 
     cd blake
     npm link
-    
-### License
-See [LICENSE](https://raw.github.com/michaelnisi/blake/master/LICENSE).
 
 ## See also
-* A rudimentary [website](http://michaelnisi.github.com/blake/).
+* A rudimentary [website](http://michaelnisi.github.com/blake/)
 * See [Documentation](http://michaelnisi.github.com/blake/blake.html)
+
+### License
+See [LICENSE](https://raw.github.com/michaelnisi/blake/master/LICENSE).
