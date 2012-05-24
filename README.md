@@ -24,24 +24,30 @@ To install from source:
     npm link
 
 ### Command-line Usage
+
+General:
+
     blake path/to/input path/to/output path/to/input/file …
 
 The first parameter is the path to our input directory. The second parameter is the path to our output directory. 
+
+Generate whole site:
 
     blake input output
 
 Note that the output directory is not deleted, so its contents piles up. For clean output we have to delete the output directory before we generate our site. 
 
-The optional third to n parameters are filenames, which can be used to generate specific files. While writing, we often times just want to quickly preview the page we're currently working on, thus we don't necessarily want to render our whole site. Let's say we're tweaking our about page.
+The optional third to n parameters are filenames, which can be used to generate specific files. While writing, we often times just want to quickly preview the page we're currently working on, thus we don't necessarily want to render our whole site. Let's say we're tweaking our about page:
 
     blake input output input/about.md
 
-Or we may just want to compile our home and archive pages.
+Or we may just want to compile our home and archive pages:
 
     blake input output input/home.md input/archive.md
 
 ### Usage as library
-Generate complete site.
+
+Generate complete site:
 
     var blake = require('blake');
 
@@ -50,7 +56,7 @@ Generate complete site.
     });
 
 
-Generate a specific page.
+Generate a specific page:
 
     var blake = require('blake');
     var input = 'path/to/input';
@@ -62,7 +68,7 @@ Generate a specific page.
     });
 
 
-Generate multiple specific pages.
+Generate multiple specific pages:
 
     var blake = require('blake');
     var input = 'path/to/input';
