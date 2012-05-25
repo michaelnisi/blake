@@ -7,13 +7,13 @@
 ## Synopsis
 
     blake source_directory target_directory
-    blake source_directory target_directory [source_file ...]
+    blake source_directory target_directory source_file ...
     
 ## Description   
 
-In the first synopsis form, blake writes all files generated from input data in the `source_directory` to the `target_directory`. In the second synopsis form, just the file generated from the `source_file` is written to the `target_directory`. 
+In the first synopsis form, blake writes all files generated from input data in the `source_directory` to the `target_directory`. In the second synopsis form, just the file generated from the `source_file` is written to the `target_directory`. You can also generate from multiple source files. 
 
-Blake is a simple, blog aware, but view agnostic infrastructure to generate static websites. For unrestricted choice of input formats and template languages, Blake confines itself to IO and template routing; it delegates artifact generation to user-written view modules. Blake can be used from command-line or as library. Blake runs asynchronous, which, by generating artifacts in parallel, not only is effectiv, but also enables you to perform asynchronous tasks, like pulling in data from external sources, as part of site generation.
+Blake is a simple, blog aware, but view agnostic infrastructure to generate static websites. For unrestricted choice of input formats and template languages, Blake confines itself to IO and template routing; it delegates the actual file generation to user-written view modules. Blake runs asynchronously and can be used from command-line or as library.
 
 ### Command-line Usage
 
@@ -37,24 +37,22 @@ Generate complete site:
 
     var blake = require('blake');
 
-    blake.bake('input', 'output', function(error) {
+    blake.bake('input', 'output', function(err) {
       // Site generated
     });
 
 Generate a specific page:
 
     var blake = require('blake');
-    var input = 'path/to/input';
-    var output = 'path/to/output';
-    var file = path.resolve(input, 'about.md');
 
-    blake.bake(input, output, file, function(error) {
+    blake.bake('input', 'output', 'input/about.md', function(err) {
       // About page generated
     });
 
 Generate multiple specific pages:
 
     var blake = require('blake');
+
     var input = 'path/to/input';
     var output = 'path/to/output';
     var fileA = path.resolve(input, 'home.md');
@@ -235,6 +233,6 @@ If you're not planning to use command-line blake, install without global flag:
 * [Website](http://michaelnisi.github.com/blake/)
 * [Documentation](http://michaelnisi.github.com/blake/blake.html)
 
-### License
+## License
 
-See [LICENSE](https://raw.github.com/michaelnisi/blake/master/LICENSE).
+[MIT License](https://raw.github.com/michaelnisi/blake/master/LICENSE)
