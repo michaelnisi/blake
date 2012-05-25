@@ -1,17 +1,12 @@
-# Blake
+# blake -- infrastructure for static sites
 
-### Agnostic site bakery
-[Blake](http://michaelnisi.github.com/blake/) is a [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. To offer unrestricted choice of input formats and template languages, Blake simply recks IO and template routing; it delegates the actual transformation from input data to output artifacts to user-written view modules. It can be used from command-line or as library. Site generation with Blake is asynchronous, which makes the process effective by generating artifacts in parallel, and enables us to perform asynchronous tasks in view modules, like pulling data from external sources over the wire or from disk.
+[Node.js](http://nodejs.org) module 
 
-### Pronounciation
-    /ˈbleɪk/ blayk
-
-### Status
 [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
-## Usage
+## Synopsis
 
-### Comand-line
+### Command-line
 
 The first parameter is the path to our input directory. The second parameter is the path to our output directory:
 
@@ -62,11 +57,14 @@ Generate multiple specific pages:
     blake.bake(input, output, fileA, fileB, function(err) {
       // Home and archive page generated
     });
+    
+## Description    
+[Blake](http://michaelnisi.github.com/blake/) is a [Node.js](http://nodejs.org/) module that provides a simple, blog aware and view agnostic infrastructure to generate static websites. To offer unrestricted choice of input formats and template languages, Blake simply recks IO and template routing; it delegates the actual transformation from input data to output artifacts to user-written view modules. It can be used from command-line or as library. Site generation with Blake is asynchronous, which makes the process effective by generating artifacts in parallel, and enables us to perform asynchronous tasks in view modules, like pulling data from external sources over the wire or from disk.
 
-## Overview
+### Overview
 At the top of each input file in `input/data` Blake expects a JSON header. From the header and the content of the input file Blake constructs a source object, with which it applies the `bake` function of the according view module. This is done for all input files in parallel. The static resources in `input/resources` are copied to the output directory as they are.
 
-## Input
+### Input
 Each input file has to begin with a JSON string. This string is interpreted as header, it's expected to provide transformation parameters; besides it can contain additional user defined data—a raw version of the header is passed to the `bake` methods of the views. The header is required. In some cases, a RSS feed for example, the input file may consist of only the header, not followed by any content, which is valid.
 
     {
@@ -80,7 +78,7 @@ Each input file has to begin with a JSON string. This string is interpreted as h
 
 The end of the header is marked by an empty line. Everything that follows is interpreted as content, and is passed to the views, untouched. Blake doesn't implement any text conversion.
 
-### Configuration
+#### Configuration
 When Blake starts to generate a site, it requires a configuration module, which it expects to find in `input/view/config.js`. The configuration defines the conventions for accessing input data and exports a map of bake functions with template names as identifiers.
 
     // This module covers configuration.
@@ -108,7 +106,7 @@ The `paths` object defines input paths, where the two required directories are `
 
 The `bakeFunctions` object is a map of functions.
 
-### The Header
+#### The Header
 The header is a string in JSON at the top of each input file, separated from the content that follows by an empty line.
 
 This is a skinny header.
@@ -158,7 +156,7 @@ Just a header without content is valid input too. This is useful for aggregated 
       "name": "rss.xml"
     }
 
-### Views
+#### Views
 The view modules are required to export a `bake` function with the following signature.
 
     function bake (src, callback)
