@@ -1,29 +1,325 @@
-.TH BLAKE "1" "2012" "" ""
+.TH  "" "" 
+.SH blake - generate sites
+.SS SYNOPSIS
+.IP
+.nf
+\f[C]
+blake\ source_directory\ target_directory\ \ 
+blake\ source_directory\ target_directory\ source_file\ ...
+\f[]
+.fi
+.SS DESCRIPTION
+.PP
+In the first synopsis form, blake writes all files generated from input
+data in the \f[C]source_directory\f[] to the \f[C]target_directory\f[].
+In the second synopsis form, just the file generated from the
+\f[C]source_file\f[] is written to the \f[C]target_directory\f[].
+You can also generate from multiple source files.
+.PP
+Blake is a Node.js (http://nodejs.org) module that provides a simple,
+blog aware, and view agnostic infrastructure to generate static
+websites.
+For unrestricted choice of input formats and template languages, blake
+confines itself to IO and template routing; it delegates the actual file
+generation to user-written view modules.
+Blake runs asynchronously; it can be used from command-line or as
+library.
+.SS LIBRARY USAGE
+.PP
+Generate all files:
+.IP
+.nf
+\f[C]
+var\ blake\ =\ require(\[aq]blake\[aq]);
 
+blake.bake(\[aq]input\[aq],\ \[aq]output\[aq],\ function(err)\ {
+\ \ //\ Site\ generated
+});
+\f[]
+.fi
+.PP
+Generate a specific file:
+.IP
+.nf
+\f[C]
+var\ blake\ =\ require(\[aq]blake\[aq]);
 
-.SH "NAME"
-blake \- Agnostic site bakery
+blake.bake(\[aq]input\[aq],\ \[aq]output\[aq],\ \[aq]input/about.md\[aq],\ function(err)\ {
+\ \ //\ About\ page\ generated
+});
+\f[]
+.fi
+.PP
+Generate multiple specific files:
+.IP
+.nf
+\f[C]
+var\ blake\ =\ require(\[aq]blake\[aq]);
 
-.SH SYNOPSIS
+var\ input\ =\ \[aq]path/to/input\[aq];
+var\ output\ =\ \[aq]path/to/output\[aq];
+var\ fileA\ =\ path.resolve(input,\ \[aq]home.md\[aq]);
+var\ fileB\ =\ path.resolve(input,\ \[aq]archive.md\[aq]);
 
+blake.bake(input,\ output,\ fileA,\ fileB,\ function(err)\ {
+\ \ //\ Home\ and\ archive\ page\ generated
+});
+\f[]
+.fi
+.SS OVERVIEW
+.PP
+At startup blake requires a configuration module, which has to export
+paths and a map of user-written functions that implement the actual
+generation of output artifacts.
+According to the configuration module blake reads all input data files.
+At the top of each input file blake expects a JSON header.
+From the header and the content of the input file blake constructs a
+source object, with which it applies the \f[C]bake\f[] function of the
+according view module.
+This is done for all input files in parallel.
+The static resources are copied to the output directory as they are.
+.SS CONFIGURATION
+.PP
+Consider the following example of a configuration module:
+.IP
+.nf
+\f[C]
+//\ This\ module\ covers\ configuration.
 
-.B blake
-[
-.B path/to/input
-]
-[
-.B path/to/output
-]
-[
-.B path/to/input/file1 path/to/input/file2 ...
-]
+//\ Export\ path\ conventions\ for\ input\ data.
+exports.paths\ =\ {
+\ \ data:\ \[aq]data\[aq],\ //\ required
+\ \ templates:\ \[aq]templates\[aq],\ //\ required
+\ \ resources:\ \[aq]resources\[aq],\ //\ optional
+\ \ posts:\ \[aq]data/posts\[aq]\ //\ optional
+};
 
+//\ Export\ map\ with\ bake\ functions\ by\ template\ names.
+exports.bakeFunctions\ =\ {
+\ \ \[aq]rss.jade\[aq]:\ require(\[aq]./rss.js\[aq]).bake,
+\ \ \[aq]article.jade\[aq]:\ require(\[aq]./article.js\[aq]).bake,
+\ \ \[aq]home.jade\[aq]:\ require(\[aq]./home.js\[aq]).bake,
+\ \ \[aq]about.jade\[aq]:\ require(\[aq]./about.js\[aq]).bake,
+\ \ \[aq]archive.jade\[aq]:\ require(\[aq]./archive.js\[aq]).bake
+};
+\f[]
+.fi
+.PP
+The \f[C]paths\f[] object defines input paths, where the two required
+directories are \f[C]data\f[] and \f[C]templates\f[].
+From \f[C]data\f[] blake loads general input data; from
+\f[C]templates\f[] templates.
+The two optional directories are \f[C]resources\f[] and \f[C]posts\f[].
+The content of \f[C]resources\f[] is copied to output as it is.
+The \f[C]posts\f[] directory hosts blog posts.
+.PP
+The \f[C]bakeFunctions\f[] object is a map of user-written functions
+which implement the actual generation of output artifacts.
+Theses functions are mapped by template name.
+.SS INPUT
+.PP
+At the top of each input file blake expects a JSON string that is
+interpreted as header and provides parameters for generating.
+Besides it can contain additional user defined data\[em]a raw version of
+the header is passed to the \f[C]bake\f[] methods of the views.
+The input data for a blog entry could look like the following:
+.IP
+.nf
+\f[C]
+{
+\ \ "title":\ "Example",
+\ \ "description":\ "An\ example\ article",
+\ \ "template":\ "article.jade",
+\ \ "date":\ "2012-03-21"
+}
 
-.SH DESCRIPTION
-
-Blake is a set of functions for Node.js which provides
-a simple infrastructure to generate static web sites.
-
-.SH RESOURCES AND DOCUMENTATION
-
-See the website for documentation http://michaelnisi.github.com/blake/
+The\ content\ of\ the\ example\ article.
+\f[]
+.fi
+.PP
+The end of the header is marked by an empty line.
+Everything that follows is interpreted as content and is passed to the
+views untouched.
+.SS HEADER
+.PP
+JSON at the top of an input file:
+.IP
+.nf
+\f[C]
+{
+\ \ "title":\ "Example",
+\ \ "description":\ "An\ example\ article",
+\ \ "template":\ "article.jade",
+\ \ "date":\ "2012-03-21",
+\ \ "path":\ "2012/03",
+\ \ "name":\ "example"
+}
+\f[]
+.fi
+.IP \[bu] 2
+\f[C]title\f[] is the title of the page (optional)
+.IP \[bu] 2
+\f[C]description\f[] is the description of the page or rather the post
+(optional)
+.IP \[bu] 2
+\f[C]template\f[]is the filename of template to use (required)
+.IP \[bu] 2
+\f[C]date\f[] is the publish date, if not provided it\[aq]s set to
+\f[C]NOW\f[] (optional)
+.IP \[bu] 2
+\f[C]path\f[] is the output path, if not provided the path of the input
+file is used (optional)
+.IP \[bu] 2
+\f[C]name\f[] is used as filename of the output file, if not provided
+the filename of the input file is used (optional)
+.PP
+The header is extendable with arbritrary fields, which can be
+interpreted by the views.
+The source object, passed to the views, provides a reference to the
+header object.
+.PP
+If you decide to mirror input file path and name in your output, you can
+omit path and name.
+In that case a typical header of a blog post might look like the
+following.
+.IP
+.nf
+\f[C]
+{
+\ \ "title":\ "Example",
+\ \ "description":\ "An\ example\ article",
+\ \ "template":\ "article.jade",
+\ \ "date":\ "2012-03-21",
+}
+\f[]
+.fi
+.PP
+An input file can consist of just the header; for example an RSS feed:
+.IP
+.nf
+\f[C]
+{
+\ \ "title":\ "Blog",
+\ \ "description":\ "Just\ my\ blog.",
+\ \ "link":\ "http://my.blog",
+\ \ "template":\ "rss.jade",
+\ \ "name":\ "rss.xml"
+}
+\f[]
+.fi
+.SS VIEWS
+.PP
+Views must export a \f[C]bake\f[] function with this signature:
+.IP
+.nf
+\f[C]
+bake\ (src,\ callback)
+\f[]
+.fi
+.PP
+In this function you implement the transformation from input to output
+and pass the result to the callback.
+.PP
+The \f[C]src\f[] object for a exemplary blog post exposes the following
+(for brevity \f[C]body\f[] and \f[C]template\f[] appear shortened):
+.IP
+.nf
+\f[C]
+header:\ {\ title:\ \[aq]Closure\[aq],
+\ \ \ \ \ \ \ \ \ \ description:\ \[aq]A\ function\ together\ with\ a\ referencing\ environment\[aq],
+\ \ \ \ \ \ \ \ \ \ template:\ \[aq]article.jade\[aq],
+\ \ \ \ \ \ \ \ \ \ date:\ Tue,\ 18\ Oct\ 2011\ 00:00:00\ GMT,
+\ \ \ \ \ \ \ \ \ \ name:\ \[aq]closures.html\[aq],
+\ \ \ \ \ \ \ \ \ \ path:\ \[aq]/2011/10\[aq]\ },
+body:\ \[aq]\&...\[aq],
+paths:\ {\ outputPathName:\ \[aq]../website\[aq],
+\ \ \ \ \ \ \ \ \ pathToResources:\ \[aq]resources\[aq],
+\ \ \ \ \ \ \ \ \ pathToData:\ \[aq]data\[aq],
+\ \ \ \ \ \ \ \ \ templatesPathName:\ \[aq]templates\[aq],
+\ \ \ \ \ \ \ \ \ posts:\ \[aq]data/posts\[aq],
+\ \ \ \ \ \ \ \ \ config:\ \[aq]views/config.js\[aq]\ },
+filename:\ \[aq]data/posts/2011/10/closures.md\[aq],
+date:\ Tue,\ 18\ Oct\ 2011\ 00:00:00\ GMT,
+templatePath:\ \[aq]templates/article.jade\[aq],
+path:\ \[aq]../website/2011/10\[aq],
+name:\ \[aq]closures.html\[aq],
+link:\ \[aq]/2011/10/closures\[aq],
+dateString:\ \[aq]Tue\ Oct\ 18\ 2011\[aq],
+template:\ \[aq]\&...\[aq]
+\f[]
+.fi
+.PP
+To see a simple example:
+.IP
+.nf
+\f[C]
+git\ clone\ git://github.com/michaelnisi/blake.git\ 
+cd\ blake/example
+node\ generate.js
+\f[]
+.fi
+.PP
+To evaluate a more elaborated example, you could generate my personal
+site (http://michaelnisi.com), which requires
+Jade (http://jade-lang.com/) and
+Markdown (http://daringfireball.net/projects/markdown/):
+.IP
+.nf
+\f[C]
+npm\ install\ -g\ blake
+npm\ install\ blake\ jade\ markdown
+git\ clone\ git\@github.com:michaelnisi/michaelnisi.git\ 
+blake\ michaelnisi\ /tmp/michaelnisi-site
+\f[]
+.fi
+.PP
+You might want to read the
+documentation (http://michaelnisi.github.com/michaelnisi/article.html)
+of the views for this site, which are written in
+CoffeeScript (http://coffeescript.org/); not to put you off, just to
+give it a shot, as I found the use case fitting.
+.SS DEPLOYMENT
+.PP
+Of course you can build your site locally and upload it to your
+webserver manually, but I recommend to run Blake on your server, and use
+post-receive hooks (http://help.github.com/post-receive-hooks/) to
+automatically generate your site on your server everytime you push to
+your input data repository.
+.SS INSTALLATION
+.PP
+Install via npm (http://npmjs.org/):
+.IP
+.nf
+\f[C]
+npm\ install\ -g\ blake
+\f[]
+.fi
+.PP
+If you not want to use command-line blake, install without global flag:
+.IP
+.nf
+\f[C]
+npm\ install\ blake
+\f[]
+.fi
+.PP
+To install from source:
+.IP
+.nf
+\f[C]
+git\ clone\ git://github.com/michaelnisi/blake.git\ 
+cd\ blake
+npm\ link
+\f[]
+.fi
+.SS SEE ALSO
+.IP \[bu] 2
+Website (http://michaelnisi.github.com/blake/)
+.IP \[bu] 2
+Documentation (http://michaelnisi.github.com/blake/blake.html)
+.IP \[bu] 2
+[IMAGE: Build
+Status (https://secure.travis-ci.org/michaelnisi/blake.png)] (http://travis-ci.org/michaelnisi/blake)
+.SS LICENSE
+.PP
+MIT License (https://raw.github.com/michaelnisi/blake/master/LICENSE)

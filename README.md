@@ -1,8 +1,4 @@
-# blake -- generate sites
-
-## PLATFORM
-
-[Node.js](http://nodejs.org/)
+# blake - generate sites
 
 ## SYNOPSIS
 
@@ -13,7 +9,7 @@
 
 In the first synopsis form, blake writes all files generated from input data in the `source_directory` to the `target_directory`. In the second synopsis form, just the file generated from the `source_file` is written to the `target_directory`. You can also generate from multiple source files. 
 
-Blake is a simple, blog aware, and view agnostic infrastructure to generate static websites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates the actual file generation to user-written view modules. Blake runs asynchronously; it can be used from command-line or as library.
+Blake is a [Node.js](http://nodejs.org) module that provides a simple, blog aware, and view agnostic infrastructure to generate static websites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates the actual file generation to user-written view modules. Blake runs asynchronously; it can be used from command-line or as library.
 
 ## LIBRARY USAGE
 

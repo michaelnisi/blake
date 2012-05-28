@@ -1,6 +1,6 @@
 {
   "name": "blake",
-  "description": "blog aware view agnostic static site generator",
+  "description": "generate sites",
   "version": "0.2.5",
   "homepage": "http://michaelnisi.github.com/blake/",
   "repository": {
@@ -16,7 +16,7 @@
   ],
   "main": "./lib/blake.js",
   "bin": {
-    "blake": "./bin/blake.js"
+    "blake": "./bin/cli.js"
   },
   "man": "./man/blake.1",
   "directories": {
