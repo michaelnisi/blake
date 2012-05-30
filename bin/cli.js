@@ -14,7 +14,7 @@ var bake = require('../lib/blake.js').bake;
   var isUsageIncorrect = !(arg && arg.length >= 2);
 
   if (isUsageIncorrect) {
-    return console.error('Usage: blake path/to/input path/to/output [path/to/input/file …]');
+    return console.error('Usage: blake source_directory target_directory [source_file ...]');
   }
 
   var red = color.red;
