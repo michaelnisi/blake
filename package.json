@@ -1,7 +1,7 @@
 {
   "name": "blake",
   "description": "generate sites",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "homepage": "http://michaelnisi.github.com/blake/",
   "repository": {
     "type": "git",
