@@ -174,11 +174,11 @@ To evaluate a more elaborated example, you could generate my personal [site](htt
     git clone git@github.com:michaelnisi/michaelnisi.git 
     blake michaelnisi /tmp/michaelnisi-site
 
-You might want to read the [documentation](http://michaelnisi.github.com/michaelnisi/article.html) of the views for this site, which are written in [CoffeeScript](http://coffeescript.org/); not to put you off, just to give it a shot, as I found the use case fitting.
+You might want to read the [documentation](http://michaelnisi.github.com/michaelnisi/article.html) of the views for this site, which are written in [CoffeeScript](http://coffeescript.org/); not to put you off, just to give it a shot—I found the use case rather fitting.
 
 ## DEPLOYMENT
 
-Of course you can build your site locally and upload it to your webserver manually, but I recommend to run Blake on your server, and use [post-receive hooks](http://help.github.com/post-receive-hooks/) to automatically generate your site on your server everytime you push to your input data repository.
+Of course you can build your site locally and upload it to your webserver manually, but I recommend to run Blake on a server, and use [post-receive hooks](http://help.github.com/post-receive-hooks/) to automatically generate your site on the server everytime you push to your input data repository.
 
 ## INSTALLATION
 

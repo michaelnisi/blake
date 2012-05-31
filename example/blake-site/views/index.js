@@ -8,11 +8,11 @@ exports.bake = function(src, callback) {
   var compile = jade.compile(src.template, options);
   
   var locals = {
-    headline: 'Blake',
-    subline: 'Agnostic site bakery',
+    headline: 'blake',
+    subline: 'agnostic site bakery',
     code: 'https://github.com/michaelnisi/blake',
     docs: 'http://michaelnisi.github.com/blake/blake.html',
-    description: 'Blake is a Node.js module infrastructure to generate static websites.',
+    description: 'blake generates sites',
     author: 'Michael Nisi',
     content: markdown.toHTML(src.body)
   };
