@@ -1,5 +1,6 @@
-[![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 # blake - generate sites
+
+[![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
 ## SYNOPSIS
 
