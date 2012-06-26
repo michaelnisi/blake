@@ -1,3 +1,4 @@
+[![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 # blake - generate sites
 
 ## SYNOPSIS
@@ -200,7 +201,6 @@ To install from source:
 
 * [Website](http://michaelnisi.github.com/blake/)
 * [Documentation](http://michaelnisi.github.com/blake/blake.html)
-* [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
 ## LICENSE
 
