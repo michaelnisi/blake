@@ -1,7 +1,5 @@
 # blake - generate sites
 
-[![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
-
 ## SYNOPSIS
 
     blake source_directory target_directory  
@@ -202,6 +200,7 @@ To install from source:
 
 * [Website](http://michaelnisi.github.com/blake/)
 * [Documentation](http://michaelnisi.github.com/blake/blake.html)
+* [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
 ## LICENSE
 
