@@ -33,7 +33,8 @@
     "fstream": ">=0.1.14"
   },
   "devDependencies": {
-    "tap": "0.1.x"
+    "tap": "0.1.x",
+    "rimraf": ">=2.0.2"
   },
   "engines": {
     "node": ">=0.4.0"
