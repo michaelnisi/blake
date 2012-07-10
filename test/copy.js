@@ -1,18 +1,9 @@
 var test = require('tap').test
-  , copy = require('../lib/copyr.js')
+  , copy = require('../lib/copy.js')
   , fs = require('fs')
   , rimraf = require('rimraf')
   , source = 'source/resources'
   , target = '/tmp/blake-test/resources'
-
-test('ENOENT', function (t) {
-  var fn = function () {
-    copy('xxx', 'yyy')
-  }
-
-  t.doesNotThrow(fn)
-  t.end()
-})
 
 test('directory', function (t) {
   copy(source, target, function (err) {
@@ -30,3 +21,11 @@ test('teardown', function (t) {
   })
 })
 
+test('ENOENT', function (t) {
+  var fn = function () {
+    copy('xxx', target)
+  }
+
+  t.doesNotThrow(fn)
+  t.end()
+})

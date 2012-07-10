@@ -1,5 +1,5 @@
 var test = require('tap').test
-  , getItem = require('../lib/item.js')
+  , getItem = require('../lib/getItem.js')
   , readFileSync = require('fs').readFileSync
   , props = require('./props.js')
 

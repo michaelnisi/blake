@@ -1,12 +1,12 @@
 var test = require('tap').test
-,   resolve = require('path').resolve
-,   getPaths = require('../lib/paths.js')
+  , resolve = require('path').resolve
 
 test('paths', function (t) {
   var source = 'source'
-  ,   target = 'target'
-  ,   config = require(resolve(source, 'views', 'config.js')) 
-  ,   paths = getPaths(source, target, config)
+    , target = 'target'
+    , config = require(resolve(source, 'config.js')) 
+    , paths = require('../lib/paths.js')(source, target, config)
+    , pathz = require('../lib/paths.js')(source, target, config)
   
   var expected = {
     target: 'target'
@@ -17,6 +17,7 @@ test('paths', function (t) {
   }
 
   t.deepEqual(paths, expected, 'should be equal')
+  t.same(paths, pathz, 'should be same')
   t.end()
 })
 
