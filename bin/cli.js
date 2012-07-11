@@ -1,41 +1,22 @@
 #!/usr/bin/env node
 
-// This is the CLI-wrapper of Blake.
+var blake = require('../lib/blake.js')
+  , resolve = require('path').resolve
 
-// Require dependencies.
-var color = require('../lib/color.js');
-var bake = require('../lib/blake.js').bake;
+;(function () {
+  var arg = process.argv.splice(2)
+    , isValid = !(arg && arg.length >= 2)
 
-// Receive and validate command-line arguments. If usage is incorrect,
-// exit with a usage prompt; otherwise call bake with the provided paths 
-// to the input and output directories. Exit the process when done.
-(function () {
-  var arg = process.argv.splice(2);
-  var isUsageIncorrect = !(arg && arg.length >= 2);
-
-  if (isUsageIncorrect) {
+  if (isValid) {
     return console.error('Usage: blake source_directory target_directory [source_file ...]');
   }
-
-  var red = color.red;
-  var green = color.green;
   
-  var ok = green('OK');
-  var ko = red('Not OK');
-  
-  console.time(ok);
-  console.time(ko);
+  var source = arg[0]
+    , target = arg[1]
+    , config = require(resolve(source, 'views', 'config.js'))
 
-  arg.push(function (err) {
-    if (err) {
-      console.error(red('ERROR: %s'), err.message); 
-      console.timeEnd(ko); 
-    } else {
-      console.timeEnd(ok);
-    }
-
-    process.exit();
-  });
-
-  bake.apply(null, arg);
-})();
+  blake(source, target, config, function (err) {
+    if (err) return console.error(err)
+    console.log('OK')
+  })
+})()
