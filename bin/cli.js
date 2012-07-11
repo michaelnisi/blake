@@ -11,11 +11,12 @@ var blake = require('../lib/blake.js')
     return console.error('Usage: blake source_directory target_directory [source_file ...]');
   }
   
-  var source = arg[0]
-    , target = arg[1]
+  var source = arg.shift()
+    , target = arg.shift()
     , config = require(resolve(source, 'views', 'config.js'))
+    , files = arg
 
-  blake(source, target, config, function (err) {
+  blake(source, target, config, files, function (err) {
     if (err) return console.error(err)
     console.log('OK')
   })
