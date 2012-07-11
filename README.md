@@ -11,36 +11,37 @@ In the first synopsis form, blake writes all files generated from input data in 
 
 Blake is a [Node.js](http://nodejs.org) module that provides a simple, blog aware, and view agnostic infrastructure to generate static websites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates the actual file generation to user-written view modules. Blake runs asynchronously; it can be used from command-line or as library.
 
+* [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
+
 ## LIBRARY USAGE
 
 Generate all files:
 
-    var blake = require('blake');
+    var blake = require('blake')
 
-    blake.bake('input', 'output', function(err) {
+    blake('source', 'target', function(err) {
       // Site generated
-    });
+    })
 
 Generate a specific file:
 
-    var blake = require('blake');
+    var blake = require('blake')
 
-    blake.bake('input', 'output', 'input/about.md', function(err) {
+    blake('source', 'target', 'source/about.md', function(err) {
       // About page generated
-    });
+    })
 
 Generate multiple specific files:
 
-    var blake = require('blake');
+    var blake = require('blake')
+      , source  = 'path/to/input'
+      , target = 'path/to/output'
+      , home = path.resolve(input, 'home.md')
+      , archive = path.resolve(input, 'archive.md')
 
-    var input = 'path/to/input';
-    var output = 'path/to/output';
-    var fileA = path.resolve(input, 'home.md');
-    var fileB = path.resolve(input, 'archive.md');
-
-    blake.bake(input, output, fileA, fileB, function(err) {
+    blake(source, target, home, archive , function(err) {
       // Home and archive page generated
-    });
+    })
 
 ## OVERVIEW
 
@@ -198,7 +199,6 @@ To install from source:
 
 ## SEE ALSO
 
-* [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 * [Website](http://michaelnisi.github.com/blake/)
 * [Documentation](http://michaelnisi.github.com/blake/blake.html)
 
