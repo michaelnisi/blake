@@ -31,8 +31,7 @@
   "dependencies": {
     "mkdirp": ">=0.3.0",
     "fstream": ">=0.1.14", 
-    "event-stream": ">=2.1.5",
-    "through": ">=0.0.3"
+    "event-stream": ">=2.1.5"
   },
   "devDependencies": {
     "tap": "0.1.x",
