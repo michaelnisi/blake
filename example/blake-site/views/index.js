@@ -1,21 +1,19 @@
-// This module generates the home page.
+var jade = require('jade')
+  , markdown = require('markdown').markdown 
 
-var jade = require('jade');
-var markdown = require('markdown').markdown; 
-
-exports.bake = function(src, callback) {
-  var options = { filename:src.templatePath, pretty:true };
-  var compile = jade.compile(src.template, options);
+exports.bake = function(item, callback) {
+  var options = { filename:item.templatePath, pretty:true }
+    , compile = jade.compile(item.template, options)
   
   var locals = {
-    headline: 'blake',
-    subline: 'agnostic site bakery',
-    code: 'https://github.com/michaelnisi/blake',
-    docs: 'http://michaelnisi.github.com/blake/blake.html',
-    description: 'blake generates sites',
-    author: 'Michael Nisi',
-    content: markdown.toHTML(src.body)
-  };
+    headline: 'blake'
+  , subline: 'agnostic site bakery'
+  , code: 'https://github.com/michaelnisi/blake'
+  , docs: 'http://michaelnisi.github.com/blake/blake.html'
+  , description: 'blake generates sites'
+  , author: 'Michael Nisi'
+  , content: markdown.toHTML(item.body)
+  }
   
-  callback(null, src, compile(locals));
+  callback(null, compile(locals))
 }

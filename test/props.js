@@ -1,8 +1,11 @@
 module.exports = props
 
 var resolve = require('path').resolve
+  , me
 
 function props () {
+  if (me) return me
+  
   var source = 'source'
     , target = 'target'
     , config = require(resolve(source, 'config.js')) 
@@ -10,12 +13,12 @@ function props () {
     , views = {}
     , templates = {}
   
-  var props = { 
+  var me = { 
     paths: paths
   , views: views
   , templates: templates 
   }
 
-  return props
+  return me
 }
  

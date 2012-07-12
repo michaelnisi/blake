@@ -25,3 +25,15 @@ test('read', function (t) {
   t.end()
 })
 
+test('article', function (t) {
+  var filename = 'source/data/posts/2012/double-negative.md'
+  ,   file = readFileSync(filename)
+  ,   item = getItem(props(), filename, file.toString())
+  ,   link = '2012/05/double-negative'
+  ,   path = 'target/2012/05/double-negative.html'
+
+  t.equal(item.link, link, 'should be correct link')
+  t.equal(item.path, path, 'should be correct path')
+  
+  t.end()
+})
