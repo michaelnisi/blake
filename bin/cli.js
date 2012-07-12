@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 var blake = require('../lib/blake.js')
-  , resolve = require('path').resolve
 
 ;(function () {
   var arg = process.argv.splice(2)
@@ -13,10 +12,9 @@ var blake = require('../lib/blake.js')
   
   var source = arg.shift()
     , target = arg.shift()
-    , config = require(resolve(source, 'views', 'config.js'))
     , files = arg
 
-  blake(source, target, config, files, function (err) {
+  blake(source, target, files, function (err) {
     if (err) return console.error(err)
     console.log('OK')
   })
