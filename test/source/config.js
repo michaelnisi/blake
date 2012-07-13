@@ -6,4 +6,8 @@ exports.paths = {
 , posts: 'data/posts'
 }
 
+exports.views = {
+  'about.jade': function (item, cb) { cb() }
+}
+
 

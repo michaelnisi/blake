@@ -21,11 +21,3 @@ test('teardown', function (t) {
   })
 })
 
-test('ENOENT', function (t) {
-  var fn = function () {
-    copy('xxx', target)
-  }
-
-  t.doesNotThrow(fn)
-  t.end()
-})

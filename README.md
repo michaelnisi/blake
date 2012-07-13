@@ -45,7 +45,7 @@ Generate multiple specific files:
 
 ## OVERVIEW
 
-Blake requires a configuration module (config.js), which it expects to load from the root of the source directory; config has to export a paths object, and a map of generator functions. If no files are explicitly specifified, blake copies the static resoures to the target directory. After that each data source is piped through a stream, which generates and writes to the target directory.  
+Blake requires a configuration module (config.js), which it expects to load from the root of the source directory; config has to export a paths object, and a map of generator functions. If no files are explicitly specifified, blake copies the static resoures to the target directory, and each data source is piped to a stream that generates and writes the arfifact to the target directory.  
 
 ## CONFIGURATION
 
