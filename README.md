@@ -9,7 +9,7 @@
 
 In the first synopsis form, blake writes all files generated from input data in the `source_directory` to the `target_directory`. In the second synopsis form, just the file generated from the `source_file` is written to the `target_directory`. You can also generate from multiple source files. 
 
-Blake is a [Node.js](http://nodejs.org) module that provides a simple, blog aware, and view agnostic infrastructure to generate static websites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates the actual file generation to user-written view modules. Blake runs asynchronously; it can be used from command-line or as library.
+Blake is a [Node.js](http://nodejs.org) module that provides a simple, blog aware, and view agnostic infrastructure to generate static websites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates the actual file generation to user-written generator functions. Blake is non-blocking; it can be used from command-line or as library.
 
 [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
@@ -45,34 +45,30 @@ Generate multiple specific files:
 
 ## OVERVIEW
 
-At startup blake requires a configuration module, which has to export paths and a map of user-written functions that implement the actual generation of output artifacts. According to the configuration module blake reads all input data files. At the top of each input file blake expects a JSON header. From the header and the content of the input file blake constructs a source object, with which it applies the `bake` function of the according view module. This is done for all input files in parallel. The static resources are copied to the output directory as they are.
+Blake requires a configuration module (config.js), which it expects to load from the root of the source directory; config has to export a paths object, and a map of generator functions. If no files are explicitly specifified, blake copies the static resoures to the target directory. After that each data source is piped through a stream, which generates and writes to the target directory.  
 
 ## CONFIGURATION
 
-Consider the following example of a configuration module:
+Consider the following configuration module:
 
-    // This module covers configuration.
-
-    // Export path conventions for input data.
     exports.paths = {
-      data: 'data', // required
-      templates: 'templates', // required
-      resources: 'resources', // optional
-      posts: 'data/posts' // optional
-    };
+      data: 'data' // required
+    , templates: 'templates' // required
+    , resources: 'resources' // optional
+    , posts: 'data/posts' // optional
+    }
 
-    // Export map with bake functions by template names.
-    exports.bakeFunctions = {
-      'rss.jade': require('./rss.js').bake,
-      'article.jade': require('./article.js').bake,
-      'home.jade': require('./home.js').bake,
-      'about.jade': require('./about.js').bake,
-      'archive.jade': require('./archive.js').bake
-    };
+    exports.views = {
+      'rss.jade': require('./rss.js').bake
+    , 'article.jade': require('./article.js').bake
+    , 'home.jade': require('./home.js').bake
+    , 'about.jade': require('./about.js').bake
+    , 'archive.jade': require('./archive.js').bake
+    }
 
 The `paths` object defines input paths, where the two required directories are `data` and `templates`. From `data` blake loads general input data; from `templates` templates. The two optional directories are `resources` and `posts`. The content of `resources` is copied to output as it is. The `posts` directory hosts blog posts.
 
-The `bakeFunctions` object is a map of user-written functions which implement the actual generation of output artifacts. Theses functions are mapped by template name. 
+The `views` object is a map of user-written functions which implement the actual generation of output artifacts. Theses functions are mapped by template name. 
 
 ## INPUT
 
@@ -134,7 +130,7 @@ An input file can consist of just the header; for example an RSS feed:
 
 Views must export a `bake` function with this signature:
 
-    bake (src, callback)
+    bake (item, callback)
 
 In this function you implement the transformation from input to output and pass the result to the callback.
 
@@ -174,8 +170,7 @@ To evaluate a more elaborated example, you could generate my personal [site](htt
     npm install blake jade markdown
     git clone git@github.com:michaelnisi/michaelnisi.git 
     blake michaelnisi /tmp/michaelnisi-site
-
-You might want to read the [documentation](http://michaelnisi.github.com/michaelnisi/article.html) of the views for this site, which are written in [CoffeeScript](http://coffeescript.org/); not to put you off, just to give it a shot—I found the use case rather fitting.
+    node /tmp/michaelnisi-site/conf/dev.js
 
 ## DEPLOYMENT
 
