@@ -136,29 +136,29 @@ In this function you implement the transformation from input to output and pass 
 
 The `src` object for a exemplary blog post exposes the following (for brevity `body` and `template` appear shortened):
 
-  { header: 
-     { title: 'Static Websites',
-       description: '...',
-       template: 'article.jade',
-       data: Thu May 17 2012 02:00:00 GMT +0200 (CEST),
-       path: '2012/05',
-       name: 'static-websites.html' }
-    body: '...', 
-    paths: 
-     { target: '/tmp/michaelnisi-site',
-       resources: '/Users/michael/workspace/michaelnisi/resources',
-       data: '/Users/michael/workspace/michaelnisi/data',
-       templates: '/Users/michael/workspace/michaelnisi/templates',
-       posts: '/Users/michael/workspace/michaelnisi/data/posts' },
-    title: 'Static Websites',
-    name: 'static-websites.html',
-    date: Thu May 17 2012 02:00:00 GMT+0200 (CEST),
-    templatePath: '/Users/michael/workspace/michaelnisi/templates/article.jade',
-    path: '/tmp/michaelnisi-site/2012/05/static-websites.html',
-    link: '2012/05/static-websites',
-    dateString: 'Thu May 17 2012',
-    bake: [Function],
-    template: <Buffer 0a 20 20 20 20 64 69 76 ...> }
+    { header: 
+      { title: 'Static Websites',
+        description: '...',
+        template: 'article.jade',
+        data: Thu May 17 2012 02:00:00 GMT +0200 (CEST),
+        path: '2012/05',
+        name: 'static-websites.html' }
+      body: '...', 
+      paths: 
+      { target: '/tmp/michaelnisi-site',
+        resources: '/Users/michael/workspace/michaelnisi/resources',
+        data: '/Users/michael/workspace/michaelnisi/data',
+        templates: '/Users/michael/workspace/michaelnisi/templates',
+      posts: '/Users/michael/workspace/michaelnisi/data/posts' },
+      title: 'Static Websites',
+      name: 'static-websites.html',
+      date: Thu May 17 2012 02:00:00 GMT+0200 (CEST),
+      templatePath: '/Users/michael/workspace/michaelnisi/templates/article.jade',
+      path: '/tmp/michaelnisi-site/2012/05/static-websites.html',
+      link: '2012/05/static-websites',
+      dateString: 'Thu May 17 2012',
+      bake: [Function],
+      template: <Buffer 0a 20 20 20 20 64 69 76 ...> }
 
 To see a simple example:
    
