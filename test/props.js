@@ -7,7 +7,7 @@ function props () {
   if (me) return me
   
   var source = 'source'
-    , target = 'target'
+    , target = '/tmp/blake-test'
     , config = require(resolve(source, 'config.js')) 
     , paths = require('../lib/paths')(source, target, config)
     , views = {}
