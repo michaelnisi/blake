@@ -1,7 +1,7 @@
 {
   "name": "blake",
   "description": "generate sites",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "homepage": "http://michaelnisi.github.com/blake/",
   "repository": {
     "type": "git",
@@ -18,12 +18,10 @@
   "bin": {
     "blake": "./bin/cli.js"
   },
-  "man": "./man/blake.1",
   "directories": {
     "lib": "./lib",
     "example": "example",
     "test": "test",
-    "man": "./man"
   },
   "scripts": {
     "test": "tap test/*.js"

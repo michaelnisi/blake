@@ -170,9 +170,13 @@ To evaluate a more elaborated example, you could generate my personal [site](htt
 
     npm install -g blake
     npm install blake jade markdown
-    git clone git@github.com:michaelnisi/michaelnisi.git 
-    blake michaelnisi /tmp/michaelnisi-site
-    node /tmp/michaelnisi-site/conf/dev.js
+    git clone git://github.com/michaelnisi/troubled.git
+    blake troubled /tmp/troubled-site
+    
+    git clone git://github.com/michaelnisi/troubled-www.git
+    cd troubled-www
+    export NODE_ENV=dev
+    node worker.js 8080
 
 ## DEPLOYMENT
 
