@@ -21,7 +21,7 @@
   "directories": {
     "lib": "./lib",
     "example": "example",
-    "test": "test",
+    "test": "test"
   },
   "scripts": {
     "test": "tap test/*.js"
