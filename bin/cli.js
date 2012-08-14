@@ -14,8 +14,11 @@ var blake = require('../lib/blake.js')
     , target = arg.shift()
     , files = arg
 
+
   blake(source, target, files, function (err) {
     if (err) return console.error(err)
-    console.log('OK')
+    console.log('blake OK')
+  }).on('item', function (item) {
+    console.log('blake WRITE %s', item.path)
   })
 })()
