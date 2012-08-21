@@ -13,6 +13,7 @@ var blake = require('../lib/blake.js')
   blake(arg.shift(), arg.shift(), arg, function (err) {
     if (err) return console.error(err)
     console.log('OK')
+    process.exit()
   }).on('item', function (item) {
     console.log(item.path)
   })
