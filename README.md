@@ -20,7 +20,7 @@ Generate all files:
     var blake = require('blake')
 
     blake('source', 'target', function(err) {
-      // Site generated
+      console.log(err || 'OK')
     })
 
 Generate a specific file:
@@ -28,7 +28,7 @@ Generate a specific file:
     var blake = require('blake')
 
     blake('source', 'target', 'source/about.md', function(err) {
-      // About page generated
+      console.log(err || 'OK')
     })
 
 Generate multiple specific files:
@@ -40,7 +40,7 @@ Generate multiple specific files:
       , archive = path.resolve(input, 'archive.md')
 
     blake(source, target, home, archive , function(err) {
-      // Home and archive page generated
+      console.log(err || 'OK')
     })
 
 ## OVERVIEW
@@ -177,6 +177,7 @@ To evaluate a more elaborated example, you could generate my personal [site](htt
     cd troubled-www
     export NODE_ENV=dev
     node worker.js 8080
+    open http://localhost:8080
 
 ## DEPLOYMENT
 
