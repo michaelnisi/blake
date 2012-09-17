@@ -1,25 +1,24 @@
 # blake - generate sites
 
-## SYNOPSIS
+## Description   
 
-    blake source_directory target_directory  
-    blake source_directory target_directory source_file ...
-
-## DESCRIPTION   
-
-In the first synopsis form, blake writes all files generated from input data in the `source_directory` to the `target_directory`. In the second synopsis form, just the file generated from the `source_file` is written to the `target_directory`. You can also generate from multiple source files. 
-
-Blake is a [Node.js](http://nodejs.org) module that provides a simple, blog aware, and view agnostic infrastructure to generate static websites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates the actual file generation to user-written generator functions. Blake is non-blocking; it can be used from command-line or as library.
+Blake provides a simple, blog aware infrastructure to generate static sites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates the actual file generation to user-written generator functions. 
 
 [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
-## LIBRARY USAGE
+## CLI Usage
+
+    blake source_directory target_directory source_file ...
+
+Blake writes all files generated from input data in the `source_directory` to the `target_directory`. Optionally individual files can be specified.
+
+## Library Usage
 
 Generate all files:
 
     var blake = require('blake')
 
-    blake('source', 'target', function(err) {
+    blake('source', 'target', function (err) {
       console.log(err || 'OK')
     })
 
@@ -27,7 +26,7 @@ Generate a specific file:
 
     var blake = require('blake')
 
-    blake('source', 'target', 'source/about.md', function(err) {
+    blake('source', 'target', 'source/about.md', function (err) {
       console.log(err || 'OK')
     })
 
@@ -39,15 +38,15 @@ Generate multiple specific files:
       , home = path.resolve(input, 'home.md')
       , archive = path.resolve(input, 'archive.md')
 
-    blake(source, target, home, archive , function(err) {
+    blake(source, target, home, archive , function (err) {
       console.log(err || 'OK')
     })
 
-## OVERVIEW
+## Overview
 
 Blake requires a configuration module (config.js), which it expects to load from the root of the source directory; config has to export a paths object, and a map of generator functions. If no files are explicitly specifified, blake copies the static resoures to the target directory, and each data source is piped to a stream that generates and writes the arfifact to the target directory.  
 
-## CONFIGURATION
+## Configuration
 
 Consider the following configuration module:
 
@@ -70,7 +69,7 @@ The `paths` object defines input paths, where the two required directories are `
 
 The `views` object is a map of user-written functions which implement the actual generation of output artifacts. Theses functions are mapped by template name. 
 
-## INPUT
+## Input
 
 At the top of each input file blake expects a JSON string that is interpreted as header and provides parameters for generating. Besides it can contain additional user defined data—a raw version of the header is passed to the `bake` methods of the views. The input data for a blog entry could look like the following: 
 
@@ -85,7 +84,7 @@ At the top of each input file blake expects a JSON string that is interpreted as
 
 The end of the header is marked by an empty line. Everything that follows is interpreted as content and is passed to the views untouched.
 
-## HEADER
+## Header
 
 JSON at the top of an input file:
 
@@ -126,7 +125,7 @@ An input file can consist of just the header; for example an RSS feed:
       "name": "rss.xml"
     }
 
-## VIEWS
+## Views
 
 Views must export a `bake` function with this signature:
 
@@ -166,44 +165,27 @@ To see a simple example:
     cd blake/example
     node generate.js
 
-To evaluate a more elaborated example, you could generate my personal [site](http://michaelnisi.com), which requires [Jade](http://jade-lang.com/) and [Markdown](http://daringfireball.net/projects/markdown/):
+To evaluate a more elaborate example, you might generate my [blog](http://michaelnisi.com), for which I use [Jade](http://jade-lang.com/) and [Markdown](http://daringfireball.net/projects/markdown/):
 
     npm install -g blake
     npm install blake jade markdown
     git clone git://github.com/michaelnisi/troubled.git
     blake troubled /tmp/troubled-site
     
-    git clone git://github.com/michaelnisi/troubled-www.git
-    cd troubled-www
-    export NODE_ENV=dev
-    node worker.js 8080
-    open http://localhost:8080
+## Deployment
 
-## DEPLOYMENT
+Of course you can build your site locally, and upload it to your webserver manually; but I recommend to run Blake on a server, using [post-receive hooks](http://help.github.com/post-receive-hooks/) to automatically generate your site post to each push to your input data repository.
 
-Of course you can build your site locally and upload it to your webserver manually, but I recommend to run Blake on a server, and use [post-receive hooks](http://help.github.com/post-receive-hooks/) to automatically generate your site on the server everytime you push to your input data repository.
+## Installation
 
-## INSTALLATION
-
-Install via [npm](http://npmjs.org/):
-
-    npm install -g blake
-
-If you not want to use command-line blake, install without global flag:
+Install with [npm](http://npmjs.org/):
 
     npm install blake
 
-To install from source:
+To `blake` from the command-line:
 
-    git clone git://github.com/michaelnisi/blake.git 
-    cd blake
-    npm link
+    npm install -g blake
 
-## SEE ALSO
-
-* [Website](http://michaelnisi.github.com/blake/)
-* [Documentation](http://michaelnisi.github.com/blake/blake.html)
-
-## LICENSE
+## License
 
 [MIT License](https://raw.github.com/michaelnisi/blake/master/LICENSE)
