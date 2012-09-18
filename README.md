@@ -1,8 +1,8 @@
 # blake - generate sites
 
-## Description   
+## Description
 
-Blake provides a simple, blog aware infrastructure to generate static sites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates the actual file generation to user-written generator functions. 
+Blake provides a simple, blog aware infrastructure to generate static sites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing, and delegates the actual file generation to user-written functions.
 
 [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
@@ -42,19 +42,15 @@ Generate multiple specific files:
       console.log(err || 'OK')
     })
 
-## Overview
-
-Blake requires a configuration module (config.js), which it expects to load from the root of the source directory; config has to export a paths object, and a map of generator functions. If no files are explicitly specifified, blake copies the static resoures to the target directory, and each data source is piped to a stream that generates and writes the arfifact to the target directory.  
-
 ## Configuration
 
-Consider the following configuration module:
+Blake requires a configuration module (source_directory/config.js), which exports paths, and views, a map of generator functions:
 
     exports.paths = {
-      data: 'data' // required
-    , templates: 'templates' // required
-    , resources: 'resources' // optional
-    , posts: 'data/posts' // optional
+      data: 'data' 
+    , templates: 'templates'
+    , resources: 'resources'
+    , posts: 'data/posts'
     }
 
     exports.views = {
@@ -67,11 +63,11 @@ Consider the following configuration module:
 
 The `paths` object defines input paths, where the two required directories are `data` and `templates`. From `data` blake loads general input data; from `templates` templates. The two optional directories are `resources` and `posts`. The content of `resources` is copied to output as it is. The `posts` directory hosts blog posts.
 
-The `views` object is a map of user-written functions which implement the actual generation of output artifacts. Theses functions are mapped by template name. 
+The `views` object is a map of user-written functions that implement the actual generation of output artifacts. Theses functions are mapped by template name. 
 
 ## Input
 
-At the top of each input file blake expects a JSON string that is interpreted as header and provides parameters for generating. Besides it can contain additional user defined data—a raw version of the header is passed to the `bake` methods of the views. The input data for a blog entry could look like the following: 
+At the top of each input file blake expects a JSON string that is interpreted as header providing transformation parameters. Besides it can contain additional user defined data—a raw version of the header is passed to the `bake` methods of the views. Input data for a blog entry could look like so: 
 
     {
       "title": "Example",
