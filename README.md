@@ -95,14 +95,14 @@ JSON at the top of an input file:
 
 * `title` is the title of the page (optional)
 * `description` is the description of the page or rather the post (optional)
-* `template`is the filename of template to use (required)
+* `template`is the filename of the template to use (required)
 * `date` is the publish date, if not provided it's set to `NOW` (optional)
 * `path` is the output path, if not provided the path of the input file is used (optional)
 * `name` is used as filename of the output file, if not provided the filename of the input file is used (optional)
 
-The header is extendable with arbritrary fields, which can be interpreted by the views. The source object, passed to the views, provides a reference to the header object.
+The source object, passed to the views, provides a reference to the raw header object. Thus, the header is extendable with arbritrary fields, which can be interpreted by the generators (written by you).
 
-If you decide to mirror input file path and name in your output, you can omit path and name. In that case a typical header of a blog post might look like the following.
+If you decide to mirror the input paths in your output, you can omit path and name. In that case a typical header of a blog post might look like the following:
 
     {
       "title": "Example",
@@ -111,11 +111,13 @@ If you decide to mirror input file path and name in your output, you can omit pa
       "date": "2012-03-21",
     }
 
-An input file can consist of just the header; for example an RSS feed:
+Input data with this header, located at 'source_directory/data/posts/2012/03/example.md`, would produce `2012/03/article.html`.
+
+An input file can consist of just a header (without content) to generate, for example, an RSS feed.
 
     {
       "title": "Blog",
-      "description": "Just my blog.",
+      "description": "Stuff I write",
       "link": "http://my.blog",
       "template": "rss.jade",
       "name": "rss.xml"
@@ -123,13 +125,13 @@ An input file can consist of just the header; for example an RSS feed:
 
 ## Views
 
-Views must export a `bake` function with this signature:
+Views are functions that generate the artifacts. They have the following signature:
 
-    bake (item, callback)
+    function (item, callback)
 
 In this function you implement the transformation from input to output and pass the result to the callback.
 
-The `src` object for a exemplary blog post exposes the following (for brevity `body` and `template` appear shortened):
+Here, for example, is an `item` representing a blog post:
 
     { header: 
       { title: 'Static Websites',
@@ -155,7 +157,7 @@ The `src` object for a exemplary blog post exposes the following (for brevity `b
       bake: [Function],
       template: <Buffer 0a 20 20 20 20 64 69 76 ...> }
 
-To see a simple example:
+To see a simple use case of Blake:
    
     git clone git://github.com/michaelnisi/blake.git 
     cd blake/example
