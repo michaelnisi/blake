@@ -2,7 +2,7 @@
 
 ## Description
 
-Blake provides a simple, blog aware infrastructure to generate static sites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing, and delegates the actual file generation to user-written functions.
+blake provides a simple, blog aware infrastructure to generate static sites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates the actual file generation to user-written functions.
 
 [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
@@ -10,7 +10,7 @@ Blake provides a simple, blog aware infrastructure to generate static sites. For
 
     blake source_directory target_directory source_file ...
 
-Blake writes all files generated from input data in the `source_directory` to the `target_directory`. Optionally individual files can be specified.
+blake writes all files generated from input data in the `source_directory` to the `target_directory`. Optionally individual files can be specified.
 
 ## Library Usage
 
@@ -44,7 +44,7 @@ Generate multiple specific files:
 
 ## Configuration
 
-Blake requires a configuration module (source_directory/config.js), which exports paths, and views, a map of generator functions:
+blake requires a configuration module (`source_directory/config.js´), which exports `paths`, and `views`, a map of generator functions:
 
     exports.paths = {
       data: 'data' 
@@ -54,20 +54,20 @@ Blake requires a configuration module (source_directory/config.js), which export
     }
 
     exports.views = {
-      'rss.jade': require('./rss.js').bake
-    , 'article.jade': require('./article.js').bake
-    , 'home.jade': require('./home.js').bake
-    , 'about.jade': require('./about.js').bake
-    , 'archive.jade': require('./archive.js').bake
+      'rss.jade': require('./rss.js')
+    , 'article.jade': require('./article.js')
+    , 'home.jade': require('./home.js')
+    , 'about.jade': require('./about.js')
+    , 'archive.jade': require('./archive.js')
     }
 
-The `paths` object defines input paths, where the two required directories are `data` and `templates`. From `data` blake loads general input data; from `templates` templates. The two optional directories are `resources` and `posts`. The content of `resources` is copied to output as it is. The `posts` directory hosts blog posts.
+The `paths` object defines input paths, with two required directories: `data` and `templates`. From `data` blake loads general input data, `templates` is the directory for templates. The two optional directories are `resources` and `posts`. The content of `resources` is copied to the `target_directory' unchanged. The `posts` directory hosts blog posts.
 
-The `views` object is a map of user-written functions that implement the actual generation of output artifacts. Theses functions are mapped by template name. 
+The `views` object is a map of user-written functions that implement the actual generation of output artifacts. Here, these functions are mapped by template name. 
 
 ## Input
 
-At the top of each input file blake expects a JSON string that is interpreted as header providing transformation parameters. Besides it can contain additional user defined data—a raw version of the header is passed to the `bake` methods of the views. Input data for a blog entry could look like so: 
+At the top of each input file blake expects a JSON string that is interpreted as header providing transformation parameters. Besides it can contain additional user defined data—the `item` parameter, passed to the view functions, provides a reference to the raw header. Input data for a blog entry could look like so: 
 
     {
       "title": "Example",
@@ -125,13 +125,13 @@ An input file can consist of just a header (without content) to generate, for ex
 
 ## Views
 
-Views are functions that generate the artifacts. They have the following signature:
+The views—alternative naming would be: transformers, generators, or bakers—are the functions that generate your artifacts; they have the following signature:
 
     function (item, callback)
 
-In this function you implement the transformation from input to output and pass the result to the callback.
+The passed in 'item' provides the input data to generate the artifact (or most likely the page).
 
-Here, for example, is an `item` representing a blog post:
+Here, for example, an `item` representing a blog post:
 
     { header: 
       { title: 'Static Websites',
@@ -172,7 +172,7 @@ To evaluate a more elaborate example, you might generate my [blog](http://michae
     
 ## Deployment
 
-Of course you can build your site locally, and upload it to your webserver manually; but I recommend to run Blake on a server, using [post-receive hooks](http://help.github.com/post-receive-hooks/) to automatically generate your site post to each push to your input data repository.
+Of course you can build your site locally, and upload it to your webserver manually; but I recommend to run blake on a server, using [post-receive hooks](http://help.github.com/post-receive-hooks/) to automatically generate your site, post to each push your input data repository receives.
 
 ## Installation
 
