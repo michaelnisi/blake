@@ -14,7 +14,7 @@ var blake = require('../lib/blake.js')
     if (err) return console.error(err)
     console.log('OK')
     process.exit()
-  }).on('item', function (item) {
+  }).on('data', function (item) {
     console.log(item.path)
   })
 })()

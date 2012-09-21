@@ -1,4 +1,4 @@
-# blake - generate sites
+#  blake - generate sites
 
 ## Description
 
@@ -41,6 +41,26 @@ Generate multiple specific files:
     blake(source, target, home, archive , function (err) {
       console.log(err || 'OK')
     })
+
+blake returns a Stream that emits following events:
+
+### Event: 'data'
+
+    function (item) { }
+
+The `data` event emits an item object with these properties: header, body, paths, titles, name, date, templatePath, path, link, dataeString, and template.
+
+### Event: 'end'
+
+    function () { }
+
+Emitted when blake is done.
+
+### Event: 'error'
+
+    function (err) { }
+
+Emitted if an error occured.
 
 ## Configuration
 
@@ -158,10 +178,11 @@ Here, for example, an `item` representing a blog post:
       template: <Buffer 0a 20 20 20 20 64 69 76 ...> }
 
 To see a simple use case of Blake:
-   
+
     git clone git://github.com/michaelnisi/blake.git 
     cd blake/example
     node generate.js
+    open /tmp/blake-site/index.html
 
 To evaluate a more elaborate example, you might generate my [blog](http://michaelnisi.com), for which I use [Jade](http://jade-lang.com/) and [Markdown](http://daringfireball.net/projects/markdown/):
 
