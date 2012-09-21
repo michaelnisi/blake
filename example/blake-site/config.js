@@ -5,5 +5,5 @@ exports.paths = {
 }
 
 exports.views = {
-  'index.jade': require('./views/index.js').bake
+  'index.jade': require('./views/index.js')
 }
