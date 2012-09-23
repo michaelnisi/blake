@@ -13,11 +13,12 @@ test('all', function (t) {
 test('specified', function (t) {
   var fileA = resolve(source, 'data', 'about.md')
          
-  blake(source, target, fileA, function (err, res) {
-    var a = resolve(target, 'about.html')
-    t.ok(fs.statSync(a).isFile(), 'should be written')
-    t.end()
-  })
+  blake(source, target, fileA)
+    .on('end', function () {
+      var a = resolve(target, 'about.html')
+      t.ok(fs.statSync(a).isFile(), 'should be written')
+      t.end()
+    })
 })
 
 test('teardown', function (t) {
