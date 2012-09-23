@@ -10,11 +10,15 @@ var blake = require('../lib/blake.js')
     return console.error('Usage: blake source_directory target_directory [source_file ...]');
   }
   
-  blake(arg.shift(), arg.shift(), arg, function (err) {
-    if (err) return console.error(err)
-    console.log('OK')
-    process.exit()
-  }).on('data', function (item) {
-    console.log(item.path)
-  })
+  blake(arg.shift(), arg.shift(), arg)
+    .on('error', function (err) { 
+      console.error(err)
+    })
+    .on('data', function (item) {
+      console.log(item.path)
+    })
+    .on('end', function () {
+      console.log('OK')
+      process.exit()
+    })
 })()

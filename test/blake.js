@@ -6,17 +6,13 @@ var test = require('tap').test
   , source = 'source'
   , target = '/tmp/blake-test'
 
-test('all', function (t) {
-  t.end()
-})
-
 test('specified', function (t) {
-  var fileA = resolve(source, 'data', 'about.md')
+  var file = resolve(source, 'data', 'about.md')
          
-  blake(source, target, fileA)
+  blake(source, target, file)
     .on('end', function () {
-      var a = resolve(target, 'about.html')
-      t.ok(fs.statSync(a).isFile(), 'should be written')
+      var artifact = resolve(target, 'about.html')
+      t.ok(fs.statSync(artifact).isFile(), 'should be written')
       t.end()
     })
 })

@@ -8,6 +8,7 @@ blake provides a simple, blog aware infrastructure to generate static sites. For
 
 ## CLI Usage
 
+    blake source_directory target_directory
     blake source_directory target_directory source_file ...
 
 blake writes all files generated from input data in the `source_directory` to the `target_directory`. Optionally individual files can be specified.
