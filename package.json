@@ -1,7 +1,7 @@
 {
   "name": "blake",
-  "description": "generate sites",
-  "version": "0.3.2",
+  "description": "generate site",
+  "version": "0.4.0",
   "homepage": "http://michaelnisi.github.com/blake/",
   "repository": {
     "type": "git",
@@ -14,12 +14,12 @@
     "generator",
     "infrastructure"
   ],
-  "main": "./lib/blake.js",
+  "main": "index.js",
   "bin": {
-    "blake": "./bin/cli.js"
+    "blake": "bin/cli.js"
   },
   "directories": {
-    "lib": "./lib",
+    "lib": "lib",
     "example": "example",
     "test": "test"
   },

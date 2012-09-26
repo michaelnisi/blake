@@ -3,12 +3,25 @@ var test = require('tap').test
   , fs = require('fs')
   , rimraf = require('rimraf')
   , source = 'source/resources'
-  , target = '/tmp/blake-test/resources'
+  , target = '/tmp/blake-test'
+  , fstream = require('fstream')
+  , es = require('event-stream')
+  , fish = require('fish')
 
 test('directory', function (t) {
   copy(source, target, function (err) {
     t.ok(fs.statSync(target).isDirectory(), 'should be copied')
-    t.end()
+    
+    var reader = fstream.Reader({ path:target })
+      , paths = ['/tmp/blake-test/css']
+
+    reader
+      .pipe(fish('path'))
+      .pipe(es.writeArray(function (err, lines) {
+        t.deepEqual(lines, paths, 'should be paths')
+        t.end()
+      }))
+
   })
 })
 
@@ -20,4 +33,3 @@ test('teardown', function (t) {
     })
   })
 })
-

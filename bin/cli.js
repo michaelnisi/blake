@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var blake = require('../lib/blake.js')
+var blake = require('../index.js')
 
 ;(function () {
   var arg = process.argv.splice(2)

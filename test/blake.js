@@ -1,5 +1,5 @@
 var test = require('tap').test
-  , blake  = require('../lib/blake.js')
+  , blake  = require('../index.js')
   , resolve = require('path').resolve
   , rimraf = require('rimraf')
   , fs = require('fs')

@@ -1,4 +1,4 @@
-#  blake - generate sites
+# blake - generate site
 
 ## Description
 
