@@ -2,7 +2,7 @@
 
 ## Description
 
-blake provides a simple, blog aware infrastructure to generate static sites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates file generation to user-written functions.
+The `blake` node module provides a simple, blog aware infrastructure to generate static sites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates file generation to user-written functions.
 
 [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
@@ -178,7 +178,7 @@ Here, for example, an `item` representing a blog post:
       bake: [Function],
       template: <Buffer 0a 20 20 20 20 64 69 76 ...> }
 
-To see a simple use case of Blake:
+To see a simple example:
 
     git clone git://github.com/michaelnisi/blake.git 
     cd blake/example

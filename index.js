@@ -8,7 +8,7 @@ var resolve = require('path').resolve
   , es = require('event-stream')
   , oven = require('./lib/oven.js')
   , copy = require('./lib/copy.js')
-  , popfun = require('./lib/popfun.js')
+  , popfun = require('popfun')
 
 function blake () {
   var args = Array.prototype.slice.call(arguments)
