@@ -6,7 +6,7 @@ var test = require('tap').test
   , target = '/tmp/blake-test'
   , fstream = require('fstream')
   , es = require('event-stream')
-  , fish = require('fish')
+  , cop = require('cop')
 
 test('directory', function (t) {
   copy(source, target, function (err) {
@@ -16,7 +16,7 @@ test('directory', function (t) {
       , paths = ['/tmp/blake-test/css']
 
     reader
-      .pipe(fish('path'))
+      .pipe(cop('path'))
       .pipe(es.writeArray(function (err, lines) {
         t.deepEqual(lines, paths, 'should be paths')
         t.end()
