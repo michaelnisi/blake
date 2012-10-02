@@ -43,7 +43,7 @@ Generate multiple specific files:
       console.log(err || 'OK')
     })
 
-It's a Stream—so, I recommend to not waive the callback:
+It's a Stream—so, you might waive the callback:
     
     var blake = require('blake')
 
