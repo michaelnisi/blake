@@ -58,6 +58,8 @@ It's a Stream—so, you might waive the callback:
         console.log('OK')
       })
 
+## Events
+
 The `blake` function returns a Stream that emits following events:
 
 ### Event: 'data'
