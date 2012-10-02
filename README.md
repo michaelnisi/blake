@@ -1,10 +1,10 @@
 # blake - generate site
 
+[![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
+
 ## Description
 
 The blake node module provides a simple, blog aware infrastructure to generate static sites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates file generation to user-written functions.
-
-[![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
 ## CLI Usage
 
