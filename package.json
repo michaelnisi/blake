@@ -31,7 +31,7 @@
     "fstream": ">=0.1.14", 
     "event-stream": ">=2.1.5",
     "cop": "*",
-    "popfun": "popfun"
+    "popfun": "*"
   },
   "devDependencies": {
     "tap": "0.1.x",
