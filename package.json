@@ -30,7 +30,8 @@
     "mkdirp": ">=0.3.0",
     "fstream": ">=0.1.14", 
     "event-stream": ">=2.1.5",
-    "cop": "*"
+    "cop": "*",
+    "popfun": "popfun"
   },
   "devDependencies": {
     "tap": "0.1.x",

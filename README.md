@@ -60,7 +60,7 @@ It's a Stream—so, you might waive the callback:
 
 ## Events
 
-The `blake` function returns a Stream that emits following events:
+The `blake` function returns a readable and writable [Stream](http://nodejs.org/api/stream.html) that emits following events:
 
 ### Event: 'data'
 
