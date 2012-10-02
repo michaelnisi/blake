@@ -2,7 +2,7 @@
 
 ## Description
 
-The `blake` node module provides a simple, blog aware infrastructure to generate static sites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates file generation to user-written functions.
+The blake node module provides a simple, blog aware infrastructure to generate static sites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates file generation to user-written functions.
 
 [![Build Status](https://secure.travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
@@ -11,7 +11,7 @@ The `blake` node module provides a simple, blog aware infrastructure to generate
     blake source_directory target_directory
     blake source_directory target_directory source_file ...
 
-blake writes all files generated from input data in the `source_directory` to the `target_directory`. Optionally individual files can be specified.
+In the first synopsis form, blake writes all files generated from input data in the `source_directory` to the `target_directory`. In the second synopsis form, output is generated from the specified source files only.
 
 ## Library Usage
 
@@ -43,7 +43,22 @@ Generate multiple specific files:
       console.log(err || 'OK')
     })
 
-blake returns a Stream that emits following events:
+It's a Stream—so, I recommend to not waive the callback:
+    
+    var blake = require('blake')
+
+    blake('source_directory', 'target_directory')
+      .on('error', function (err) { 
+        console.error(err)
+      })
+      .on('data', function (item) {
+        console.log(item.path)
+      })
+      .on('end', function () {
+        console.log('OK')
+      })
+
+The `blake` function returns a Stream that emits following events:
 
 ### Event: 'data'
 
