@@ -6,7 +6,7 @@ var resolve = require('path').resolve
   , fstream = require('fstream')
   , fs = require('fs')
   , es = require('event-stream')
-  , oven = require('./lib/oven.js')
+  , generate = require('./lib/generate.js')
   , copy = require('./lib/copy.js')
   , popfun = require('popfun')
 
@@ -27,17 +27,16 @@ function blake () {
   , paths: paths
   }
 
-  var writer = oven(props)
+  var writer = generate(props)
 
   if (specific) {
     bake()
   } else {
     copy(paths.resources, target)
-      .on('data', function (path) {
-        console.log(path)
-      }).on('error', function (err) {
+      .on('error', function (err) {
         console.error(err)
-      }).on('end', function () {
+      })
+      .on('end', function () {
         bake()
       })
   }
@@ -56,16 +55,20 @@ function blake () {
     })
   }
 
-  function getReader() { 
+  function getReader() {
+    var stream
+
     if (specific) {
       var entries = []
       files.forEach(function (file) {
         entries.push({ path: file })
       })
-      return es.readArray(entries)
+      stream = es.readArray(entries)
+    } else {
+      stream = fstream.Reader({ path: resolve(source, 'data') })
     }
-    
-    return fstream.Reader({ path: resolve(source, 'data') })
+
+    return stream
   }
 
   return writer
