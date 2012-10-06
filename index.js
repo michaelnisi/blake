@@ -18,7 +18,12 @@ function blake (source, target) {
   , paths: paths
   }
 
-  // copy
+  // probably generate should copy
+  // copy(source, resolve(target, 'resources'))
+  //   .on('error', function (err) {
+  //     console.error(err)
+  //   })
+  //
 
   return generate(props)
 }
