@@ -59,7 +59,7 @@ Generate from files:
     var blake = require('blake')
       , cop = require('cop')
       , readArray = require('event-stream').readArray
-      , filenames = ['first/fil', 'second/file', 'third/file']
+      , filenames = ['first/file', 'second/file', 'third/file']
       , source = 'source_directory'
       , target = 'target_directory'
  
@@ -67,6 +67,33 @@ Generate from files:
       .pipe(blake(source, target))
       .pipe(cop(function (filename) { return filename + '\n' }))
       .pipe(process.stdout)
+
+Slightly more fancy: generate from directory and stream to S3:
+
+    var resolve = require('path').resolve
+      , cop = require('cop')
+      , getProps = require('../lib/getProps.js')
+      , blake = require('blake')
+      , pushup = require('pushup')
+      , Reader = require('fstream').Reader
+      , sep = require('path').sep
+      , source = 'source_directory'
+      , target = 'target_directory'
+      , reader = new Reader({ path:resolve(source, 'data') })
+      , props = getProps()
+
+    process.chdir(target)
+      
+    reader
+      .pipe(cop('path'))
+      .pipe(blake(source, target))
+      .pipe(cop(adjustPath))
+      .pipe(pushup(props))
+      .pipe(process.stdout)
+
+    function adjustPath (p) {
+      return p.split(sep).slice(3).join(sep)
+    }
 
 ## Events
 
