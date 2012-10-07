@@ -68,7 +68,7 @@ Generate from files:
       .pipe(cop(function (filename) { return filename + '\n' }))
       .pipe(process.stdout)
 
-Slightly more fancy: generate from directory and stream to S3:
+Since blake returns a Stream that emits the paths of the generated artifacts, we can pipe these to pushup, and upload the files directly to S3:
 
     var resolve = require('path').resolve
       , cop = require('cop')
