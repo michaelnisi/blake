@@ -68,7 +68,7 @@ Generate from files:
       .pipe(cop(function (filename) { return filename + '\n' }))
       .pipe(process.stdout)
 
-Since blake returns a Stream that emits the paths of the generated artifacts, we can pipe these to pushup, and upload the files directly to S3:
+Since blake returns a Stream that emits the paths of the generated artifacts, we can pipe to [pushup](https://github.com/michaelnisi/pushup), and upload the files directly to S3:
 
     var resolve = require('path').resolve
       , cop = require('cop')
@@ -97,7 +97,7 @@ Since blake returns a Stream that emits the paths of the generated artifacts, we
 
 ## Events
 
-The `blake` function returns a readable and writable [Stream](http://nodejs.org/api/stream.html) that emits following events:
+The blake function returns a readable and writable [Stream](http://nodejs.org/api/stream.html) that emits following events:
 
 ### Event: 'data'
 
@@ -119,7 +119,7 @@ Emitted if an error occured.
 
 ## Configuration
 
-blake requires a configuration module (`source_directory/config.js´), which exports `paths`, and `views`, a map of generator functions:
+blake requires a configuration module at `source_directory/config.js`, which exports `paths`, and `views`, a map of generator functions:
 
     exports.paths = {
       data: 'data' 
