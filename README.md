@@ -80,7 +80,7 @@ Since blake returns a Stream that emits the paths of the generated artifacts, we
       , Reader = require('fstream').Reader
       , sep = require('path').sep
       , source = 'source_directory'
-      , target = 'target_directory'
+      , target = '/tmp/target_directory'
       , reader = new Reader({ path:resolve(source, 'data') })
       , props = getProps()
 
