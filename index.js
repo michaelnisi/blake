@@ -3,11 +3,10 @@
 module.exports = blake
 
 var generate = require('./lib/generate.js')
-  , copy = require('./lib/copy.js')
-  , resolve = require('path').resolve
+  , join = require('path').join
 
 function blake (source, target) {
-  var config = require(resolve(source, 'config.js'))
+  var config = require(join(source, 'config.js'))
     , paths = require('./lib/paths.js')(source, target, config)
     , templates = require('./lib/templates.js')(paths.templates)
     , views = config.views
@@ -18,11 +17,5 @@ function blake (source, target) {
   , paths: paths
   }
   
-  /*
-  copy(resolve(source, 'resources'), target)
-    .on('error', function (err) {
-      console.error(err)
-  })*/
-
   return generate(props)
 }
