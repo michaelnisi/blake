@@ -17,13 +17,12 @@ function blake (source, target) {
   , views: views
   , paths: paths
   }
-
-  // probably generate should copy
-  // copy(source, resolve(target, 'resources'))
-  //   .on('error', function (err) {
-  //     console.error(err)
-  //   })
-  //
+  
+  /*
+  copy(resolve(source, 'resources'), target)
+    .on('error', function (err) {
+      console.error(err)
+  })*/
 
   return generate(props)
 }
