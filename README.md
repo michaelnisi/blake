@@ -72,7 +72,7 @@ Slightly more fancy: generate from directory and stream to S3:
 
     var resolve = require('path').resolve
       , cop = require('cop')
-      , getProps = require('../lib/getProps.js')
+      , getProps = require('pushup/lib/getProps')
       , blake = require('blake')
       , pushup = require('pushup')
       , Reader = require('fstream').Reader
