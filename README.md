@@ -209,15 +209,17 @@ To see a simple example:
 
     git clone git://github.com/michaelnisi/blake.git 
     cd blake/example
+    npm install
     node generate.js
     open /tmp/blake-site/index.html
 
 To evaluate a more elaborate example, you might generate my [blog](http://michaelnisi.com), for which I use [Jade](http://jade-lang.com/) and [Markdown](http://daringfireball.net/projects/markdown/):
 
     npm install -g blake
-    npm install blake jade markdown
     git clone git://github.com/michaelnisi/troubled.git
-    blake troubled /tmp/troubled-site
+    cd troubled
+    npm install
+    blake . /tmp/troubled-site
     
 ## Deployment
 
