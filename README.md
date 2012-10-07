@@ -15,7 +15,7 @@ In the first synopsis form, blake writes all files generated from input data in 
 
 ## Library Usage
 
-Generate from directory:
+### Generate from directory
 
     var blake = require('blake')
       , source = 'blake-site'
@@ -31,7 +31,7 @@ Generate from directory:
       .pipe(cop(function (filename) { return filename + '\n' }))
       .pipe(process.stdout)
 
-Copy static resources and generate from directory:
+### Copy static resources and generate from directory
 
     var blake = require('blake')
       , source = 'blake-site'
@@ -54,7 +54,7 @@ Copy static resources and generate from directory:
           .pipe(process.stdout)
       })
 
-Generate from files:
+### Generate from files
 
     var blake = require('blake')
       , cop = require('cop')
@@ -68,7 +68,9 @@ Generate from files:
       .pipe(cop(function (filename) { return filename + '\n' }))
       .pipe(process.stdout)
 
-Since blake returns a Stream that emits the paths of the generated artifacts, we can pipe to [pushup](https://github.com/michaelnisi/pushup), and upload the files directly to S3:
+### Generate and push to S3
+
+Since blake returns a Stream that emits the paths of the generated artifacts, we can pipe to [pushup](https://github.com/michaelnisi/pushup), and upload the files directly to S3.
 
     var resolve = require('path').resolve
       , cop = require('cop')
