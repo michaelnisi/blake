@@ -15,48 +15,58 @@ In the first synopsis form, blake writes all files generated from input data in 
 
 ## Library Usage
 
-Generate all files:
+Generate from directory:
 
     var blake = require('blake')
+      , source = 'blake-site'
+      , target = '/tmp/blake-site'
+      , join = require('path').join
+      , Reader = require('fstream').Reader
+      , props = { path:join(source, 'data') }
+      , cop = require('cop')
 
-    blake('source', 'target', function (err) {
-      console.log(err || 'OK')
-    })
+    new Reader(props)
+      .pipe(cop('path'))
+      .pipe(blake(source, target))
+      .pipe(cop(function (filename) { return filename + '\n' }))
+      .pipe(process.stdout)
 
-Generate a specific file:
+Copy static resources and generate from directory:
 
     var blake = require('blake')
+      , source = 'blake-site'
+      , target = '/tmp/blake-site'
+      , join = require('path').join
+      , Reader = require('fstream').Reader
+      , props = { path:join(source, 'data') }
+      , cop = require('cop')
+      , copy = require('../lib/copy.js')
 
-    blake('source', 'target', 'source/about.md', function (err) {
-      console.log(err || 'OK')
-    })
-
-Generate multiple specific files:
-
-    var blake = require('blake')
-      , source  = 'path/to/input'
-      , target = 'path/to/output'
-      , home = path.resolve(input, 'home.md')
-      , archive = path.resolve(input, 'archive.md')
-
-    blake(source, target, home, archive , function (err) {
-      console.log(err || 'OK')
-    })
-
-It's a Stream—so, you might waive the callback:
-    
-    var blake = require('blake')
-
-    blake('source_directory', 'target_directory')
-      .on('error', function (err) { 
+    copy(join(source, 'resources'), target)
+      .on('error', function (err) {
         console.error(err)
       })
-      .on('data', function (item) {
-        console.log(item.path)
-      })
       .on('end', function () {
-        console.log('OK')
+        new Reader(props)
+          .pipe(cop('path'))
+          .pipe(blake(source, target))
+          .pipe(cop(function (filename) { return filename + '\n' }))
+          .pipe(process.stdout)
       })
+
+Generate from files:
+
+    var blake = require('blake')
+      , cop = require('cop')
+      , readArray = require('event-stream').readArray
+      , filenames = ['first/fil', 'second/file', 'third/file']
+      , source = 'source_directory'
+      , target = 'target_directory'
+ 
+    readArray(filenames)
+      .pipe(blake(source, target))
+      .pipe(cop(function (filename) { return filename + '\n' }))
+      .pipe(process.stdout)
 
 ## Events
 
@@ -64,9 +74,9 @@ The `blake` function returns a readable and writable [Stream](http://nodejs.org/
 
 ### Event: 'data'
 
-    function (item) { }
+    function (path) { }
 
-The `data` event emits an item object with these properties: header, body, paths, titles, name, date, templatePath, path, link, dataeString, and template.
+The `data` event emits paths of generated artifacts.
 
 ### Event: 'end'
 
