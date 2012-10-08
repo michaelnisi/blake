@@ -188,7 +188,7 @@ If you decide to mirror the input paths in your output, you can omit path and na
       "date": "2012-03-21",
     }
 
-Input data with this header, located at 'source_directory/data/posts/2012/03/example.md`, would produce `2012/03/article.html`.
+Input data with this header, located at `source_directory/data/posts/2012/03/example.md`, would produce `2012/03/article.html`.
 
 An input file can consist of just a header (without content) to generate, for example, an RSS feed.
 
