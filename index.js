@@ -1,11 +1,9 @@
 // blake - generate site
 
-module.exports = blake
-
 var generate = require('./lib/generate.js')
   , join = require('path').join
 
-function blake (source, target) {
+module.exports = function (source, target) {
   var config = require(join(source, 'config.js'))
     , paths = require('./lib/paths.js')(source, target, config)
     , templates = require('./lib/templates.js')(paths.templates)
