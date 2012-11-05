@@ -1,7 +1,7 @@
 var test = require('tap').test
   , reader = require('../lib/read.js')
-  , getProps = require('./props.js')
-  , read = reader(getProps()).read
+  , props = require('./props.js')
+  , read = reader(props).read
 
 test('file', function (t) {
   read('source/data/about.md', function (err, item) {

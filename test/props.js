@@ -1,24 +1,14 @@
-module.exports = props
 
 var resolve = require('path').resolve
-  , me
+  , source = exports.source = 'source'
+  , target = exports.target = '/tmp/blake-test'
+  , config = exports.config = require(resolve(source, 'config.js')) 
 
-function props () {
-  if (me) return me
-  
-  var source = 'source'
-    , target = '/tmp/blake-test'
-    , config = require(resolve(source, 'config.js')) 
-    , paths = require('../lib/paths')(source, target, config)
-    , views = {}
-    , templates = {}
-  
-  var me = { 
-    paths: paths
-  , views: views
-  , templates: templates 
-  }
+exports.paths = require('../lib/paths')(source, target, config)
+exports.views = {}
+exports.templates = {}
 
-  return me
+if (module === require.main) {
+  console.log(exports)
+  process.exit(0)
 }
- 

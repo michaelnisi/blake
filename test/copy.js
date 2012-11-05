@@ -1,9 +1,10 @@
 var test = require('tap').test
   , copy = require('../lib/copy.js')
+  , join = require('path').join
   , fs = require('fs')
   , rimraf = require('rimraf')
   , source = '../example/blake-site/resources'
-  , target = '/tmp/blake-test'
+  , target = '/tmp/blake-' + Math.floor(Math.random() * (1<<24))
   , fstream = require('fstream')
   , es = require('event-stream')
   , cop = require('cop')
@@ -15,8 +16,8 @@ test('directory', function (t) {
     var reader = fstream.Reader({ path:target })
     
     var paths = [
-      '/tmp/blake-test/css/style.css'
-    , '/tmp/blake-test/img/bg.png'
+      join(target, 'css', 'style.css')
+    , join(target, 'img', 'bg.png')
     ]
 
     reader

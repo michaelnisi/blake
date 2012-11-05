@@ -2,7 +2,8 @@ var test = require('tap').test
   , getItem = require('../lib/getItem.js')
   , readFileSync = require('fs').readFileSync
   , props = require('./props.js')
-  , paths = props().paths
+  , config = props.config
+  , paths = config.paths
   , target = paths.target
 
 test('read', function (t) {
@@ -17,7 +18,7 @@ test('read', function (t) {
   , path: undefined
   }
 
-  var item = getItem(props(), filename, file.toString())
+  var item = getItem(config, filename, file.toString())
 
   t.deepEqual(item.header, header, 'should be expected header')
   t.ok(item.body, 'should have a body')
@@ -30,7 +31,7 @@ test('read', function (t) {
 test('article', function (t) {
   var filename = 'source/data/posts/2012/double-negative.md'
   ,   file = readFileSync(filename)
-  ,   item = getItem(props(), filename, file.toString())
+  ,   item = getItem(config, filename, file.toString())
   ,   link = '2012/05/double-negative.html'
   ,   path = target + '/2012/05/double-negative.html'
 
