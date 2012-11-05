@@ -15,7 +15,7 @@ test('read array of filenames', function (t) {
   var filenames = [
     path.join(source, 'data', 'index.md')
   ]
-  
+
   var reader = es.readArray(filenames)
 
   reader
