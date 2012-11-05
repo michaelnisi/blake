@@ -3,9 +3,10 @@ var test = require('tap').test
   , path = require('path')
   , readFileSync = require('fs').readFileSync
   , getProps = require('../lib/getProps.js')
-  , source = path.resolve('../example/blake-site')
-  , target = '/tmp/blake-' + Math.floor(Math.random() * (1<<24))
-  , props = getProps(source, target)
+  , config = require('./config.js')
+  , source = config.source
+  , target = config.target 
+  , props = config.props 
 
 test('read', function (t) {
   var filename = path.join(props.paths.data, 'index.md')

@@ -4,8 +4,9 @@ var blake = require('../index.js')
   , cop = require('cop')
   , fstream = require('fstream')
   , test = require('tap').test
-  , source = path.resolve('../example/blake-site')
-  , target = '/tmp/blake-' + Math.floor(Math.random() * (1<<24))
+  , config = require('./config.js')
+  , source = config.source
+  , target = config.target 
 
 var expected = [
   path.join(target, 'index.html')
