@@ -8,7 +8,7 @@ var blake = require('../index.js')
   , source = config.source
   , target = config.target 
 
-var expected = [
+var wanted = [
   path.join(target, 'index.html')
 ]
 
@@ -22,14 +22,8 @@ test('read array of filenames', function (t) {
   reader
     .pipe(blake(source, target))
     .pipe(es.writeArray(function (err, array) {
-      t.equal(array.length, expected.length)
-      var contains = false
-      expected.forEach(function (a) {
-        contains = array.some(function (b) {
-          return a === b
-        })
-        t.ok(contains, 'should contain all expected')
-      })
+      t.equal(array.length, wanted.length)
+      t.deepEqual(array, wanted)
       t.end()
     }))
 })
@@ -40,7 +34,7 @@ test('files written', function (t) {
   reader
     .pipe(cop('path'))
     .pipe(es.writeArray(function (err, lines) {
-      t.deepEqual(lines, expected, 'should equal paths')
+      t.deepEqual(lines, wanted, 'should equal paths')
       t.end()
     }))
   t.end()
