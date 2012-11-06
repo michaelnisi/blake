@@ -3,15 +3,13 @@ var test = require('tap').test
   , strftime = require('prettydate').strftime
   , path = require('path')
   , readFileSync = require('fs').readFileSync
-  , getProps = require('../lib/getProps.js')
   , config = require('./config.js')
-  , source = config.source
   , target = config.target 
   , props = config.props
   , paths = props.paths 
 
 test('read', function (t) {
-  var filename = path.join(props.paths.data, 'index.md')
+  var filename = path.join(paths.data, 'index.md')
     , file = readFileSync(filename)
     , item = getItem(props, filename, file.toString())
     , header = item.header
@@ -31,7 +29,7 @@ test('read', function (t) {
   t.ok(item.template instanceof Buffer, 'should be instance of Buffer')
   t.equal(item.title, header.title)
   t.equal(item.link, 'index.html')
-  t.ok(typeof item.bake === 'function')
+  t.ok(typeof item.bake === 'function', 'should be function type')
   t.equal(item.name, 'index.html')
   t.equal(item.path, path.join(target, header.name))
 
