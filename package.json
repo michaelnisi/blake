@@ -37,10 +37,11 @@
   },
   "devDependencies": {
     "tap": "0.3.x",
-    "rimraf": "2.0.x"
+    "rimraf": "2.0.x",
+    "jade": "0.27.x"
   },
   "engines": {
-    "node": ">=0.4.0"
+    "node": ">=0.6.0"
   },
   "license": "MIT",
   "author": {
