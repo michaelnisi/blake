@@ -1,29 +1,39 @@
 var test = require('tap').test
   , getItem = require('../lib/getItem.js')
+  , strftime = require('prettydate').strftime
   , path = require('path')
   , readFileSync = require('fs').readFileSync
   , getProps = require('../lib/getProps.js')
   , config = require('./config.js')
   , source = config.source
   , target = config.target 
-  , props = config.props 
+  , props = config.props
+  , paths = props.paths 
 
 test('read', function (t) {
   var filename = path.join(props.paths.data, 'index.md')
     , file = readFileSync(filename)
-  
-  var header = {
-    template: 'index.jade'
-  , name: 'index.html'
-  , date: new Date()
-  , path: undefined
-  }
+    , item = getItem(props, filename, file.toString())
+    , header = item.header
 
-  var item = getItem(props, filename, file.toString())
-
-  t.deepEqual(item.header, header, 'should be expected header')
-  t.ok(item.body, 'should have a body')
-  t.equal(item.path, target + '/index.html', 'should be correct path')
+  t.equal(header.template, 'index.jade')
+  t.equal(header.name, 'index.html')
+  t.equal(header.title, null)
+  t.ok(header.date instanceof Date, 'should be instance of Date')
+  t.equal(header.path, null)
   
+  t.ok(item.body.length, 'should have body')  
+  t.equal(item.title, null)
+  t.equal(item.name, 'index.html')
+  t.same(item.date, header.date)
+  t.equal(item.pubDate, strftime(header.date, '%a, %d %b %Y %T %z'))
+  t.equal(item.dateString, header.date.toDateString())
+  t.ok(item.template instanceof Buffer, 'should be instance of Buffer')
+  t.equal(item.title, header.title)
+  t.equal(item.link, 'index.html')
+  t.ok(typeof item.bake === 'function')
+  t.equal(item.name, 'index.html')
+  t.equal(item.path, path.join(target, header.name))
+
   t.end()
 })
