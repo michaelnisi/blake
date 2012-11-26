@@ -40,12 +40,10 @@ In the first synopsis form, blake writes all files generated from input data in 
       , Reader = require('fstream').Reader
       , props = { path:join(source, 'data') }
       , cop = require('cop')
-      , copy = require('../lib/copy.js')
+      , copy = require('blake/lib/copy.js')
 
     copy(join(source, 'resources'), target)
-      .on('error', function (err) {
-        console.error(err)
-      })
+      .on('error', console.error)
       .on('end', function () {
         new Reader(props)
           .pipe(cop('path'))
