@@ -8,9 +8,9 @@ var blake = require('../index.js')
 
 ;(function () {
   var arg = process.argv.splice(2)
-    , isValid = !(arg && arg.length >= 2)
+    , isValid = arg && arg.length >= 2
 
-  if (isValid) {
+  if (!isValid) {
     return console.error('Usage: blake source_directory target_directory [source_file ...]');
   }
 
