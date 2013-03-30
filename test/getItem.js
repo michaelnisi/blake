@@ -4,9 +4,9 @@ var test = require('tap').test
   , path = require('path')
   , readFileSync = require('fs').readFileSync
   , config = require('./config.js')
-  , target = config.target 
+  , target = config.target
   , props = config.props
-  , paths = props.paths 
+  , paths = props.paths
 
 test('read', function (t) {
   var filename = path.join(paths.data, 'index.md')
@@ -18,9 +18,9 @@ test('read', function (t) {
   t.equal(header.name, 'index.html')
   t.equal(header.title, null)
   t.ok(header.date instanceof Date, 'should be instance of Date')
-  t.equal(header.path, null)
-  
-  t.ok(item.body.length, 'should have body')  
+  t.equal(header.path, '')
+
+  t.ok(item.body.length, 'should have body')
   t.equal(item.title, null)
   t.equal(item.name, 'index.html')
   t.same(item.date, header.date)
