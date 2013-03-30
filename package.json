@@ -1,7 +1,7 @@
 {
   "name": "blake",
   "description": "Simple, blog aware infrastructure to generate static sites",
-  "version": "0.6.5",
+  "version": "0.7.0",
   "homepage": "http://michaelnisi.github.com/blake/",
   "repository": {
     "type": "git",
@@ -42,7 +42,7 @@
     "markdown": "0.4.x"
   },
   "engines": {
-    "node": ">=0.6.0"
+    "node": "0.10.x"
   },
   "license": "MIT",
   "author": {
