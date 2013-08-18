@@ -1,8 +1,6 @@
 # blake - generate site
 
-[![Build Status](https://travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
-
-[![David DM](https://david-dm.org/michaelnisi/blake.png)](http://david-dm.org/michaelnisi/blake)
+[![Build Status](https://travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake) [![David DM](https://david-dm.org/michaelnisi/blake.png)](http://david-dm.org/michaelnisi/blake)
 
 ## Description
 
