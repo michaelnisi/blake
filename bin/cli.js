@@ -27,10 +27,9 @@ var blake = require('../index.js')
 
   if (!arg.length) {
     copy(join(source, 'resources'), target)
-      .on('error', function (err) {
-        console.error(err)
-      })
+      .on('error', console.error)
       .on('end', bake)
+      .pipe(process.stdout)
   } else {
     bake()
   }

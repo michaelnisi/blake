@@ -2,16 +2,18 @@
 
 [![Build Status](https://travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
 
+[![David DM](https://david-dm.org/michaelnisi/blake.png)](http://david-dm.org/michaelnisi/blake)
+
 ## Description
 
-The blake node module provides a simple, blog aware infrastructure to generate static sites. For unrestricted choice of input formats and template languages, blake confines itself to IO and template routing; it delegates file generation to user-written functions.
+The `blake` [Node.js](http://nodejs.org/) module provides a simple, blog aware infrastructure to generate static sites. For unrestricted choice of input formats and template languages, `blake` confines itself to IO and template routing; it delegates artifact generation to user-written functions.
 
 ## CLI Usage
 
     blake source_directory target_directory
     blake source_directory target_directory source_file ...
 
-In the first synopsis form, blake writes all files generated from input data in the `source_directory` to the `target_directory`. In the second synopsis form, output is generated from the specified source files only.
+In the first synopsis form, `blake` writes all files generated from input data in the `source_directory` to the `target_directory`. In the second synopsis form, output is generated from the specified source files only.
 
 ## Library Usage
 

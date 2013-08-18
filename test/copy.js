@@ -12,9 +12,9 @@ var test = require('tap').test
 test('directory', function (t) {
   copy(source, target, function (err) {
     t.ok(fs.statSync(target).isDirectory(), 'should exist')
-    
+
     var reader = fstream.Reader({ path:target })
-    
+
     var paths = [
       join(target, 'css', 'style.css')
     , join(target, 'img', 'bg.png')
