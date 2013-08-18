@@ -6,7 +6,7 @@ var blake = require('../index.js')
   , test = require('tap').test
   , config = require('./config.js')
   , source = config.source
-  , target = config.target 
+  , target = config.target
 
 var wanted = [
   path.join(target, 'index.html')
@@ -17,9 +17,7 @@ test('read array of filenames', function (t) {
     path.join(source, 'data', 'index.md')
   ]
 
-  var reader = es.readArray(filenames)
-
-  reader
+  es.readArray(filenames)
     .pipe(blake(source, target))
     .pipe(es.writeArray(function (err, array) {
       t.equal(array.length, wanted.length)
@@ -29,9 +27,7 @@ test('read array of filenames', function (t) {
 })
 
 test('files written', function (t) {
-  var reader = fstream.Reader({ path:target })
-
-  reader
+  fstream.Reader({ path:target })
     .pipe(cop('path'))
     .pipe(es.writeArray(function (err, lines) {
       t.deepEqual(lines, wanted, 'should equal paths')

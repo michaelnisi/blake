@@ -1,7 +1,7 @@
 {
   "name": "blake",
   "description": "Simple, blog aware infrastructure to generate static sites",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "homepage": "http://michaelnisi.github.com/blake/",
   "repository": {
     "type": "git",
@@ -29,10 +29,10 @@
   "dependencies": {
     "mkdirp": "0.3.x",
     "fstream": "0.1.x",
-    "lru-cache": "2.1.x", 
+    "lru-cache": "2.3.x", 
     "prettydate": "0.0.x", 
     "event-stream": "3.0.x",
-    "cop": "0.2.x",
+    "cop": "0.3.x",
     "popfun": "0.1.x"
   },
   "devDependencies": {

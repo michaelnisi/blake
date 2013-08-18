@@ -6,6 +6,5 @@ var generate = require('./lib/generate.js')
 
 module.exports = function (source, target) {
   var props = getProps(source, target)
-
   return generate(props)
 }
