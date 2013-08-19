@@ -1,6 +1,6 @@
 
 // generate - generate blake site
-// cd example ; node generate.js
+// $ cd example ; node generate.js
 
 var blake = require('blake')
   , join = require('path').join

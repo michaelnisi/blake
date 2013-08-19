@@ -32,15 +32,15 @@ In the first synopsis form, `blake` writes all files generated from input data i
       .pipe(process.stdout)
 
 ### Copy static resources and generate from directory
-
+    
     var blake = require('blake')
-      , source = 'blake-site'
-      , target = '/tmp/blake-site'
       , join = require('path').join
+      , source = join(process.cwd(), './blake-site')
+      , target = '/tmp/blake-site'
       , Reader = require('fstream').Reader
       , props = { path:join(source, 'data') }
       , cop = require('cop')
-      , copy = require('blake/lib/copy.js')
+      , copy = require('../lib/copy.js')
 
     copy(join(source, 'resources'), target)
       .on('error', console.error)
@@ -51,6 +51,7 @@ In the first synopsis form, `blake` writes all files generated from input data i
           .pipe(cop(function (filename) { return filename + '\n' }))
           .pipe(process.stdout)
       })
+      .pipe(process.stdout)
 
 ### Generate from files
 
@@ -68,7 +69,7 @@ In the first synopsis form, `blake` writes all files generated from input data i
 
 ### Generate and push to S3
 
-Since blake returns a Stream that emits the paths of the generated artifacts, we can pipe to [pushup](https://github.com/michaelnisi/pushup), and upload the files directly to S3.
+Since the `blake` function returns a [Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform) stream that emits the paths of the generated artifacts, we can pipe to [pushup](https://github.com/michaelnisi/pushup), and upload the files directly to S3.
 
     var resolve = require('path').resolve
       , cop = require('cop')
@@ -95,31 +96,17 @@ Since blake returns a Stream that emits the paths of the generated artifacts, we
       return p.split(sep).slice(3).join(sep)
     }
 
-## Events
 
-The blake function returns a readable and writable [Stream](http://nodejs.org/api/stream.html) that emits following events:
+## blake(source, target)
 
-### Event: 'data'
+The `blake` module exports a single function that returns a [Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform) stream. While writing source filenames to it, you can read target filenames (of written arfifacts) from it.
 
-    function (path) { }
-
-The `data` event emits paths of generated artifacts.
-
-### Event: 'end'
-
-    function () { }
-
-Emitted when blake is done.
-
-### Event: 'error'
-
-    function (err) { }
-
-Emitted if an error occured.
+- `source` The source directory.
+- `target` The target directory.
 
 ## Configuration
 
-blake requires a configuration module at `source_directory/config.js`, which exports `paths`, and `views`, a map of generator functions:
+`blake` requires a configuration module at `source_directory/config.js`, which exports `paths`, and `views`, a map of generator functions:
 
     exports.paths = {
       data: 'data' 
