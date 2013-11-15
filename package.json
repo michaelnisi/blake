@@ -1,11 +1,22 @@
 {
   "name": "blake",
+  "version": "0.8.1",
   "description": "Simple, blog aware infrastructure to generate static sites",
-  "version": "0.8.0",
-  "homepage": "http://michaelnisi.github.com/blake/",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "example": "example",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tap test/*.js"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/michaelnisi/blake.git"
+  },
+  "bugs": {
+    "url": "https://github.com/michaelnisi/blake/issues"
   },
   "keywords": [
     "blog",
@@ -14,17 +25,8 @@
     "generator",
     "infrastructure"
   ],
-  "main": "index.js",
   "bin": {
     "blake": "bin/cli.js"
-  },
-  "directories": {
-    "lib": "lib",
-    "example": "example",
-    "test": "test"
-  },
-  "scripts": {
-    "test": "tap test/*.js"
   },
   "dependencies": {
     "mkdirp": "0.3.x",
@@ -44,10 +46,10 @@
   "engines": {
     "node": "0.10.x"
   },
-  "license": "MIT",
   "author": {
     "name": "Michael Nisi",
     "email": "michael.nisi@gmail.com",
     "url": "http://michaelnisi.com"
-  }
+  },
+  "license": "MIT"
 }
