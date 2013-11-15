@@ -129,7 +129,7 @@ The `views` object is a map of user-written functions that implement the actual 
 ## Input
 
 At the top of each input file blake expects a JSON string that is interpreted as header providing transformation parameters. Besides it can contain additional user defined data—the `item` parameter, passed to the view functions, provides a reference to the raw header. Input data for a blog entry could look like so: 
-```js
+```
 {
   "title": "Example",
   "description": "An example article",
