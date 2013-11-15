@@ -105,7 +105,7 @@ The `blake` module exports a single function that returns a [Transform](http://n
 
 ## Configuration
 
-`blake` requires a configuration module at `source_directory/config.js`, which exports `paths`, and `views`, a map of generator functions:
+`blake` requires a configuration module at `source_directory/config.js`, which exports `paths`, and `views` (a map of generator functions):
 ```js
 exports.paths = {
   data: 'data' 
@@ -130,14 +130,14 @@ The `views` object is a map of user-written functions that implement the actual 
 
 At the top of each input file blake expects a JSON string that is interpreted as header providing transformation parameters. Besides it can contain additional user defined data—the `item` parameter, passed to the view functions, provides a reference to the raw header. Input data for a blog entry could look like so: 
 ```js
-    {
-      "title": "Example",
-      "description": "An example article",
-      "template": "article.jade",
-      "date": "2012-03-21"
-    }
+{
+  "title": "Example",
+  "description": "An example article",
+  "template": "article.jade",
+  "date": "2012-03-21"
+}
 
-    <The content of the example article.>
+Your highness, when I said that you are like a stream of bat's piss, I only mean that you shine out like a shaft of gold when all around it is dark.
 ```
 The end of the header is marked by an empty line. Everything that follows is interpreted as content and is passed to the views untouched.
 
@@ -226,7 +226,7 @@ npm install
 node generate.js
 open /tmp/blake-site/index.html
 ```
-To evaluate a more elaborate example, you might generate my [blog](http://michaelnisi.com), for which I use [Jade](http://jade-lang.com/) and [Markdown](http://daringfireball.net/projects/markdown/):
+To evaluate a more elaborate example, you might generate my [blog](http://troubled.pro), for which I use [Jade](http://jade-lang.com/) and [Markdown](http://daringfireball.net/projects/markdown/):
 ```
 npm install -g blake
 git clone git://github.com/michaelnisi/troubled.git
@@ -242,7 +242,7 @@ Of course you can build your site locally, and upload it to your webserver manua
 
 [![npm](https://nodei.co/npm/blake.png?compact=true)](https://npmjs.org/package/blake) 
 
-To use the CLI (as in the above examples):
+To use the command-line interface:
 ```
 npm install -g blake
 ```
