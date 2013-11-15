@@ -137,7 +137,9 @@ At the top of each input file blake expects a JSON string that is interpreted as
   "date": "2012-03-21"
 }
 
-Your highness, when I said that you are like a stream of bat's piss, I only mean that you shine out like a shaft of gold when all around it is dark.
+Your highness, when I said that you are like a stream of bat\'s piss, 
+I only mean that you shine out like a shaft of gold when all around 
+it is dark.
 ```
 The end of the header is marked by an empty line. Everything that follows is interpreted as content and is passed to the views untouched.
 
