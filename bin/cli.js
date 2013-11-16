@@ -2,7 +2,7 @@
 
 var blake = require('../index.js')
   , cop = require('cop')
-  , filenames = require('../lib/read.js').fstream
+  , files = require('../lib/read.js').fstream
   , copy = require('../lib/copy.js')
   , join = require('path').join
 
@@ -17,14 +17,6 @@ var blake = require('../index.js')
   var source = arg.shift()
     , target = arg.shift()
 
-  function bake () {
-    filenames(source, arg)
-      .pipe(cop('path'))
-      .pipe(blake(source, target))
-      .pipe(cop(function (filename) { return filename + '\n' }))
-      .pipe(process.stdout)
-  }
-
   if (!arg.length) {
     copy(join(source, 'resources'), target)
       .on('error', console.error)
@@ -32,6 +24,14 @@ var blake = require('../index.js')
       .pipe(process.stdout)
   } else {
     bake()
+  }
+
+  function bake () {
+    files(source, arg)
+      .pipe(cop('path'))
+      .pipe(blake(source, target))
+      .pipe(cop(function (filename) { return filename + '\n' }))
+      .pipe(process.stdout)
   }
 })()
 

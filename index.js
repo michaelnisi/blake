@@ -8,29 +8,28 @@ var Transform = require('stream').Transform
   , writeFile = require('fs').writeFile
   , StringDecoder = require('string_decoder').StringDecoder
   , read = require('./lib/read.js').readItems
-  , getProps = require('./lib/read.js').config
+  , getConf = require('./lib/read.js').conf
 
 module.exports = function (s, target) {
-  var props = s && target ? getProps(s, target) : s
+  var conf = s && target ? getConf(s, target) : s
     , decoder = new StringDecoder('utf8')
     , stream = new Transform({ objectMode:true })
 
   stream._transform = function (chunk, encoding, cb) {
     var filename = decoder.write(chunk)
-    read(props)(filename, function (er, item) {
+    read(conf)(filename, function (er, item) {
       bake(item, function (er) {
         stream.push(item.path)
         cb(er)
       })
     })
   }
-
   function bake (item, cb) {
     if (!item.bake) {
       cb(new Error('Undefined bake function for ' + item.name))
       return
     }
-    item.read = read(props)
+    item.read = read(conf)
     item.bake(item, function (er, result) {
       if (er) {
         stream.emit('error', er)
@@ -39,7 +38,6 @@ module.exports = function (s, target) {
       write(item.path, result, cb)
     })
   }
-
   return stream
 }
 
