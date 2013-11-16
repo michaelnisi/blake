@@ -1,5 +1,5 @@
 var test = require('tap').test
-  , getItem = require('../lib/getItem.js')
+  , getItem = require('../lib/item.js')
   , strftime = require('prettydate').strftime
   , path = require('path')
   , readFileSync = require('fs').readFileSync

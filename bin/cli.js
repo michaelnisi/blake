@@ -2,7 +2,7 @@
 
 var blake = require('../index.js')
   , cop = require('cop')
-  , getReader = require('../lib/getReader.js')
+  , filenames = require('../lib/read.js').fstream
   , copy = require('../lib/copy.js')
   , join = require('path').join
 
@@ -18,7 +18,7 @@ var blake = require('../index.js')
     , target = arg.shift()
 
   function bake () {
-    getReader(source, arg)
+    filenames(source, arg)
       .pipe(cop('path'))
       .pipe(blake(source, target))
       .pipe(cop(function (filename) { return filename + '\n' }))
