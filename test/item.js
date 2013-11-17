@@ -1,5 +1,6 @@
 var test = require('tap').test
-  , getItem = require('../lib/item.js')
+  , item = require('../lib/item').item
+  , header = require('../lib/item').header
   , strftime = require('prettydate').strftime
   , path = require('path')
   , readFileSync = require('fs').readFileSync
@@ -8,30 +9,46 @@ var test = require('tap').test
   , props = config.props
   , paths = props.paths
 
-test('read', function (t) {
+test('header', function (t) {
+  var file = path.join(paths.data, 'index.md')
+  t.throws(function () {
+    header(null, file, paths)
+  })
+  t.throws(function () {
+    var data = '{"title":"Title"}'
+    header(data, file, paths)
+  })
+  t.doesNotThrow(function () {
+    var data = '{"template":"x", "name":"y"}'
+    header(data, file, paths)
+  })
+  t.end()
+})
+
+test('item', function (t) {
   var filename = path.join(paths.data, 'index.md')
     , file = readFileSync(filename)
-    , item = getItem(props, filename, file.toString())
-    , header = item.header
+    , it = item(props, filename, file.toString())
 
-  t.equal(header.template, 'index.jade')
-  t.equal(header.name, 'index.html')
-  t.equal(header.title, null)
-  t.ok(header.date instanceof Date, 'should be instance of Date')
-  t.equal(header.path, '')
+  var h = it.header
+  t.equal(h.template, 'index.jade')
+  t.equal(h.name, 'index.html')
+  t.equal(h.title, null)
+  t.ok(h.date instanceof Date, 'should be instance of Date')
+  t.equal(h.path, '')
 
-  t.ok(item.body.length, 'should have body')
-  t.equal(item.title, null)
-  t.equal(item.name, 'index.html')
-  t.same(item.date, header.date)
-  t.equal(item.pubDate, strftime(header.date, '%a, %d %b %Y %T %z'))
-  t.equal(item.dateString, header.date.toDateString())
-  t.ok(item.template instanceof Buffer, 'should be instance of Buffer')
-  t.equal(item.title, header.title)
-  t.equal(item.link, 'index.html')
-  t.ok(typeof item.bake === 'function', 'should be function type')
-  t.equal(item.name, 'index.html')
-  t.equal(item.path, path.join(target, header.name))
+  t.ok(it.body.length, 'should have body')
+  t.equal(it.title, null)
+  t.equal(it.name, 'index.html')
+  t.same(it.date, h.date)
+  t.equal(it.pubDate, strftime(h.date, '%a, %d %b %Y %T %z'))
+  t.equal(it.dateString, h.date.toDateString())
+  t.ok(it.template instanceof Buffer, 'should be instance of Buffer')
+  t.equal(it.title, h.title)
+  t.equal(it.link, 'index.html')
+  t.ok(typeof it.bake === 'function', 'should be function type')
+  t.equal(it.name, 'index.html')
+  t.equal(it.path, path.join(target, h.name))
 
   t.end()
 })

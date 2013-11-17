@@ -11,7 +11,7 @@ The `blake` [Node.js](http://nodejs.org/) module provides a simple, blog aware i
 blake source_directory target_directory
 blake source_directory target_directory source_file ...
 ```
-In the first synopsis form, `blake` writes all files generated from input data in the `source_directory` to the `target_directory`. In the second synopsis form, output is generated from the specified source files only.
+In the first form, `blake` writes all files generated from input data in the `source_directory` to the `target_directory`. In the second synopsis form, output is generated from the specified source files only.
 
 ## Library Usage
 

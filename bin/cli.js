@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-var blake = require('../index.js')
+var blake = require('../index')
   , cop = require('cop')
-  , files = require('../lib/read.js').fstream
-  , copy = require('../lib/copy.js')
+  , files = require('../lib/read').fstream
+  , copy = require('../lib/copy')
   , join = require('path').join
 
 ;(function () {
@@ -30,8 +30,12 @@ var blake = require('../index.js')
     files(source, arg)
       .pipe(cop('path'))
       .pipe(blake(source, target))
-      .pipe(cop(function (filename) { return filename + '\n' }))
+      .pipe(cop(format))
       .pipe(process.stdout)
   }
 })()
+
+function format (str) {
+  return str += '\n'
+}
 
