@@ -4,7 +4,7 @@
 
 ## Description
 
-The `blake` [Node.js](http://nodejs.org/) module provides a simple, blog aware infrastructure to generate static sites. For unrestricted choice of input formats and template languages, `blake` confines itself to IO and template routing; it delegates artifact generation to user-written functions.
+The `blake` [Node.js](http://nodejs.org/) module provides a simple, blog aware infrastructure to generate [static sites](http://troubled.pro/2012/05/static-websites.html). For unrestricted choice of input formats and template languages, `blake` confines itself to IO and template routing; it delegates artifact generation to user-written functions.
 
 ## CLI Usage
 ```
