@@ -31,21 +31,20 @@
   "dependencies": {
     "mkdirp": "0.3.x",
     "fstream": "0.1.x",
-    "lru-cache": "2.5.x", 
+    "lru-cache": "2.3.x", 
     "prettydate": "0.0.x", 
     "event-stream": "3.0.x",
     "cop": "0.3.x",
     "popfun": "0.1.x"
   },
   "devDependencies": {
-    "tap": "0.4.x",
-    "rimraf": "2.2.x",
-    "jade": "0.35.x",
-    "markdown": "0.5.x"
+    "tap": "0.3.x",
+    "rimraf": "2.0.x",
+    "jade": "0.27.x",
+    "markdown": "0.4.x"
   },
   "engines": {
-    "node": "0.11.x"
-  , "node": "0.10.x"
+    "node": "0.10.x"
   },
   "author": {
     "name": "Michael Nisi",
