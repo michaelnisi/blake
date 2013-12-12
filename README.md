@@ -143,7 +143,7 @@ it is dark.
 ```
 The end of the header is marked by an empty line. Everything that follows is interpreted as content and is passed to the views untouched.
 
-## Header
+### Header
 
 JSON at the top of an input file:
 ```js
@@ -186,7 +186,7 @@ An input file can consist of just a header (without content) to generate, for ex
   "name": "rss.xml"
 }
 ```
-## Views
+### Views
 
 The views—alternative naming would be: transformers, generators, or bakers—are the functions that generate your artifacts; they have the following signature:
 ```js
