@@ -1,10 +1,8 @@
 # blake - generate site
 
-[![Build Status](https://travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake) [![David DM](https://david-dm.org/michaelnisi/blake.png)](http://david-dm.org/michaelnisi/blake)
-
-## Description
-
 The `blake` [Node.js](http://nodejs.org/) module provides a simple, blog aware infrastructure to generate [static sites](http://troubled.pro/2012/05/static-websites.html). For unrestricted choice of input formats and template languages, `blake` confines itself to IO and template routing; it delegates artifact generation to user-written functions.
+
+[![Build Status](https://travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake) [![David DM](https://david-dm.org/michaelnisi/blake.png)](http://david-dm.org/michaelnisi/blake)
 
 ## CLI Usage
 ```
@@ -96,7 +94,9 @@ function adjustPath (p) {
   return p.split(sep).slice(3).join(sep)
 }
 ```
-## blake(source, target)
+## API
+
+### blake(source, target)
 
 The `blake` module exports a single function that returns a [Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform) stream. While writing source filenames to it, you can read target filenames (of written arfifacts) from it.
 
