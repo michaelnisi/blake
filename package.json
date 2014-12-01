@@ -1,6 +1,6 @@
 {
   "name": "blake",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "Simple, blog aware infrastructure to generate static sites",
   "main": "index.js",
   "directories": {
@@ -29,19 +29,19 @@
     "blake": "bin/cli.js"
   },
   "dependencies": {
-    "mkdirp": "0.4.x",
-    "fstream": "0.1.x",
-    "lru-cache": "2.5.x", 
-    "prettydate": "0.0.x", 
-    "event-stream": "3.1.x",
-    "cop": "0.3.x",
-    "popfun": "0.1.x"
+    "cop": "^0.3.6",
+    "event-stream": "^3.1.7",
+    "fstream": "^0.1.31",
+    "lru-cache": "^2.5.0",
+    "mkdirp": "^0.4.2",
+    "popfun": "^0.1.2",
+    "prettydate": "0.0.1"
   },
   "devDependencies": {
-    "tap": "0.3.x",
-    "rimraf": "2.0.x",
-    "jade": "0.27.x",
-    "markdown": "0.4.x"
+    "jade": "^1.8.1",
+    "markdown": "^0.5.0",
+    "rimraf": "^2.2.8",
+    "tap": "^0.4.13"
   },
   "engines": {
     "node": "0.10.x"

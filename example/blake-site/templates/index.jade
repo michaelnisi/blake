@@ -1,10 +1,10 @@
-!!! 5
+doctype html
 html(lang="en")
   include head
   body
     h1
-      a(href=npm) #{headline} 
+      a(href=npm) #{headline}
     h2 #{subline}
-    !{content}
+    != content
     a(href=code)
       img(src='https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png')
