@@ -1,12 +1,16 @@
+var blake = require('../')
+var common = require('./lib/common')
+var path = require('path')
 var test = require('tap').test
-  , path = require('path')
-  , read = require('../lib/read').readItems
-  , config = require('./config')
-  , props = config.props
+
+var source = common.source(__dirname)
+var target = common.freshTarget()
+var b = blake(source, target)
 
 test('read file', function (t) {
-  var file = path.join(props.paths.data, 'index.md')
-  read(props)(file, function (err, item) {
+  var p = path.resolve(source, 'data', 'index.md')
+  b.items(p, function (er, item) {
+    if (er) throw er
     t.ok(item.header, 'should have header')
     t.ok(item.body, 'should have body')
     t.end()
@@ -14,7 +18,9 @@ test('read file', function (t) {
 })
 
 test('read directory', function (t) {
-  read(props)(props.paths.data, function (err, items) {
+  var p = path.resolve(source, 'data')
+  b.items(p, function (er, items) {
+    if (er) throw er
     items.forEach(function (item) {
       t.ok(item.header, 'should have header')
       t.ok(item.body, 'should have body')

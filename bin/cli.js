@@ -1,41 +1,44 @@
 #!/usr/bin/env node
 
 var blake = require('../index')
-  , cop = require('cop')
-  , files = require('../lib/read').fstream
-  , copy = require('../lib/copy')
-  , join = require('path').join
+var cop = require('cop')
+var fs = require('fs')
+var path = require('path')
 
 ;(function () {
   var arg = process.argv.splice(2)
-    , isValid = arg && arg.length >= 2
-
-  if (!isValid) {
-    return console.error('Usage: blake source_directory target_directory [source_file ...]');
-  }
-
-  var source = arg.shift()
-    , target = arg.shift()
-
   if (!arg.length) {
-    copy(join(source, 'resources'), target)
-      .on('error', console.error)
+    return console.error('Usage: blake [source_directory] target_directory [source_file ...]')
+  }
+  var cwd = process.cwd()
+  function isFile () {
+    var p = path.resolve(cwd, arg[1])
+    return fs.statSync(p).isFile()
+  }
+  var sansSource = arg.length === 1 || isFile()
+  if (sansSource) {
+    arg.unshift(cwd)
+  }
+  var source = arg.shift()
+  var target = arg.shift()
+  function onerror (er) {
+    console.error(er.message)
+  }
+  var b = blake(source, target)
+  if (!arg.length) {
+    blake.copy(b.resources, target)
+      .on('error', onerror)
       .on('end', bake)
       .pipe(process.stdout)
   } else {
     bake()
   }
-
   function bake () {
-    files(source, arg)
-      .pipe(cop('path'))
-      .pipe(blake(source, target))
-      .pipe(cop(format))
+    var p = arg instanceof Array && arg.length ? arg : b.data
+    blake.files(p)
+      .pipe(b)
+      .on('error', onerror)
+      .pipe(cop(function (str) { return str + '\n' }))
       .pipe(process.stdout)
   }
 })()
-
-function format (str) {
-  return str += '\n'
-}
-

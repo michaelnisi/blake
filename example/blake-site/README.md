@@ -1,1 +1,0 @@
-# The blake example site

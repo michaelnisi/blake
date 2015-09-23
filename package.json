@@ -1,15 +1,14 @@
 {
   "name": "blake",
-  "version": "0.9.3",
-  "description": "Simple, blog aware infrastructure to generate static sites",
+  "version": "1.0.0",
+  "description": "Generate static sites",
   "main": "index.js",
   "directories": {
-    "lib": "lib",
-    "example": "example",
     "test": "test"
   },
   "scripts": {
-    "test": "tap test/*.js"
+    "test": "NODE_TEST=1 tap test/*.js",
+    "posttest": "rm -rf /tmp/blake-[1-9]*"
   },
   "repository": {
     "type": "git",
@@ -23,28 +22,26 @@
     "static",
     "site",
     "generator",
-    "infrastructure"
+    "build"
   ],
   "bin": {
     "blake": "bin/cli.js"
   },
   "dependencies": {
     "cop": "^0.3.6",
-    "event-stream": "^3.1.7",
-    "fstream": "^0.1.31",
-    "lru-cache": "^2.5.0",
-    "mkdirp": "^0.4.2",
-    "popfun": "^0.1.2",
+    "event-stream": "^3.3.1",
+    "fstream": "^1.0.7",
+    "lru-cache": "^2.6.5",
+    "mkdirp": "^0.5.1",
+    "popfun": "^1.0.0",
     "prettydate": "0.0.1"
   },
   "devDependencies": {
-    "jade": "^1.8.1",
-    "markdown": "^0.5.0",
-    "rimraf": "^2.2.8",
-    "tap": "^0.4.13"
+    "rimraf": "^2.4.3",
+    "tap": "^1.4.0"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": ">0.10"
   },
   "author": {
     "name": "Michael Nisi",
