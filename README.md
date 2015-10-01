@@ -1,12 +1,12 @@
 # blake - generate anything
 
-The **blake** [Node](https://nodejs.org/) package provides a file generation pipeline. I wrote it to generate my [site](http://troubled.pro/). Separating IO from data transformation—by using an intermediate representation—**blake** takes care of IO, and lets you get on with generating your stuff. Of course, [gulp](http://gulpjs.com/) puts itself forward as a streaming build system, but if you—like me—experience slight framework fatigue, and prefer plain Node, you might want to give **blake** a shot.
+The **blake** [Node](https://nodejs.org/) package provides a file generation pipeline. Originally, I wrote it to generate my [blog](http://troubled.pro/). Separating IO from data transformation—by using an intermediate representation—**blake** takes care of IO, and lets you get on with generating your stuff. Of course, [gulp](http://gulpjs.com/) puts itself forward as a streaming build system, but if you—like me—experience slight framework fatigue, and prefer plain Node, you might want to give **blake** a shot.
 
-[![Build Status](https://travis-ci.org/michaelnisi/blake.png)](http://travis-ci.org/michaelnisi/blake)
+[![Build Status](https://travis-ci.org/michaelnisi/blake.svg)](http://travis-ci.org/michaelnisi/blake)
 
 ## Example
 
-Alas, I don't have a silly example yet, however, you can generate my site to get an understanding of how to use **blake**:
+Alas, I don't have a silly example yet, however, after installing **blake**, you could generate my blog, to see how it works:
 
 ```
 git clone https://github.com/michaelnisi/troubled.git
@@ -56,7 +56,7 @@ An object to configure paths.
 
 ### header()
 
-Just a bag of things, passed to your **view function**, you can put anything you want in here; just remember that **blake** uses these properties internally:
+Just a bag of things, passed to your **view function**, you can put anything you want in here; just remember that **blake** uses following properties internally:
 
 - `template` `String()` The filename of the template.
 - `title` `str()` The title of the item or `null`.

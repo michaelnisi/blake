@@ -1,13 +1,13 @@
 {
   "name": "blake",
-  "version": "1.0.0",
-  "description": "Generate static sites",
+  "version": "1.0.1",
+  "description": "Generate anything",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "NODE_TEST=1 tap test/*.js",
+    "test": "NODE_TEST=1 tap -b test/*.js",
     "posttest": "rm -rf /tmp/blake-[1-9]*"
   },
   "repository": {
